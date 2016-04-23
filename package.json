@@ -1,0 +1,25 @@
+{
+  "name": "alan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express-session":"*",
+    "aws-sdk": "^2.2.43",
+    "body-parser": "~1.0.0",
+    "cookie-parser": "^1.3.5",
+    "express": "~4.0.0",
+    "method-override": "~2.1.2",
+    "morgan": "~1.0.0",
+    "mysql": "*",
+    "nodemailer": "^1.10.0",
+    "bcrypt-nodejs": "*",
+    "passport":"*",
+    "passport-local": "*"
+  },
+  "author": "",
+  "license": "ISC"
+}
