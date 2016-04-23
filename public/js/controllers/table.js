@@ -95,6 +95,36 @@ materialAdmin
 
         };
 
+        this.updateUsers = function(user){
+            console.log(user.firstName)
+            
+            if (user.userType == 1 || user.userType == 2){
+                alert('Professores: Typo 3 \nAlunos: Typo 4. \n\nNAO EXISTE: Typo ' + user.userType + '!')
+                user.userType = 5;
+            }
+            else{
+                $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/updateUsers',
+                  data: {
+                      'Email': user.email,
+                      'UserID': user.userID,
+                      'FirstName': user.firstName,
+                      'LastName': user.lastName,
+                      'UserType': user.userType,
+                      }
+                })
+                .then(function(response){
+                     console.log(response.data)
+
+                   //var users = response.data;
+
+                   //$scope.users = users;
+                })
+            }
+        }
+
+
 
       
 

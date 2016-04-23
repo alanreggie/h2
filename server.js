@@ -49,6 +49,7 @@ console.log('The magic happens on port ' + port);
 //require('./routes/register.js')(app);
 //require('./routes/forgotPassword.js')(app);
 require('./routes/unAuthenticatedUsers.js')(app);
+require('./routes/updateUsers.js')(app);
 
 
 
