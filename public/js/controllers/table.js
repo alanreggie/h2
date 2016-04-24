@@ -1,5 +1,15 @@
 materialAdmin
     .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http) {
+    
+
+
+
+       /* this.courseDropdown = function() {
+          alert('hello')
+        }
+*/
+
+
         var data = tableService.data;
         
         //Basic Example

@@ -1,11 +1,33 @@
 materialAdmin
+
+    // =========================================================================
+    // Controller for side nav
+    // =========================================================================
+    
+    .controller('sideNav', function($scope, $http){
+        //alert('hello')
+
+        $scope.courses = [
+            {
+                "course": 'Dental 101',
+                "link": "home.html"
+            },
+            {
+                "course": 'Dental 102',
+                "link": "home.html"
+            }]              
+    })
+
+
+
+
     // =========================================================================
     // Base controller for common functions
     // =========================================================================
 
     .controller('materialadminCtrl', function($timeout, $state, $scope, growlService){
         //Welcome Message
-        growlService.growl('Welcome back Mallinda!', 'inverse')
+        growlService.growl('Welcome back Alan!', 'inverse')
         
         
         // Detact Mobile Browser
