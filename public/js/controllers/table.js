@@ -1,13 +1,39 @@
 materialAdmin
     .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http) {
-    
+ 
 
+       this.getCourseGrades = function(){
+              
+         $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/getGrades',
+                  data: {
+                      'UserID': '250607166'
+                     /* 'Email': '43432',
+                      'UserID':'342432432',
+                      'FirstName': '32323232',
+                      'LastName': '323232',
+                      'Password': '323232',*/
+                      
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
 
+               var studentCourseGrade = response.data;
 
-       /* this.courseDropdown = function() {
-          alert('hello')
+               //function AngularWayCtrl($resource) {
+                  /*var vm = this;
+                  $resource(users).query().$promise.then(function(users) {
+                      vm.users = users;
+                  });*/
+                //}
+               $scope.studentCourseGrade = studentCourseGrade;
+
+            })
+
         }
-*/
+
 
 
         var data = tableService.data;
@@ -29,6 +55,7 @@ materialAdmin
             count: 10,           // count per page
             sorting: {
                 name: 'asc'     // initial sorting
+               /* description: 'asc'*/
             }
         }, {
             total: data.length, // length of data
@@ -79,30 +106,27 @@ materialAdmin
 
        this.getAll = function(){
             
+            $http({
+                  method: 'GET',
+                  url: 'http://localhost:3000/unAuthenticatedUsersAdmin',
+                  data: {
+                      /*'Email': $('#registerEmail').val()*/
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
 
-        $http({
-              method: 'GET',
-              url: 'http://localhost:3000/unAuthenticatedUsersAdmin',
-              data: {
-                  /*'Email': $('#registerEmail').val()*/
-              }
-        })
-        .then(function(response){
-             console.log(response.data)
+               var users = response.data;
 
-           var users = response.data;
+               //function AngularWayCtrl($resource) {
+                  /*var vm = this;
+                  $resource(users).query().$promise.then(function(users) {
+                      vm.users = users;
+                  });*/
+                //}
+               $scope.users = users;
 
-           //function AngularWayCtrl($resource) {
-              /*var vm = this;
-              $resource(users).query().$promise.then(function(users) {
-                  vm.users = users;
-              });*/
-            //}
-           $scope.users = users;
-
-        })
-
-
+            })
         };
 
         this.updateUsers = function(user){
@@ -126,13 +150,12 @@ materialAdmin
                 })
                 .then(function(response){
                      console.log(response.data)
-
-                   //var users = response.data;
-
-                   //$scope.users = users;
                 })
             }
         }
+
+
+
 
 
 

@@ -50,6 +50,7 @@ console.log('The magic happens on port ' + port);
 //require('./routes/forgotPassword.js')(app);
 require('./routes/unAuthenticatedUsers.js')(app);
 require('./routes/updateUsers.js')(app);
+require('./routes/getGrades.js')(app);
 
 
 
