@@ -45,9 +45,9 @@ console.log('The magic happens on port ' + port);
 
 //require('./routes/s3.js')(app); 
 //require('./routes/authentication.js')(app); 
-//require('./routes/auth.js')(app);
-//require('./routes/register.js')(app);
-//require('./routes/forgotPassword.js')(app);
+require('./routes/login.js')(app);
+require('./routes/register.js')(app);
+require('./routes/forgotPassword.js')(app);
 require('./routes/unAuthenticatedUsers.js')(app);
 require('./routes/updateUsers.js')(app);
 require('./routes/getGrades.js')(app);

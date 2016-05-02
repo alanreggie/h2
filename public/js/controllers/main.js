@@ -18,6 +18,21 @@ materialAdmin
             }]              
     })
 
+    /////test adding this,,,,
+/*    .controller('LoginController', ['$scope', '$window', '$location',
+      function($scope, $window, $location) {
+        $scope.goToEvents = function() {
+          //Do Something
+          $window.location.href = '/form';
+          //$location.path('/form')
+        };
+      }
+    ])*/
+
+
+       /* .controller('redirectCtrl', function($timeout, $state, $scope, growlService){
+            window.location.href = 'login.html';
+        })*/
 
 
 
@@ -25,10 +40,21 @@ materialAdmin
     // Base controller for common functions
     // =========================================================================
 
-    .controller('materialadminCtrl', function($timeout, $state, $scope, growlService){
+    .controller('materialadminCtrl', function($timeout, $state, $scope, growlService, $sessionStorage){
+
+        /*console.log($sessionStorage.active)
+        if (!$sessionStorage.active){
+            $sessionStorage.active == 1;
+            window.location.href = 'login.html';
+        }
+        else{
+            alert()
+        }*/
+
         //Welcome Message
         growlService.growl('Welcome back Alan!', 'inverse')
         
+
         
         // Detact Mobile Browser
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -315,13 +341,106 @@ materialAdmin
     // LOGIN
     //=================================================
 
-    .controller('loginCtrl', function(){
-        
+    .controller('loginCtrl', function($scope, $http, $sessionStorage, $location){
         //Status
-    
         this.login = 1;
         this.register = 0;
         this.forgot = 0;
+
+        $scope.registerSubmit = function() {     
+           
+            if($('#registerFirstName').val() != '' && $('#registerEmail').val() != '' && $('#registerPassword').val() != '' && $('#registerLastName').val() != ''){
+                  $http({
+                      method: 'POST',
+                      url: 'http://localhost:3000/register',
+                      data: {
+                          'Email': $('#registerEmail').val(),
+                          'Password': $('#registerPassword').val(),
+                          'FirstName': $('#registerFirstName').val(),
+                          'LastName': $('#registerLastName').val()
+                      }
+                  })
+                .then(function(response){
+                    console.log(response.data)
+                    $('#responseMessageRegister').text( response.data )
+                 })
+                }
+                else{
+                    $('#responseMessageRegister').text( 'Enter all fields!' )
+                }
+            }
+
+
+        $scope.forgotEmailSubmit = function() {  
+            if($('#forgotPasswordEmail').val() != ''){
+                $http({
+                    method: 'POST',
+                    url: 'http://localhost:3000/forgotPassword',
+                    data: {
+                        'Email': $('#forgotPasswordEmail').val()
+                    }
+                })
+              .then(function(response){
+                  console.log(response.data)
+                  $('#responseMessageForgotPassword').text( response.data )
+               })
+            }
+            else{
+               $('#responseMessageForgotPassword').text( 'Enter all fields!' )
+            }
+        }   
+
+        $scope.loginSubmit = function() {     
+
+            $http({
+                method: 'POST',
+                url: 'http://localhost:3000/userlogin',
+                data: {
+                    'Email': $('#username').val(),
+                    'Password': $('#password').val()
+                }
+            })
+            .then(function (response){
+                console.log(response.data)
+
+                if (response.data.Message.indexOf('O usuário não existe') >= 0){
+                    //alert('O usuário não existe')
+                    $('#responseMessage').text( 'O usuário não existe' )
+
+                }
+                else if(response.data.Message.indexOf('Invalid Password') >= 0){
+                   //alert('Senha inválida');
+                   $('#responseMessage').text( 'Senha inválida' )
+                }
+                else if(response.data.Message.indexOf('Success') >= 0){
+                   var userType = response.data.userType;
+                   var user = response.data;
+                   $sessionStorage.active = 1;
+                   $sessionStorage.user = JSON.stringify(user);
+
+                   if (userType == 1){
+                        $location.path('/admin')
+                   }
+                   else if (userType == 2){
+                        $location.path('/manager')
+                   }
+                   else if (userType == 3){
+                        $location.path('/teacher')
+                   }
+                   else if (userType == 4){
+                        $location.path('/student')
+                   }
+                   else if (userType == 5){
+                      $('#responseMessage').text( 'Voce so pode login quando o administrador approva sua conta!' )
+                   }
+                }
+                else{
+                    console.log('wtf')
+                }
+            })
+        }
+
+
     })
 
 

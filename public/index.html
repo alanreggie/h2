@@ -15,16 +15,25 @@
         <link href="vendors/bower_components/angular-loading-bar/src/loading-bar.css" rel="stylesheet">
         <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
 
+
+
         <!-- CSS -->
         <link href="css/app.min.1.css" rel="stylesheet" id="app-level">
         <link href="css/app.min.2.css" rel="stylesheet">
         <link href="css/demo.css" rel="stylesheet">
 
+
+
     </head>
 
-    <body data-ng-class="{ 'sw-toggled': mactrl.layoutType === '1'}">
+    <body data-ng-class="{ 'sw-toggled': mactrl.layoutType === '1'}" > <!-- ng-controller="LoginController as lgCtrl" -->
 
         <data ui-view></data>
+
+<!-- 
+    <h1>This page does not use ui.router but needs to call a function in angular controller</h1>
+    <a href="manage/home.html" ng-click="goToEvents()">Login</a> -->
+
 
         <!-- Older IE warning message -->
         <!--[if lt IE 9]>
@@ -70,6 +79,8 @@
         <![endif]-->
 
 
+            <!-- <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script> -->
+
         <!-- Core -->
         <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
 
@@ -87,6 +98,11 @@
         <!-- Common Vendors -->
         <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
         <script src="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.min.js"></script>
+
+                <!-- <script src="vendors/bower_components/jquery.nicescroll/jquery.nicescroll.min.js"></script> -->
+
+
+        
         <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
         <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
         <script src="vendors/bower_components/ng-table/dist/ng-table.min.js"></script>
@@ -129,6 +145,10 @@
         <script src="js/modules/components.js"></script>
         <script src="js/modules/calendar.js"></script>
         <script src="js/modules/demo.js"></script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+
+
     </body>
 </html>
 

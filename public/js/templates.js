@@ -7,7 +7,7 @@ angular.module('materialAdmin').run(['$templateCache', function($templateCache) 
 
 
   $templateCache.put('template/footer.html',
-    "Copyright &copy; 2015 Material Admin<ul class=\"f-menu\"><li><a href=\"\">Home</a></li><li><a href=\"\">Dashboard</a></li><li><a href=\"\">Reports</a></li><li><a href=\"\">Support</a></li><li><a href=\"\">Contact</a></li></ul>"
+    "Copyright &copy; 2016 Brooklin Software<ul class=\"f-menu\"><li><a href=\"\">Home</a></li><li><a href=\"\">Dashboard</a></li><li><a href=\"\">Reports</a></li><li><a href=\"\">Support</a></li><li><a href=\"\">Contact</a></li></ul>"
   );
 
 
@@ -31,7 +31,7 @@ angular.module('materialAdmin').run(['$templateCache', function($templateCache) 
   );
 
 
-  $templateCache.put('template/profile-menu.html',
+  $templateCache.put('template/prfile-menu.html',
     "<li class=\"btn-wave\" data-ui-sref-active=\"active\"><a data-ui-sref=\"pages.profile.profile-about\">About</a></li><li class=\"btn-wave\" data-ui-sref-active=\"active\"><a data-ui-sref=\"pages.profile.profile-timeline\">Timeline</a></li><li class=\"btn-wave\" data-ui-sref-active=\"active\"><a data-ui-sref=\"pages.profile.profile-photos\">Photos</a></li><li class=\"btn-wave\" data-ui-sref-active=\"active\"><a data-ui-sref=\"pages.profile.profile-connections\">Connections</a></li>"
   );
 
@@ -81,8 +81,13 @@ angular.module('materialAdmin').run(['$templateCache', function($templateCache) 
   );
 
   $templateCache.put('template/testing.html',
-    "<header id=\"header\" data-ng-controller=\"sideNav as snavctrl\"></header><div class=\"sidebar-inner c-overflow\"><div class=\"profile-menu\"><a href=\"\" toggle-submenu><div class=\"profile-pic\"><img src=\"img/profile-pics/4.jpg\" alt=\"\"></div><div class=\"profile-info\">Test Reg <i class=\"zmdi zmdi-caret-down\"></i></div></a><ul class=\"main-menu\"><li><a data-ui-sref=\"pages.profile.profile-about\" data-ng-click=\"mactrl.sidebarStat($event)\"><i class=\"zmdi zmdi-account\"></i> PERRRFIL</a></li><li><a href=\"\"><i class=\"zmdi zmdi-input-antenna\"></i> Configuracoes</a></li><li><a href=\"\"><i class=\"zmdi zmdi-settings\"></i> Outras Configuracoes</a></li><li><a href=\"\"><i class=\"zmdi zmdi-time-restore\"></i> Sair</a></li></ul></div><ul class=\"main-menu\"><li data-ui-sref-active=\"active\"  ><a data-ui-sref=\"home\" data-ng-click=\"mactrl.sidebarStat($event)\"><i class=\"zmdi zmdi-home\"></i> Casa</a></li><li class=\"sub-menu\"  data-ng-class=\"{ 'active toggled': mactrl.$state.includes('headers') }\"><a href=\"\" toggle-submenu><i class=\"zmdi zmdi-view-compact\"></i> Curso </a><ul><li><a data-ui-sref-active=\"active\" data-ui-sref=\"tables.data-table\" data-ng-click=\"mactrl.sidebarStat($event)\">Authenticate Users</a></li><li><a data-ui-sref-active=\"active\" data-ui-sref=\"headers.image-logo\" data-ng-click=\"mactrl.sidebarStat($event)\">Image logo</a></li><li><a data-ui-sref-active=\"active\" data-ui-sref=\"headers.mainmenu-on-top\" data-ng-click=\"mactrl.sidebarStat($event)\">Mainmenu on top</a></li></ul></li>"
+    "<header id=\"header\" data-ng-controller=\"sideNav as snavctrl\"></header><div class=\"sidebar-inner c-overflow\"><div class=\"profile-menu\"><a href=\"\" toggle-submenu><div class=\"profile-pic\"><img src=\"img/profile-pics/4.jpg\" alt=\"\"></div><div class=\"profile-info\">Test Reg <i class=\"zmdi zmdi-caret-down\"></i></div></a><ul class=\"main-menu\"><li><a data-ui-sref=\"pages.profile.profile-about\" data-ng-click=\"mactrl.sidebarStat($event)\"><i class=\"zmdi zmdi-account\"></i> Perfil</a></li><li><a href=\"\"><i class=\"zmdi zmdi-input-antenna\"></i> Configuracoes</a></li><li><a href=\"\"><i class=\"zmdi zmdi-settings\"></i> Outras Configuracoes</a></li><li><a href=\"\"><i class=\"zmdi zmdi-time-restore\"></i> Sair</a></li></ul></div><ul class=\"main-menu\"><li data-ui-sref-active=\"active\"  ><a data-ui-sref=\"home\" data-ng-click=\"mactrl.sidebarStat($event)\"><i class=\"zmdi zmdi-home\"></i> Casa</a></li><li class=\"sub-menu\"  data-ng-class=\"{ 'active toggled': mactrl.$state.includes('headers') }\"><a href=\"\" toggle-submenu><i class=\"zmdi zmdi-view-compact\"></i> Curso </a><ul><li><a data-ui-sref-active=\"active\" data-ui-sref=\"tables.data-table\" data-ng-click=\"mactrl.sidebarStat($event)\">Authenticate Users</a></li><li><a data-ui-sref-active=\"active\" data-ui-sref=\"headers.image-logo\" data-ng-click=\"mactrl.sidebarStat($event)\">Image logo</a></li><li><a data-ui-sref-active=\"active\" data-ui-sref=\"headers.mainmenu-on-top\" data-ng-click=\"mactrl.sidebarStat($event)\">Mainmenu on top</a></li></ul></li>"
   );
+
+  $templateCache.put('template/adminSidebar.html',
+    "<header id=\"header\" data-ng-controller=\"sideNav as snavctrl\"></header><div class=\"sidebar-inner c-overflow\"><div class=\"profile-menu\"><a href=\"\" toggle-submenu><div class=\"profile-pic\"><img src=\"img/profile-pics/4.jpg\" alt=\"\"></div><div class=\"profile-info\">Test Reg <i class=\"zmdi zmdi-caret-down\"></i></div></a><ul class=\"main-menu\"><li><a data-ui-sref=\"pages.profile.profile-about\" data-ng-click=\"mactrl.sidebarStat($event)\"><i class=\"zmdi zmdi-account\"></i> Perfil</a></li><li><a href=\"\"><i class=\"zmdi zmdi-input-antenna\"></i> Configuracoes</a></li><li><a href=\"\"><i class=\"zmdi zmdi-settings\"></i> Outras Configuracoes</a></li><li><a href=\"\"><i class=\"zmdi zmdi-time-restore\"></i> Sair</a></li></ul></div><ul class=\"main-menu\"><li data-ui-sref-active=\"active\"  ><a data-ui-sref=\"home\" data-ng-click=\"mactrl.sidebarStat($event)\"><i class=\"zmdi zmdi-home\"></i> Casa</a></li><li class=\"sub-menu\"  data-ng-class=\"{ 'active toggled': mactrl.$state.includes('headers') }\"><a href=\"\" toggle-submenu><i class=\"zmdi zmdi-view-compact\"></i> Curso </a><ul><li><a data-ui-sref-active=\"active\" data-ui-sref=\"admin.authenticate-registered\" data-ng-click=\"mactrl.sidebarStat($event)\">Authenticate Users</a></li><li><a data-ui-sref-active=\"active\" data-ui-sref=\"headers.image-logo\" data-ng-click=\"mactrl.sidebarStat($event)\">Image logo</a></li><li><a data-ui-sref-active=\"active\" data-ui-sref=\"headers.mainmenu-on-top\" data-ng-click=\"mactrl.sidebarStat($event)\">Mainmenu on top</a></li></ul></li>"
+  );
+
 
 /*ng-repeat=\"w in courses\"*/
 

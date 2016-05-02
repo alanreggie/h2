@@ -1,0 +1,203 @@
+<div class="container" data-ng-controller="tableCtrl as tctrl">
+
+    <div data-ng-init="tctrl.getAll(); tctrl.getCourseGrades()"></div>
+
+    <div class="block-header">
+
+        <ul class="actions m-t-20 hidden-xs">
+            <li class="dropdown" uib-dropdown>
+                <a href="" uib-dropdown-toggle>
+                    <i class="zmdi zmdi-more-vert"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-right">
+                    <li>
+                        <a href=""  data-ng-click="tctrl.init()">Privacy Settings</a>
+                    </li>
+                    <li>
+                        <a href="">Account Settings</a>
+                    </li>
+                    <li>
+                        <a href="">Other Settings</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    
+   <!--  <div class="card">
+        <div class="card-header">
+            <h2>Basic Examples <small>With lease settings enabled.</small></h2>
+        </div>
+                
+        <div class="card-body">
+            <div class="table-responsive">
+                <table ng-table="tctrl.tableBasic" class="table table-striped table-vmiddle">
+                    <tr ng-repeat="w in $data">
+                        <td data-title="'ID'">
+                            {{ w.id }}
+                        </td>
+                        <td data-title="'Name'">
+                            {{ w.name }}
+                        </td>
+                        <td data-title="'Email'">
+                            {{ w.email }}
+                        </td>
+                        <td data-title="'Username'">
+                            {{ w.username }}
+                        </td>
+                        <td data-title="'Contact'">
+                            {{ w.contact }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2>Column Sorting <small>Click on columns header to sort the table.</small></h2>
+        </div>
+                
+        <div class="card-body">
+            <div class="table-responsive">
+                <table ng-table="tctrl.tableSorting" class="table table-striped table-vmiddle">
+                    <tr ng-repeat="w in $data">
+                        <td data-title="'ID'" sortable="'id'">
+                            {{ w.id }}
+                        </td>
+                        <td data-title="'Name'" sortable="'name'">
+                            {{ w.name }}
+                        </td>
+                        <td data-title="'Email'" sortable="'email'">
+                            {{ w.email }}
+                        </td>
+                        <td data-title="'Username'" sortable="'username'">
+                            {{ w.username }}
+                        </td>
+                        <td data-title="'Contact'" sortable="'contact'">
+                            {{ w.contact }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="card">
+        <div class="card-header">
+            <h2>Column Filtering <small>Type something in filter and press Enter or Filter button</small></h2>
+        </div>
+                
+        <div class="card-body">
+            <div class="table-responsive">
+                <table ng-table="tctrl.tableFilter" class="table table-striped table-vmiddle" show-filter="true">
+                    <tr ng-repeat="w in $data">
+                        <td data-title="'ID'" filter="{ 'id': 'text' }">
+                            {{ w.id }}
+                        </td>
+                        <td data-title="'Name'" filter="{ 'name': 'text' }">
+                            {{ w.name }}
+                        </td>
+                        <td data-title="'Email'" filter="{ 'email': 'text' }">
+                            {{ w.email }}
+                        </td>
+                        <td data-title="'Username'" filter="{ 'username': 'text' }">
+                            {{ w.username }}
+                        </td>
+                        <td data-title="'Contact'" filter="{ 'contact': 'text' }">
+                            {{ w.contact }}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div> -->
+    
+    <div class="card">
+        <div class="card-header">
+            <h2>Usarios que nao tem autorizacao </h2>
+        </div>
+                
+        <div class="card-body">
+            <div class="table-responsive">
+                <table ng-table="tctrl.tableEdit " class="table table-striped table-vmiddle">
+                    <tr ng-repeat="w in users"  ng-class="{ 'active': w.$edit }">
+                         
+
+                        <!--  <td data-title="'Curso'">
+                   
+                         <div style="width: 14em !important"> 
+                            <select ng-model="key" chosen data-placeholder="Select a country..." class="w-100"> 
+                                <option value="United States">United States</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                <option value="Afghanistan">Afghanistan</option>
+                                <option value="Aland Islands">Aland Islands</option>
+                                <option value="Albania">Albania</option>
+                                <option value="Algeria">Algeria</option>
+                                <option value="American Samoa">American Samoa</option>
+                            </select>
+                     </div> 
+
+
+
+                        </td> -->
+
+                        <td data-title="'ID'">
+                            <span ng-if="true">{{ w.userID }}</span>
+                            <div ng-if="false"><input class="form-control" type="text" ng-model="w.userID" /></div>
+                        </td>
+                        <td data-title="'Typo de Usario'">
+                            <span ng-if="!w.$edit">{{ w.userType }}</span>
+                            <div ng-if="w.$edit"><input class="form-control" type="text" ng-model="w.userType" /></div>
+                        </td>
+                        <td data-title="'Email'">
+                            <span ng-if="!w.$edit">{{ w.email }}</span>
+                            <div ng-if="w.$edit"><input class="form-control" type="email" ng-model="w.email" /></div>
+                        </td>
+                        <td data-title="'Primero Nome'">
+                            <span ng-if="!w.$edit">{{ w.firstName }}</span>
+                            <div ng-if="w.$edit"><input class="form-control" type="text" ng-model="w.firstName" /></div>
+                        </td>
+                        <td data-title="'Sobre Nome'">
+                            <span ng-if="!w.$edit">{{ w.lastName  }}</span>
+                            <div ng-if="w.$edit"><input class="form-control" type="text" ng-model="w.lastName" /></div>
+                        </td>
+                         <td data-title="'Data de Registracao'">
+                            <span ng-if="!w.$edit">{{ w.dateRegistered  }}</span>
+                            <div ng-if="w.$edit"><input class="form-control" type="text" ng-model="w.dateRegistered" /></div>
+                        </td>
+
+                       
+
+                        <td data-title="'Editar'">
+                            <button type="button" class="btn btn-default" ng-if="!w.$edit" ng-click="w.$edit = true"><i class="zmdi zmdi-edit"></i></button>
+                            <button type="button" class="btn btn-success" ng-if="w.$edit" ng-click="w.$edit = false; tctrl.updateUsers(w)"><i class="zmdi zmdi-check"></i></button>
+                        </td>
+
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>   
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
