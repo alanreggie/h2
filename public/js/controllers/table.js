@@ -104,7 +104,7 @@ materialAdmin
             //alert('test')
        // };
 
-       this.getAll = function(){
+       this.getAllUnauth = function(){
             
             $http({
                   method: 'GET',
@@ -129,14 +129,48 @@ materialAdmin
             })
         };
 
+        this.getAllUsers = function(){
+            
+            $http({
+                  method: 'GET',
+                  url: 'http://localhost:3000/allUsers',
+                  data: {
+                      /*'Email': $('#registerEmail').val()*/
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
+
+               var users = response.data;
+
+               //function AngularWayCtrl($resource) {
+                  /*var vm = this;
+                  $resource(users).query().$promise.then(function(users) {
+                      vm.users = users;
+                  });*/
+                //}
+               $scope.users = users;
+
+            })
+        };
+
         this.updateUsers = function(user){
             console.log(user.firstName)
             
-            if (user.userType == 1 || user.userType == 2){
+              var e = document.getElementById("userTypeDropdown");
+              var userType = e.options[e.selectedIndex].value;
+              console.log(userType)
+              
+              if (userType == '? undefined:undefined ?'){
+                userType = user.userType;
+              }
+              //alert(strUser)
+
+            /*if (user.userType == 1 || user.userType == 2){
                 alert('Professores: Typo 3 \nAlunos: Typo 4. \n\nNAO EXISTE: Typo ' + user.userType + '!')
                 user.userType = 5;
-            }
-            else{
+            }*/
+           // else{
                 $http({
                   method: 'POST',
                   url: 'http://localhost:3000/updateUsers',
@@ -145,13 +179,17 @@ materialAdmin
                       'UserID': user.userID,
                       'FirstName': user.firstName,
                       'LastName': user.lastName,
-                      'UserType': user.userType,
+                      'UserType': userType,
+                      'DateRegistered': user.dateRegistered
                       }
                 })
                 .then(function(response){
                      console.log(response.data)
+                     user.userType = userType;
                 })
-            }
+           // }
+
+
         }
 
 

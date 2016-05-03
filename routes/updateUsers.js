@@ -25,10 +25,11 @@ console.log(token)*/
         var userType = req.body.UserType;
         var firstName = req.body.FirstName;
         var lastName = req.body.LastName;
+        var date = req.body.DateRegistered;
 
 
 
-        connection.query('UPDATE user SET ? WHERE userID = ?', [{ firstName: firstName, lastName: lastName, email:email, userType:userType }, userID], function(err, rows, fields) {
+        connection.query('UPDATE user SET ? WHERE userID = ?', [{ firstName: firstName, lastName: lastName, email:email, userType:userType, dateRegistered:date }, userID], function(err, rows, fields) {
         	if(err){
         		res.send(err)	
         	}

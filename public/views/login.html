@@ -1,21 +1,21 @@
-        <div class="container" > <!-- style="background-color: #2196f3 !important; " -->
+        <div class="container" style="height:100vh !important; background: linear-gradient(to bottom,  #2196f3 50%, #ffffff 50%);"> <!-- style="background-color: #2196f3 !important;  background-color: #2196f3 !important; background-repeat: repeat-y; background-size: 50% auto;" " -->
 
 
-    <div  class="login-content" data-ng-controller="loginCtrl as lctrl" >
+    <div  class="login-content"  data-ng-controller="loginCtrl as lctrl" >
 
         <!-- <div  data-ng-init="init()"></div> -->
 
         <!-- Login -->
-        <div class="lc-block" style="top: 26vh !important; margin: 0 auto !important;"  id="l-login" data-ng-class="{ 'toggled': lctrl.login === 1 }" data-ng-if="lctrl.login === 1" > <!--  -->
+        <div class="lc-block" style="top: 21vh !important;  "  id="l-login" data-ng-class="{ 'toggled': lctrl.login === 1 }" data-ng-if="lctrl.login === 1" > 
 
             <p class="text-left"><h4 style="text-align: center">Facesc Login</h4></p>
 
 
 
-            <div class="input-group m-b-20">
+            <div class="input-group m-b-20" style ="margin-left : auto !important;margin-right: auto !important;">
                 <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
                 <div class="fg-line">
-                    <input type="text" class="form-control" id= "username" placeholder="Nome de usario">
+                    <input type="text" class="form-control" id= "username" placeholder="Nome de usuário">
                 </div>
             </div>
 
@@ -39,30 +39,14 @@
                 <li data-block="#l-forget-password" class="bgm-orange" data-ng-click="lctrl.login = 0; lctrl.forgot = 1">Esqueceu a senha?</li>
             </ul>
 
-
-        </div>
-
-
-        <div  data-ng-class="{ 'toggled': lctrl.login === 1 }" data-ng-if="lctrl.login === 1" > <!--  -->
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        </div>
+            </div>
+        <div>
 
 
 
 
         <!-- Register -->
-        <div style=" top: 10vh !important;" class="lc-block" id="l-register" data-ng-class="{ 'toggled': lctrl.register === 1 }" data-ng-if="lctrl.register === 1">
+        <div style=" top: 12vh !important;" class="lc-block" id="l-register" data-ng-class="{ 'toggled': lctrl.register === 1 }" data-ng-if="lctrl.register === 1">
 
              <p class="text-left"><h4 style="text-align: center">Registro</h4></p>
 
@@ -112,27 +96,10 @@
         </div>
 
 
-                <div data-ng-class="{ 'toggled': lctrl.register === 1 }" data-ng-if="lctrl.register === 1">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                </div>
-
-
-
-
+             
 
         <!-- Forgot Password -->
-        <div style="top: 31vh !important;" class="lc-block" id="l-forget-password" data-ng-class="{ 'toggled': lctrl.forgot === 1 }" data-ng-if="lctrl.forgot === 1">
+        <div style="top: 32vh !important;" class="lc-block" id="l-forget-password" data-ng-class="{ 'toggled': lctrl.forgot === 1 }" data-ng-if="lctrl.forgot === 1">
            
             <div class="input-group m-b-20">
                 <span class="input-group-addon"><i class="zmdi zmdi-email"></i></span>
@@ -152,25 +119,7 @@
             </ul>
         </div>
 
-        <div data-ng-class="{ 'toggled': lctrl.forgot === 1 }" data-ng-if="lctrl.forgot === 1">
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-        </div>
-
+     
 
 
         <!-- Older IE warning message -->

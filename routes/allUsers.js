@@ -18,12 +18,12 @@ module.exports = function (app){
 var token = randomToken(16); // example output → '3ZGErMDCwxTOZYFp' 
 console.log(token)*/
 
-	app.get('/unAuthenticatedUsersAdmin', function(req,res){
+	app.get('/allUsers', function(req,res){
 		
 		var Email = req.body.Email;
 		var Password = req.body.Password;
         
-        connection.query('SELECT * from user where userType=?',['Nenhum'], function(err, rows, fields) {
+        connection.query('SELECT * from user where user.userType !=?', ['Nenhum'], function(err, rows, fields) {
         	if(err){
         		res.send(err)	
         	}

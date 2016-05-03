@@ -51,6 +51,7 @@ require('./routes/forgotPassword.js')(app);
 require('./routes/unAuthenticatedUsers.js')(app);
 require('./routes/updateUsers.js')(app);
 require('./routes/getGrades.js')(app);
+require('./routes/allUsers.js')(app);
 
 
 

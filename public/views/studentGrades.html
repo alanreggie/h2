@@ -1,8 +1,6 @@
 <div class="container" data-ng-controller="tableCtrl as tctrl">
 
-    <div data-ng-init="tctrl.getAllUnauth(); tctrl.getCourseGrades()"></div>
-
-    <!-- <aside id="sidebar" data-ng-include="'template/adminSidebar.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside> -->
+    <div data-ng-init="tctrl.getAll(); tctrl.getCourseGrades()"></div>
 
     <div class="block-header">
 
@@ -117,88 +115,37 @@
         </div>
     </div> -->
     
-    <div class="card">
-        <div class="card-header">
-            <h2>Usuários Que Não Tem Autorizaçao</h2>
-        </div>
-                
+    
+
+
+
         <div class="card-body">
             <div class="table-responsive">
-                <table ng-table="tctrl.tableEdit " class="table table-striped table-vmiddle">
-                    <tr ng-repeat="w in users"  ng-class="{ 'active': w.$edit }">
-                         
-
-                        <!--  <td data-title="'Curso'">
-                   
-                         <div style="width: 14em !important"> 
-                            <select ng-model="key" chosen data-placeholder="Select a country..." class="w-100"> 
-                                <option value="United States">United States</option>
-                                <option value="United Kingdom">United Kingdom</option>
-                                <option value="Afghanistan">Afghanistan</option>
-                                <option value="Aland Islands">Aland Islands</option>
-                                <option value="Albania">Albania</option>
-                                <option value="Algeria">Algeria</option>
-                                <option value="American Samoa">American Samoa</option>
-                            </select>
-                     </div> 
-
-
-
+                <table ng-table="tctrl.tableSorting" class="table table-striped table-vmiddle">
+                    <tr ng-repeat="w in studentCourseGrade">
+                        <!-- <td data-title="'ID'"  sortable="'userID'">
+                            {{ w.userID }}
                         </td> -->
-
-                        <td data-title="'ID'">
-                            <span ng-if="true">{{ w.userID }}</span>
-                            <div ng-if="false"><input class="form-control" type="text" ng-model="w.userID" /></div>
+                        <td data-title="'Primero Nome'" sortable="'firstName'">
+                            {{ w.firstName }}
                         </td>
-                        
-                        <td data-title="'Email'">
-                            <span ng-if="true">{{ w.email }}</span>
-                            <div ng-if="false"><input class="form-control" type="email" ng-model="w.email" /></div>
+                        <td data-title="'Sobre Nome'" sortable="'lastName'">
+                            {{ w.lastName }}
                         </td>
-                        <td data-title="'Primero Nome'">
-                            <span ng-if="true">{{ w.firstName }}</span>
-                            <div ng-if="false"><input class="form-control" type="text" ng-model="w.firstName" /></div>
+                        <td data-title="'Curso'" sortable="'courseName'">
+                            {{ w.courseName }}
                         </td>
-                        <td data-title="'Sobre Nome'">
-                            <span ng-if="true">{{ w.lastName  }}</span>
-                            <div ng-if="false"><input class="form-control" type="text" ng-model="w.lastName" /></div>
+                        <td data-title="'Descricao'" sortable="'name'">
+                            {{ w.description }}
                         </td>
-                         <td data-title="'Data de Registracao'">
-                            <span ng-if="true">{{ w.dateRegistered  }}</span>
-                            <div ng-if="false"><input class="form-control" type="text" ng-model="w.dateRegistered" /></div>
+                         <td data-title="'Nota'" sortable="'grade'">
+                            {{ w.grade }}
                         </td>
-
-                         <td data-title="'Typo de Usuário'">
-                            <span ng-if="!w.$edit">{{ w.userType }}</span>    
-                            <div ng-if="w.$edit">
-                                 <div style="width: 14em !important"> 
-                                    <select id="userTypeDropdown" ng-model="key" chosen data-placeholder="Seleciona um typo" class="w-100"> 
-                                        <option value="Estudante">Estudante</option>
-                                        <option value="Professor">Professor</option>
-                                        <option value="Admin">Admin</option>
-                                        <option value="Manager">Manager</option>
-                                    </select>
-                                 </div> 
-                            </div>           
-                        </td>
-
-                       
-
-                        <td data-title="'Editar'">
-                            <button type="button" class="btn btn-default" ng-if="!w.$edit" ng-click="w.$edit = true"><i class="zmdi zmdi-edit"></i></button>
-                            <button type="button" class="btn btn-success" ng-if="w.$edit" ng-click="w.$edit = false; tctrl.updateUsers(w)"><i class="zmdi zmdi-check"></i></button>
-                        </td>
-
-
                     </tr>
                 </table>
             </div>
         </div>
-    </div>   
 
-
-
-        
 
 
 

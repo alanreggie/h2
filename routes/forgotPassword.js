@@ -68,7 +68,7 @@ module.exports = function (app){
 
 	        					 //email newPass then update database
 
-								var mailOptions = {
+								/*var mailOptions = {
 			                        from: 'administrador@facesc.com', // sender address 
 			                        to: Email, // list of receivers 
 			                        subject: 'Senha Nova Facesc!✔', // Subject line 
@@ -82,7 +82,7 @@ module.exports = function (app){
 			                        else{
 			                            console.log('Message sent: ' + info.response);                            
 			                        }
-			                    });
+			                    });*/
 
 	        					
 	        					res.send('A senha nova foi manadada para o seu email');

@@ -22,7 +22,7 @@ module.exports = function (app){
 
 
 		/*where user.userID=?',[userID]*/
-		connection.query('SELECT * from (((user INNER JOIN UserCourseGrade on user.userID = UserCourseGrade.userID) INNER JOIN course on UserCourseGrade.courseID = course.courseID) INNER JOIN grade on UserCourseGrade.gradeID = grade.gradeID) ' , function(err, rows, fields) { 
+		connection.query('SELECT * from (((user INNER JOIN UserCourseGrade on user.userID = UserCourseGrade.userID) INNER JOIN course on UserCourseGrade.courseID = course.courseID) INNER JOIN grade on UserCourseGrade.gradeID = grade.gradeID) where user.userID=?' , [userID] ,  function(err, rows, fields) { 
 			if(err){
 		    	res.send(err)	
 		    }
