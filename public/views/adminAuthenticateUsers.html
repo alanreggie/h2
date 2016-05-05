@@ -6,7 +6,7 @@
 
     <div class="block-header">
 
-        <ul class="actions m-t-20 hidden-xs">
+        <!-- <ul class="actions m-t-20 hidden-xs">
             <li class="dropdown" uib-dropdown>
                 <a href="" uib-dropdown-toggle>
                     <i class="zmdi zmdi-more-vert"></i>
@@ -24,7 +24,7 @@
                     </li>
                 </ul>
             </li>
-        </ul>
+        </ul> -->
     </div>
     
    <!--  <div class="card">
@@ -176,7 +176,7 @@
                                         <option value="Estudante">Estudante</option>
                                         <option value="Professor">Professor</option>
                                         <option value="Admin">Admin</option>
-                                        <option value="Manager">Manager</option>
+                                        <option value="Gerente">Gerente</option>
                                     </select>
                                  </div> 
                             </div>           
@@ -185,10 +185,15 @@
                        
 
                         <td data-title="'Editar'">
-                            <button type="button" class="btn btn-default" ng-if="!w.$edit" ng-click="w.$edit = true"><i class="zmdi zmdi-edit"></i></button>
-                            <button type="button" class="btn btn-success" ng-if="w.$edit" ng-click="w.$edit = false; tctrl.updateUsers(w)"><i class="zmdi zmdi-check"></i></button>
-                        </td>
+                            <button type="button" class="btn btn-default" ng-if="!w.$edit; !w.apple" ng-click="w.$edit = true"><i class="zmdi zmdi-edit"></i></button>
+                            <button type="button" class="btn btn-success" ng-if="w.$edit && !w.apple; " ng-click="w.$edit = false; tctrl.updateUsers(w)"><i class="zmdi zmdi-check"></i></button>
+                       </td>
 
+                        <td data-title="'Deletar'">
+                        <button type="button" class="btn btn-default" ng-if="!w.apple" ng-click="tctrl.deleteUser(w); w.apple = true"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></button>
+                         <div ng-if"w.apple"></div>   
+                            <!-- <button type="button" class="btn btn-success" ng-if="false" ng-click="w.$edit = false; tctrl.updateUsers(w)"><i class="zmdi zmdi-check"></i></button> -->
+                        </td>
 
                     </tr>
                 </table>

@@ -1,0 +1,54 @@
+<div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllProfessors();">
+    <div class="block-header">
+            <h1 style="text-align:center">Adiçionar <small>Cursos</small></h1>
+
+
+        <div class="col-sm-12"  data-ng-controller="TabsDemoCtrl">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Formulário <small>Adiçionar curso novo!</small></h2>
+                </div>
+
+
+                <div class="card" >
+                    <div class="card-body card-padding">
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input id="courseName" type="text" class="form-control input-sm">
+                                <label class="fg-label">Nome do Curso</label>
+                            </div>
+                        </div>
+
+                        <br>
+
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                            <textarea id="courseDescription" class="form-control" rows="4" ></textarea>
+                                <label class="fg-label">Descriçao do Curso</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line"> <!--  -->
+                                <select  id="adminChosenProfessors" chosen multiple data-placeholder="Adiçionar Professores ao Curso" class="w-100">
+                                    <option ng-model="key" ng-repeat="w in professors" value="United Kingdom"> {{ w.firstName }} </option>
+                                </select>
+                            </div>
+                        </div> 
+
+
+                        <button class="btn btn-info" ng-click="actrl.submitCourse()">Enviar</button>
+                        <button class="btn btn-link" ng-click="actrl.reload()" >Adiçionar Outro Curso</button>
+
+                        <h5 id="courseResponseMessage"></h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

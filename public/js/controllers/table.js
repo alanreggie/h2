@@ -155,7 +155,7 @@ materialAdmin
         };
 
         this.updateUsers = function(user){
-            console.log(user.firstName)
+           // console.log(user)
             
               var e = document.getElementById("userTypeDropdown");
               var userType = e.options[e.selectedIndex].value;
@@ -192,7 +192,38 @@ materialAdmin
 
         }
 
+        this.deleteUser = function(user){
+            var r = confirm("Tem Certeze que quer deletar " + user.firstName + " " + user.lastName + "?");
+            if (r == true) {
+                //x = "Yes";
+                  $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/deleteUser',
+                  data: {
+                        'Email': user.email,
+                        'UserID': user.userID
+                      }
+                })
+                .then(function(response){
+                     console.log(response.data)
+                     user.userID = '';
+                     user.email = '';
+                     user.userType = '';
+                     user.firstName = '';
+                     user.lastName = '';
+                     user.dateRegistered = '';
+                     
+                })
 
+                
+
+
+            } 
+            else {
+                //x = "You pressed Cancel!";
+            }
+           
+        }
 
 
 

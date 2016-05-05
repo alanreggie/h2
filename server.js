@@ -52,6 +52,12 @@ require('./routes/unAuthenticatedUsers.js')(app);
 require('./routes/updateUsers.js')(app);
 require('./routes/getGrades.js')(app);
 require('./routes/allUsers.js')(app);
+require('./routes/adminDeleteUser.js')(app);
+require('./routes/adminAddNewCourse.js')(app);
+require('./routes/getAllProfessors.js')(app);
+
+
+
 
 
 

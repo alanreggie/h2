@@ -54,7 +54,7 @@ module.exports = function (app){
 	        	}
 	        	else{
 	        		//email doesn't exist yet
-	        		connection.query('INSERT INTO user SET ?', {userType: 5, firstName: FirstName, lastName: LastName, email:Email, dateRegistered: Date()}, function(err, result) {
+	        		connection.query('INSERT INTO user SET ?', {userType: 'Nenhum', firstName: FirstName, lastName: LastName, email:Email, dateRegistered: Date()}, function(err, result) {
 			  			if (err) throw err;
 			
 						var userID = result.insertId; 
@@ -71,7 +71,7 @@ module.exports = function (app){
 							if (err) throw err;
 
 
-							/*var mailOptions = {
+							var mailOptions = {
 		                        from: 'administrador@facesc.com', // sender address 
 		                        to: Email, // list of receivers 
 		                        subject: 'Bem-vindo a Facesc, '+ FirstName + '!', // Subject line 
@@ -85,7 +85,7 @@ module.exports = function (app){
 		                        else{
 		                            console.log('Message sent: ' + info.response);                            
 		                        }
-		                    });*/
+		                    });
 							
 							res.send('Bem vindo, ' + FirstName +' ' + LastName+ '. O administrador esta verificando sua conta!')
 						})

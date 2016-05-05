@@ -127,6 +127,11 @@ materialAdmin
                 url: '/widgets',
                 templateUrl: 'views/common.html'
             })
+/*
+            state ('adminWidgets', {
+                url: '/adminWidgets',
+                templateUrl: 'views/adminCommon.html'
+            })*/
 
             .state ('widgets.widgets', {
                 url: '/widgets',
@@ -158,6 +163,44 @@ materialAdmin
                 templateUrl: 'views/widget-templates.html',
             })
 
+             .state ('widgets.admin-add-user', {
+                url: '/widgets-admin-add-user',
+                templateUrl: 'views/adminAddCourse.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+                
+             
+            })
+
 
             //------------------------------
             // TABLES
@@ -167,13 +210,18 @@ materialAdmin
                 url: '/tables',
                 templateUrl: 'views/common.html'
             })
+
+            .state ('adminTables', {
+                url: '/tables',
+                templateUrl: 'views/adminCommon.html'
+            })
             
             .state ('tables.tables', {
                 url: '/tables',
                 templateUrl: 'views/tables.html'
             })
             
-            .state ('tables.data-table', {
+            .state ('adminTables.data-table', {
                 url: '/data-table',
                 templateUrl: 'views/data-table.html',
                 resolve: {
@@ -216,7 +264,7 @@ materialAdmin
                 templateUrl: 'views/common.html'
             })*/
 
-            .state ('tables.authenticate-registered', {
+            .state ('adminTables.authenticate-registered', {
                 url: '/authenticate-registered',
                 templateUrl: 'views/adminAuthenticateUsers.html',
                 resolve: {
@@ -252,7 +300,7 @@ materialAdmin
                 }
             })
 
-            .state ('tables.admin-all-edit', {
+            .state ('adminTables.admin-all-edit', {
                 url: '/admin-all-edit',
                 templateUrl: 'views/adminAllEdit.html',
                 resolve: {

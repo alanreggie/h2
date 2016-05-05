@@ -418,19 +418,19 @@ materialAdmin
                    $sessionStorage.active = 1;
                    $sessionStorage.user = JSON.stringify(user);
 
-                   if (userType == 1){
+                   if (userType == 'Admin'){
                         $location.path('/admin')
                    }
-                   else if (userType == 2){
+                   else if (userType == 'Gerente'){
                         $location.path('/manager')
                    }
-                   else if (userType == 3){
+                   else if (userType == 'Professor'){
                         $location.path('/teacher')
                    }
-                   else if (userType == 4){
+                   else if (userType == 'Estudante'){
                         $location.path('/student')
                    }
-                   else if (userType == 5){
+                   else if (userType == 'Nenhum'){
                       $('#responseMessage').text( 'Voce so pode login quando o administrador approva sua conta!' )
                    }
                 }
