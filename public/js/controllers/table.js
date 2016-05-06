@@ -196,7 +196,7 @@ materialAdmin
             var r = confirm("Tem Certeze que quer deletar " + user.firstName + " " + user.lastName + "?");
             if (r == true) {
                 //x = "Yes";
-                  $http({
+               $http({
                   method: 'POST',
                   url: 'http://localhost:3000/deleteUser',
                   data: {
@@ -214,15 +214,125 @@ materialAdmin
                      user.dateRegistered = '';
                      
                 })
-
-                
-
-
             } 
             else {
                 //x = "You pressed Cancel!";
             }
            
+        }
+
+        this.getAllCourses = function(){
+            
+             $http({
+                  method: 'GET',
+                  url: 'http://localhost:3000/getAllCourses',
+                  data: {
+                       
+                  }
+              })
+              .then(function(response){
+                   console.log(response.data)
+                  var courses = response.data
+
+                  $scope.courses = courses
+                   
+              })
+        }
+
+       this.updateCourses = function(course){
+
+          /***********CHECK IF YEAR AND SECTION AND COURSENAME ALREADY EXISTS!!!ELSE DO BELOW*************/
+
+              var e = document.getElementById("courseSectionDropdown");
+              var courseSection = e.options[e.selectedIndex].value;
+
+              var f = document.getElementById("courseYearDropdown");
+              var courseYear = f.options[f.selectedIndex].value;
+
+              if (courseSection.indexOf('?') > -1){
+                courseSection = course.courseSection;
+              }
+
+              if(courseYear.indexOf('?') > -1){
+                courseYear = course.courseYear;
+              }
+
+              $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/getSpecificCourse',
+                  data: {
+                        'courseID': course.courseID,
+                  }
+              })
+              .then(function(response){
+                  $scope.currentCourse = response.data;
+                  console.log(response.data)
+                  //console.log($scope.currentCourse[0].courseYear)
+              })
+
+
+
+             $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/updateCourses',
+                  data: {
+                        'courseID': course.courseID,
+                        'courseName': course.courseName,
+                        'courseYear': courseYear,
+                        'courseSection': courseSection,
+                        'courseDescription': course.courseDescription
+                  }
+              })
+              .then(function(response){
+                  console.log(response.data)
+              })
+
+
+
+              //check if year and section show duplicates course, if so, revert
+              $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/checkCourseExists',
+                  data: {
+                        'courseID': course.courseID,
+                        'courseName': course.courseName,
+                        'courseYear': courseYear,
+                        'courseSection': courseSection,
+                        'courseDescription': course.courseDescription
+                  }
+              })
+              .then(function(response){
+                  if (response.data.indexOf('Este') > -1){
+                   
+                     $http({
+                        method: 'POST',
+                        url: 'http://localhost:3000/updateCourses',
+                        data: {
+                              'courseID': course.courseID,
+                              'courseName': $scope.currentCourse[0].courseName,
+                              'courseYear': $scope.currentCourse[0].courseYear,
+                              'courseSection': $scope.currentCourse[0].courseSection,
+                              'courseDescription': $scope.currentCourse[0].courseDescription
+                        }
+                    })
+                    .then(function(response){
+                        console.log(response.data)
+                        course.courseName = $scope.currentCourse[0].courseName
+                        course.courseYear = $scope.currentCourse[0].courseYear
+                        course.courseSection = $scope.currentCourse[0].courseSection
+                        course.courseDescription = $scope.currentCourse[0].courseDescription
+
+                    })
+
+                    alert(response.data)
+                
+                  }
+
+                  console.log(response.data)
+              })
+
+
+
         }
 
 

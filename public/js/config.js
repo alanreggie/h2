@@ -163,8 +163,8 @@ materialAdmin
                 templateUrl: 'views/widget-templates.html',
             })
 
-             .state ('widgets.admin-add-user', {
-                url: '/widgets-admin-add-user',
+             .state ('widgets.admin-add-course', {
+                url: '/widgets-admin-add-course',
                 templateUrl: 'views/adminAddCourse.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
@@ -200,6 +200,85 @@ materialAdmin
                 
              
             })
+
+             .state ('widgets.admin-add-user', {
+                url: '/widgets-admin-add-user',
+                templateUrl: 'views/adminAddUser.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+                
+             
+            })
+
+             .state ('widgets.admin-add-user-to-course', {
+                url: '/widgets-admin-add-user-to-course',
+                templateUrl: 'views/adminAddStudentToCourse.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+                
+             
+            })
+
+
+             
 
 
             //------------------------------
@@ -300,9 +379,45 @@ materialAdmin
                 }
             })
 
-            .state ('adminTables.admin-all-edit', {
-                url: '/admin-all-edit',
-                templateUrl: 'views/adminAllEdit.html',
+            .state ('adminTables.admin-all-user-edit', {
+                url: '/admin-all-user-edit',
+                templateUrl: 'views/adminAllUserEdit.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+            })
+
+            .state ('adminTables.admin-all-course-edit', {
+                url: '/admin-all-course-edit',
+                templateUrl: 'views/adminAllCourseEdit.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([

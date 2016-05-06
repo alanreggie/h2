@@ -1,0 +1,45 @@
+
+<div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllProfessors(); actrl.getAllStudents()">
+    <div class="block-header">
+            <h1 style="text-align:center">Adiçionar <small>Estudantes ou Professores a Cursos</small></h1>
+
+
+        <div class="col-sm-12"  data-ng-controller="TabsDemoCtrl">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Formulário <small>Adiçionar Estudantes/Professores a Cursos!</small></h2>
+                </div>
+
+
+                <div class="card" >
+                    <div class="card-body card-padding">
+
+
+                        <div class="form-group fg-float m-b-30" style="max-width: 100%">
+                            <div class="fg-line">
+                                 <select id="adminChosenProfessors" chosen multiple data-placeholder="Adiçionar Professores ao Curso"  class="w-100" ng-model="blubb" ng-options="n.firstName for n in professors"></select>
+                            </div>
+                        </div> 
+
+
+                        <!-- this is not workign... -->
+                       <div class="form-group fg-float m-b-30" style="max-width: 100%">
+                            <div class="fg-line">
+                                 <select id="adminChosenProfessors" chosen multiple data-placeholder="Cursos"  class="w-100" ng-model="blubb2" ng-options="h.firstName for h in students"></select>
+                            </div>
+                        </div> 
+
+                        
+                        <button class="btn btn-info" ng-click="actrl.submitStudentsToCourses()">Enviar</button>
+                        <button class="btn btn-link" ng-click="actrl.reload()" >Adiçionar Mais Estudantes/Professors a Cursos</button>
+
+                        <h5 id="studentToCourseResponseMessage"></h5>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

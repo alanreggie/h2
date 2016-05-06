@@ -5,6 +5,7 @@ materialAdmin
     // =========================================================================
     
     .controller('adminAddNewCtrl', function($scope, $http, $window){
+    	
 
 		this.submitCourse = function(){
 				
@@ -16,11 +17,21 @@ materialAdmin
 
 			var courseDescription = $('#courseDescription').val()
 			var courseName = $('#courseName').val()
+			var courseSection = $('#courseYear').val()
+
+
+			var e = document.getElementById("courseYear");
+            var year = e.options[e.selectedIndex].value;
+
 
 			console.log(courseDescription)
 			console.log(courseName)
+			console.log(courseSection)
+			console.log(year)
 
-			if(courseDescription && courseName && selectedProfArr.length > 0){
+
+
+			if(courseDescription && courseName && selectedProfArr.length > 0 && courseSection && year){
 				//alert('hello')
 
 
@@ -58,17 +69,34 @@ materialAdmin
                       
                   }
              })
-              .then(function(response){
+             .then(function(response){
                     console.log(response.data)
-                    $scope.professors = response.data;
-
-                    console.log($scope.professors)
+                    var professors = response.data;
+                    $scope.professors = professors;
               })
 		}
 
 		this.reload = function(){
 			$window.location.reload();
 
+		}
+
+		this.getAllStudents = function(){
+
+			$http({
+                  method: 'GET',
+                  url: 'http://localhost:3000/getAllStudents',
+                  data: {
+                      
+                  }
+             })
+             .then(function(response){
+                    console.log(response.data)
+                    var students = response.data;
+
+                    $scope.students = students;
+                    
+              })
 		}
 
 

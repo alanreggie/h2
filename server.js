@@ -55,6 +55,12 @@ require('./routes/allUsers.js')(app);
 require('./routes/adminDeleteUser.js')(app);
 require('./routes/adminAddNewCourse.js')(app);
 require('./routes/getAllProfessors.js')(app);
+require('./routes/getAllCourses.js')(app);
+require('./routes/updateCourses.js')(app);
+require('./routes/checkCourseExists.js')(app);
+require('./routes/getSpecificCourse.js')(app);
+require('./routes/getAllStudents.js')(app);
+// require('./routes/getStudentsAndProfessors.js')(app);
 
 
 
