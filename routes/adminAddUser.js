@@ -28,12 +28,17 @@ var transporter = nodemailer.createTransport({
 module.exports = function (app){
 
 
-	app.post('/register', function(req,res){
-		
+	app.post('/adminAddUser', function(req,res){
+		console.log(Email)
 		var Email = req.body.Email;
-		var Password = req.body.Password;
 		var FirstName = req.body.FirstName;
 		var LastName = req.body.LastName;
+		var type = req.body.Type;
+
+		var randomToken0 = require('random-token').create('abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
+		var Password = randomToken0(16); 
+
+		
 
         
         var emailValid = validator.validate(Email);
@@ -54,7 +59,7 @@ module.exports = function (app){
 	        	}
 	        	else{
 	        		//email doesn't exist yet
-	        		connection.query('INSERT INTO user SET ?', {userType: 'Nenhum', firstName: FirstName, lastName: LastName, email:Email, dateRegistered: Date()}, function(err, result) {
+	        		connection.query('INSERT INTO user SET ?', {userType: type, firstName: FirstName, lastName: LastName, email:Email, dateRegistered: Date()}, function(err, result) {
 			  			if (err) throw err;
 			
 						var userID = result.insertId; 
@@ -73,10 +78,10 @@ module.exports = function (app){
 
 							var mailOptions = {
 		                        from: 'administrador@facesc.com', // sender address 
-		                        to: Email, // list of receivers 
+		                        to: Email, // list of receivers  + add the user who registered
 		                        subject: 'Bem-vindo a Facesc, '+ FirstName + '!', // Subject line 
 		                        text: '', // plaintext body 
-		                        html: '<h1>O administrador esta verificando sua conta.</h1> \n Seu email/nome de usuario:\n\n' + '<strong>' + Email + '</strong>'
+		                        html: '<h1>O administrador te adiciono ao systema do Facesc.</h1> \n Seu email/nome de usuario:\n\n' + '<strong>' + Email + '</strong>. \n\nSua senha e: <strong>' + Password + '</strong>'
 		                    };
 		                    transporter.sendMail(mailOptions, function(error, info){
 		                        if(error){
@@ -87,7 +92,7 @@ module.exports = function (app){
 		                        }
 		                    });
 							
-							res.send('Bem vindo, ' + FirstName +' ' + LastName+ '. O administrador esta verificando sua conta!')
+							res.send('O ' + FirstName +' ' + LastName+ ' foi adiciono ao banco de dados! Um email foi mandado para ' + Email +' com o nome de usuario e senha.')
 						})
 					});	
 

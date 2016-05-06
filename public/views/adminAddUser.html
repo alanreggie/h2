@@ -4,9 +4,9 @@
 
 
         <div class="col-sm-12"  data-ng-controller="TabsDemoCtrl">
-            <div class="card">
+            <div class="card" style=" width:800px; max-width:800px; margin: 0 auto" >
                 <div class="card-header">
-                    <h2>Formulário <small>Adiçionar Usuários!</small></h2>
+                    <h2>Formulário <small>Adicionar Usuários!</small></h2>
                 </div>
 
 
@@ -56,10 +56,12 @@
 
                         <br>
                      
-                        
+                        <!-- EMAIL SAYING A PASSWORD HAS BEEN CREATED -->
 
-                        <button class="btn btn-info" ng-click="actrl.submitCourse()">Enviar</button>
-                        <button class="btn btn-link" ng-click="actrl.reload()" >Adiçionar Outro Usuário</button>
+                        <button style="margin: -20px -50px; position:relative;top:50%;left:50%;" class="btn btn-info" ng-click="actrl.submitUser()">Enviar</button>
+                        <br>
+                        <br>
+                        <button style="margin: 0px -100px; position:relative;top:50%;left:50%; " class="btn btn-link" ng-click="actrl.reload()" >Adicionar Outro Usuário</button>
 
                         <h5 id="addStudentResponseMessage"></h5>
 

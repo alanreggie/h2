@@ -303,7 +303,7 @@ materialAdmin
               })
               .then(function(response){
                   if (response.data.indexOf('Este') > -1){
-                   
+                    //course already exists
                      $http({
                         method: 'POST',
                         url: 'http://localhost:3000/updateCourses',

@@ -1,13 +1,13 @@
 
-<div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllProfessors(); actrl.getAllStudents()">
+<div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllCourses(); actrl.getAllStudents(); "> <!-- actrl.getAllStudents() -->
     <div class="block-header">
-            <h1 style="text-align:center">Adiçionar <small>Estudantes ou Professores a Cursos</small></h1>
+            <h1 style="text-align:center">Adiçionar <small>Estudantes a Cursos</small></h1>
 
 
         <div class="col-sm-12"  data-ng-controller="TabsDemoCtrl">
-            <div class="card">
+            <div class="card" style=" width:800px; max-width:800px; margin: 0 auto">
                 <div class="card-header">
-                    <h2>Formulário <small>Adiçionar Estudantes/Professores a Cursos!</small></h2>
+                    <h2>Formulário <small>Adiçionar Estudantes a Cursos!</small></h2>
                 </div>
 
 
@@ -17,7 +17,7 @@
 
                         <div class="form-group fg-float m-b-30" style="max-width: 100%">
                             <div class="fg-line">
-                                 <select id="adminChosenProfessors" chosen multiple data-placeholder="Adiçionar Professores ao Curso"  class="w-100" ng-model="blubb" ng-options="n.firstName for n in professors"></select>
+                                 <select id="adminChosenStudents" chosen multiple data-placeholder="Adiçionar Estudantes ao Curso"  class="w-100" ng-model="blubb" ng-options="n.userID + ' ' + n.firstName + ' ' + n.lastName for n in students track by n.userID"></select>
                             </div>
                         </div> 
 
@@ -25,13 +25,13 @@
                         <!-- this is not workign... -->
                        <div class="form-group fg-float m-b-30" style="max-width: 100%">
                             <div class="fg-line">
-                                 <select id="adminChosenProfessors" chosen multiple data-placeholder="Cursos"  class="w-100" ng-model="blubb2" ng-options="h.firstName for h in students"></select>
+                                 <select id="adminChosenCourses" chosen multiple data-placeholder="Cursos"  class="w-100" ng-model="blubb2" ng-options="h.courseID + ' ' + h.courseSection + ' ' + h.courseYear + ' ' + h.courseName for h in courses"></select>
                             </div>
                         </div> 
 
                         
                         <button class="btn btn-info" ng-click="actrl.submitStudentsToCourses()">Enviar</button>
-                        <button class="btn btn-link" ng-click="actrl.reload()" >Adiçionar Mais Estudantes/Professors a Cursos</button>
+                        <button class="btn btn-link" ng-click="actrl.reload()" >Adiçionar Mais Estudantes a Cursos</button>
 
                         <h5 id="studentToCourseResponseMessage"></h5>
 

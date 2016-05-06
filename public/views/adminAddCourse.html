@@ -1,12 +1,12 @@
 <div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllProfessors();">
     <div class="block-header">
-            <h1 style="text-align:left" >Adiçionar <small>Cursos</small></h1> 
+            <h1 style="text-align:center" >Adicionar <small>Cursos</small></h1> 
 
 
-        <div class="col-sm-8" style="position:relative;" data-ng-controller="TabsDemoCtrl">
-            <div class="card" >
+        <div class="col-sm-12" data-ng-controller="TabsDemoCtrl">
+            <div class="card" style=" width:800px; max-width:800px; margin: 0 auto">
                 <div class="card-header">
-                    <h2>Formulário <small>Adiçiona um curso novo!</small></h2>
+                    <h2>Formulário <small>Adiciona um curso novo!</small></h2>
                 </div>
 
 
@@ -51,7 +51,7 @@
                         <div class="form-group fg-float m-b-30" style="max-width: 100%">
                             <div class="fg-line">
 
-                                 <select  id="section" chosen data-placeholder="Seção" class="w-100">
+                                 <select  id="courseSection" chosen data-placeholder="Seção" class="w-100">
                                     <option disabled value=""> Seção </option>
                                     <option value="A"> A </option>
                                     <option value="B"> B </option>
@@ -77,11 +77,11 @@
                             </div>
                         </div>
 
-                        <div class="form-group fg-float m-b-30" style="max-width: 100%">
+                       <!--  <div class="form-group fg-float m-b-30" style="max-width: 100%">
                             <div class="fg-line">
-                                 <select id="adminChosenProfessors" chosen multiple data-placeholder="Adiçionar Professores ao Curso"  class="w-100" ng-model="blubb" ng-options="n.firstName for n in professors"></select>
+                                 <select id="adminChosenProfessors" chosen multiple data-placeholder="Adiçionar Professores ao Curso"  class="w-100" ng-model="blubb" ng-options="n.userID + ' ' + n.firstName + ' ' + n.lastName for n in professors"></select>
                             </div>
-                        </div> 
+                        </div>  -->
 
                         <!-- <select id="adminChosenProfessors" chosen multiple data-placeholder="Adiçionar Professores ao Curso"  class="w-100" ng-model="blubb" ng-options="n.firstName for n in professors"> -->
 
@@ -99,7 +99,7 @@
                     </div>
 
 
-                    <h5 id="courseResponseMessage"></h5>
+                    <h5 style="margin: 0px -350px; position:relative;top:50%;left:50%;" id="courseResponseMessage"></h5>
 
                     <br>
                     <br>

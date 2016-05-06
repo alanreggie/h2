@@ -60,6 +60,8 @@ require('./routes/updateCourses.js')(app);
 require('./routes/checkCourseExists.js')(app);
 require('./routes/getSpecificCourse.js')(app);
 require('./routes/getAllStudents.js')(app);
+require('./routes/adminAddUser.js')(app);
+
 // require('./routes/getStudentsAndProfessors.js')(app);
 
 

@@ -29,8 +29,8 @@ module.exports = function (app){
 			if(error){
         		res.send(error)	
         	}
-
-        	if(rows.length > 1){
+        	/////////////////////CHANGED TO >= FROM >
+        	if(rows.length >= 1){
         		res.send('Este curso ja existe. Muda o ano ou a seção do curso! As modificacoes nao foram salvadas!')
         	}
         	else{

@@ -163,8 +163,8 @@ materialAdmin
                 templateUrl: 'views/widget-templates.html',
             })
 
-             .state ('widgets.admin-add-course', {
-                url: '/widgets-admin-add-course',
+             .state ('adminTables.admin-add-course', {
+                url: '/adminTables-admin-add-course',
                 templateUrl: 'views/adminAddCourse.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
@@ -201,8 +201,8 @@ materialAdmin
              
             })
 
-             .state ('widgets.admin-add-user', {
-                url: '/widgets-admin-add-user',
+             .state ('adminTables.admin-add-user', {
+                url: '/adminTables-admin-add-user',
                 templateUrl: 'views/adminAddUser.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
@@ -239,8 +239,8 @@ materialAdmin
              
             })
 
-             .state ('widgets.admin-add-user-to-course', {
-                url: '/widgets-admin-add-user-to-course',
+             .state ('adminTables.admin-add-user-to-course', {
+                url: '/adminTables-admin-add-user-to-course',
                 templateUrl: 'views/adminAddStudentToCourse.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {

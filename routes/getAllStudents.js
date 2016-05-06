@@ -20,7 +20,7 @@ console.log(token)*/
 
 	app.get('/getAllStudents', function(req,res){
 		
-        connection.query('SELECT * from user where userType=', ['Estudante'], function(err, rows, fields) {
+        connection.query('SELECT * from user where user.userType=?',['Estudante']  ,function(err, rows, fields) {
         	if(err){
         		res.send(err)	
         	}
