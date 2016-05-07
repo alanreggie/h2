@@ -16,7 +16,9 @@
         <!-- eventually make this multiple course..which profs  -->
         <div class="form-group fg-float m-b-30" style="max-width: 70%; margin: 0 auto">
             <div class="fg-line">
-                 <select id="adminChosenCourse" chosen data-placeholder="Escolhe o curso"  class="w-100" ng-model="blubb2" ng-options="h.courseID + ' ' + h.courseSection + ' ' + h.courseYear + ' ' + h.courseName for h in courses"  ng-change="tctrl.getCourseProfessors()" ></select>
+                 <select id="adminChosenCourse" chosen data-placeholder="Escolhe o curso"  class="w-100" ng-model="blubb2" ng-options="(h.courseID + ' ' + h.courseSection + ' ' + h.courseYear + ' ' + h.courseName) for h in courses"  ng-change="tctrl.getCourseProfessors(blubb2)" >
+                     <option></option>
+                 </select>
             </div>
         </div> 
                 

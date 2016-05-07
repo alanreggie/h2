@@ -17,7 +17,11 @@
 
                         <div class="form-group fg-float m-b-30" style="max-width: 100%">
                             <div class="fg-line">
-                                 <select id="adminChosenStudents" chosen data-placeholder="Adicionar Professores ao Curso"  class="w-100" ng-model="blubb" ng-options="n.userID + ' ' + n.firstName + ' ' + n.lastName for n in professors"></select>
+                                 <select id="adminChosenProfessor" chosen data-placeholder="Adicionar Professores ao Curso"  class="w-100" ng-model="blubb" ng-options="(n.userID + ' ' + n.firstName + ' ' + n.lastName) for n in professors">
+                                      <option></option>
+                                 </select>
+
+
                             </div>
                         </div> 
 
@@ -29,7 +33,7 @@
                         </div> 
 
                         
-                        <button class="btn btn-info" ng-click="actrl.submitStudentsToCourses()">Enviar</button>
+                        <button class="btn btn-info" ng-click="actrl.submitProfessorToCourses()">Enviar</button>
                         <button class="btn btn-link" ng-click="actrl.reload()" >Reiniciar</button>
 
                         <h5 id="studentToCourseResponseMessage"></h5>

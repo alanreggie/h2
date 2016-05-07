@@ -1,21 +1,24 @@
 materialAdmin
     .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http) {
   
+      
+      $scope.changedValue = function() {
+            console.log($scope.blisterPackTemplateSelected);
+      }
 
 
 
-      this.getCourseProfessors = function(){
+
+      this.getCourseProfessors = function(selected){
               
-              var j = document.getElementById("adminChosenCourse");
-              var chosenCourse = j.options[j.selectedIndex].text;
-              var courseID = chosenCourse.split(" ")[0];
-              console.log(courseID)
+              console.log(selected)
+
               
               $http({
                   method: 'POST',
                   url: 'http://localhost:3000/getProfessorsInCourse',
                   data: {
-                      'courseID': courseID
+                      'courseID': selected.courseID
                   }
             })
             .then(function(response){

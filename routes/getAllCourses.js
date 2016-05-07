@@ -20,7 +20,7 @@ console.log(token)*/
 
 	app.get('/getAllCourses', function(req,res){
 		
-        connection.query('SELECT * from course', function(err, rows, fields) {
+        connection.query('SELECT * from course order by course.courseID', function(err, rows, fields) {
         	if(err){
         		res.send(err)	
         	}
