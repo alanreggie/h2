@@ -1,6 +1,52 @@
 materialAdmin
     .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http) {
- 
+  
+
+
+
+      this.getCourseProfessors = function(){
+              
+              var j = document.getElementById("adminChosenCourse");
+              var chosenCourse = j.options[j.selectedIndex].text;
+              var courseID = chosenCourse.split(" ")[0];
+              console.log(courseID)
+              
+              $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/getProfessorsInCourse',
+                  data: {
+                      'courseID': courseID
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
+                 $scope.pcourses = response.data;
+
+            
+            })
+      }
+
+
+
+
+        this.getAllCourses = function(){
+
+          $http({
+                method: 'GET',
+                url: 'http://localhost:3000/getAllCourses',
+                data: {
+                    
+                }
+           })
+           .then(function(response){
+                  console.log(response.data)
+                  var courses = response.data;
+
+                  $scope.courses = courses;
+                  
+            })
+      }
+
 
        this.getCourseGrades = function(){
               
@@ -221,6 +267,31 @@ materialAdmin
            
         }
 
+        this.deleteCourse = function(course){
+            var r = confirm("Tem Certeze que quer deletar o curso: " + course.courseName + "? Tudo sobre o curso vai ser deletado para sempre.." );
+            if (r == true) {
+                //x = "Yes";
+               $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/deleteCourse',
+                  data: {
+                        'CourseID': course.courseID
+                      }
+                })
+                .then(function(response){
+                     console.log(response.data)
+                     course.courseID = '';
+                     course.courseName = ''
+                     course.courseYear = ''
+                     course.courseSection = ''
+                     course.courseDescription = ''                    
+                })
+            } 
+            else {
+                //x = "You pressed Cancel!";
+            }
+        }
+
         this.getAllCourses = function(){
             
              $http({
@@ -249,15 +320,67 @@ materialAdmin
               var f = document.getElementById("courseYearDropdown");
               var courseYear = f.options[f.selectedIndex].value;
 
+              var sectionBool = false;
+              var yearBool = false;
+
               if (courseSection.indexOf('?') > -1){
-                courseSection = course.courseSection;
+                  sectionBool = true;
+                  //courseSection = course.courseSection;
               }
 
               if(courseYear.indexOf('?') > -1){
-                courseYear = course.courseYear;
+                  yearBool = true;
+                  //courseYear = course.courseYear;
               }
 
-              $http({
+             var courseName = $('#courseName').val()
+             var courseDescription = $('#courseDescription').val()
+
+             console.log(courseName)
+             console.log(courseDescription)
+
+
+             if(course.courseName         ==    courseName               && 
+                course.courseDescription  ==    courseDescription        &&
+                sectionBool               ==    true                     &&
+                yearBool                  ==    true                      ){ //nothing has changed    
+                     
+                     alert('nothing has changed')
+                }
+                else if(course.courseName         ==    courseName               && 
+                        course.courseDescription  ==    courseDescription        &&
+                        course.courseYear         ==    courseYear               &&
+                        course.courseSection      ==    courseSection            ){//both year and section selected but not changed
+                    alert('both year and section selected but not changed')
+                }
+                else{//something has changed
+
+                  alert('something has changed')
+
+                }
+
+
+
+               /* else if(sectionBool && yearBool) {
+                    alert('something other than the dropdowns have changed')
+                }
+                else if(sectionBool && !yearBool){
+                    alert('year is changed')
+                }
+                else if(!sectionBool && yearBool){
+                    alert('section is changed')
+                }
+                else if(!sectionBool && !yearBool){
+                  alert('both dropdowns have changed')
+                }
+*/
+               
+
+
+
+                  
+
+             /* $http({
                   method: 'POST',
                   url: 'http://localhost:3000/getSpecificCourse',
                   data: {
@@ -330,7 +453,7 @@ materialAdmin
 
                   console.log(response.data)
               })
-
+*/
 
 
         }

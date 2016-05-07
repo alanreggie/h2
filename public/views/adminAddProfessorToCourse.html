@@ -1,13 +1,13 @@
 
-<div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllCourses(); actrl.getAllStudents(); "> <!-- actrl.getAllStudents() -->
+<div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllCourses(); actrl.getAllProfessors(); "> <!-- actrl.getAllStudents() -->
     <div class="block-header">
-            <h1 style="text-align:center">Adicionar <small>Estudantes a Cursos</small></h1>
+            <h1 style="text-align:center">Adicionar <small>Professores a Cursos</small></h1>
 
 
         <div class="col-sm-12"  data-ng-controller="TabsDemoCtrl">
             <div class="card" style=" width:800px; max-width:800px; margin: 0 auto">
                 <div class="card-header">
-                    <h2>Formulário <small>Adicionar um Estudante a Cursos!</small></h2>
+                    <h2>Formulário <small>Adicionar um Professor a Cursos!</small></h2>
                 </div>
 
 
@@ -17,7 +17,7 @@
 
                         <div class="form-group fg-float m-b-30" style="max-width: 100%">
                             <div class="fg-line">
-                                 <select id="adminChosenStudents" chosen data-placeholder="Adicionar Estudantes ao Curso"  class="w-100" ng-model="blubb" ng-options="n.userID + ' ' + n.firstName + ' ' + n.lastName for n in students"></select>
+                                 <select id="adminChosenStudents" chosen data-placeholder="Adicionar Professores ao Curso"  class="w-100" ng-model="blubb" ng-options="n.userID + ' ' + n.firstName + ' ' + n.lastName for n in professors"></select>
                             </div>
                         </div> 
 

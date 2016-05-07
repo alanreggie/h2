@@ -61,6 +61,9 @@ require('./routes/checkCourseExists.js')(app);
 require('./routes/getSpecificCourse.js')(app);
 require('./routes/getAllStudents.js')(app);
 require('./routes/adminAddUser.js')(app);
+require('./routes/adminDeleteCourse.js')(app);
+require('./routes/adminGetProfessorsInCourse.js')(app);
+
 
 // require('./routes/getStudentsAndProfessors.js')(app);
 

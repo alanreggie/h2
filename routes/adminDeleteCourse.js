@@ -11,12 +11,11 @@ connection.connect();
 
 module.exports = function (app){
 
-	app.post('/deleteUser', function(req,res){
+	app.post('/deleteCourse', function(req,res){
 		
-		var Email = req.body.Email;
-		var ID = req.body.UserID;
+		var ID = req.body.CourseID;
         
-        connection.query('DELETE FROM user where userID=?',[ID], function (err, result) {
+        connection.query('DELETE FROM course where courseID=?',[ID], function (err, result) {
         	if(err){
         		res.send(err)	
         	}
