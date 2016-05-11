@@ -63,18 +63,25 @@ console.log(token)*/
 				//success
 				if (rows[0].email == Email && rows[0].password == hashPass){
 					console.log('success')
-					var user = {
+					rows[0].Message = 'Success';
+					delete rows[0].password;
+					delete rows[0].salt;
+
+
+					//rows[0].add({"Message": 'Success'})
+					/*var user = {
 						"Message": 'Success',
 						"userID": rows[0].userID,
 						"firstName": rows[0].firstName,
 						"lastName": rows[0].lastName,
 						"email": rows[0].email,
-						"userType": rows[0].userType
-					};
+						"userType": rows[0].userType,
+						"dateRegistered": rows[0]
+					};*/
 
 
-					console.log(user);
-					res.send(user)
+					console.log(rows[0]);
+					res.send(rows[0])
 				}
 			}
 				

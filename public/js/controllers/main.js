@@ -291,25 +291,32 @@ materialAdmin
     // Profile
     //=================================================
 
-    .controller('profileCtrl', function(growlService){
+    .controller('profileCtrl', function(growlService, $sessionStorage, $http, $scope){
         
         //Get Profile Information from profileService Service
         
+        var user = JSON.parse($sessionStorage.user);
+        console.log(user)
+
+
         //User
-        this.profileSummary = "Sed eu est vulputate, fringilla ligula ac, maximus arcu. Donec sed felis vel magna mattis ornare ut non turpis. Sed id arcu elit. Sed nec sagittis tortor. Mauris ante urna, ornare sit amet mollis eu, aliquet ac ligula. Nullam dolor metus, suscipit ac imperdiet nec, consectetur sed ex. Sed cursus porttitor leo.";
+        this.profileSummary = user.summary;
     
-        this.fullName = "Mallinda Hollaway";
-        this.gender = "female";
-        this.birthDay = "23/06/1988";
-        this.martialStatus = "Single";
-        this.mobileNumber = "00971123456789";
-        this.emailAddress = "malinda.h@gmail.com";
-        this.twitter = "@malinda";
-        this.twitterUrl = "twitter.com/malinda";
-        this.skype = "malinda.hollaway";
-        this.addressSuite = "44-46 Morningside Road";
-        this.addressCity = "Edinburgh";
-        this.addressCountry = "Scotland";
+        this.fullName = user.firstName + " " + user.lastName;
+        this.firstName = user.firstName;
+        this.lastName = user.lastName;
+
+        this.birthDay = user.birthday;
+        //this.martialStatus = "Single";
+        this.mobileNumber = user.phone;
+        this.emailAddress = user.email;
+       // this.twitter = "@malinda";
+       // this.twitterUrl = "twitter.com/malinda";
+        this.skype = user.skype;
+        // this.addressSuite = "44-46 Morningside Road";
+        this.addressCity = user.city;
+        this.facebook = user.facebook;
+        // this.addressCountry = "Scotland";
 
         //Edit
         this.editSummary = 0;
@@ -330,8 +337,57 @@ materialAdmin
                 this.editContact = 0;
             }
             
-            growlService.growl(message+' has updated Successfully!', 'inverse'); 
+            growlService.growl(message+' atualizado com sucesso!', 'inverse'); 
         }
+
+
+        this.submitSummary = function(){
+            $http({
+                      method: 'POST',
+                      url: 'http://localhost:3000/updateUserSummary',
+                      data: {
+                          'summary': this.profileSummary,
+                          'userID': user.userID
+                         
+                      }
+                  })
+                .then(function(response){
+                    //this.profileSummary = 
+                    //$sessionStorage.user.summary = response.data
+                    /*  var current = sessionStorage.getItem('history');
+  if (!current) { // check if an item is already registered
+    current = []; // if not, we initiate an empty array
+  } else {
+    current = JSON.parse(current); // else parse whatever is in
+  }
+  current.push({
+    title: document.title,
+    url: window.location.href
+  }); // add the item
+  sessionStorage.setItem('history', JSON.stringify(current)); // replace
+*/
+
+                    
+                    console.log(response.data)
+                 })
+
+        }
+
+
+        this.submitBasicInfo = function(){
+           
+        }
+
+        this.submitSocialMedia = function(){
+            //gotta check whether this email exists
+            console.log(this.emailAddress)
+
+
+        }
+
+
+
+
 
     })
 

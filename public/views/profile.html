@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container" data-ng-controller="profileCtrl as pctrl" >
 
     <div class="block-header">
-        <h2>Malinda Hollaway <small>Web/UI Developer, Dubai, United Arab Emirates</small></h2>
+        <h2>{{pctrl.fullName}} <!-- <small>{{pctrl.emailAddress}}</small> --></h2>
 
-        <ul class="actions m-t-20 hidden-xs">
+        <!-- <ul class="actions m-t-20 hidden-xs">
             <li class="dropdown" uib-dropdown>
                 <a href="" uib-dropdown-toggle>
                     <i class="zmdi zmdi-more-vert"></i>
@@ -21,13 +21,14 @@
                     </li>
                 </ul>
             </li>
-        </ul>
+        </ul> -->
     </div>
 
-    <div class="card" id="profile-main" data-ng-controller="profileCtrl as pctrl">
+    <div class="card" id="profile-main"  > <!--  data-ng-controller="profileCtrl as pctrl" -->
+   
         <div class="pm-overview c-overflow">
             <div class="pmo-pic">
-                <div class="p-relative">
+                <!-- <div class="p-relative">
                     <a href="">
                         <img class="img-responsive" src="img/profile-pics/profile-pic-2.jpg" alt="">
                     </a>
@@ -38,7 +39,7 @@
                         </button>
 
                         <div class="dropdown-menu stop-propagate">
-                            <textarea placeholder="Write something..."></textarea>
+                            <textarea placeholder="Escreve algo..."></textarea>
 
                             <button class="btn bgm-green btn-float"><i class="zmdi zmdi-mail-send"></i></button>
                         </div>
@@ -47,12 +48,12 @@
                     <a href="" class="pmop-edit">
                         <i class="zmdi zmdi-camera"></i> <span class="hidden-xs">Update Profile Picture</span>
                     </a>
-                </div>
+                </div> -->
 
 
                 <div class="pmo-stat">
-                    <h2 class="m-0 c-white">1562</h2>
-                    Total Connections
+                    <h2 class="m-0 c-white">{{pctrl.firstName}}</h2>
+                    {{pctrl.lastName}}
                 </div>
             </div>
 
@@ -62,20 +63,22 @@
                 <ul>
                     <li><i class="zmdi zmdi-phone"></i> {{ pctrl.mobileNumber }}</li>
                     <li><i class="zmdi zmdi-email"></i> {{ pctrl.emailAddress }}</li>
-                    <li><i class="zmdi zmdi-facebook-box"></i> {{ pctrl.skype }}</li>
-                    <li><i class="zmdi zmdi-twitter"></i> {{ pctrl.twitter }} (twitter.com/malinda)</li>
+                    <li><i class="zmdi zmdi-facebook-box"></i> {{ pctrl.facebook }}</li>
+                    <li><i class="zmdi zmdi-collection-video zmdi-hc-fw"></i> {{ pctrl.skype }}</li>
+
+                    <!-- <li><i class="zmdi zmdi-twitter"></i> {{ pctrl.twitter }} (twitter.com/malinda)</li> -->
                     <li>
                         <i class="zmdi zmdi-pin"></i>
                         <address class="m-b-0">
-                            {{ pctrl.addressSuite }}, <br/>
-                            {{ pctrl.addressCity }}, <br/>
-                            {{ pctrl.addressCountry }}
+                            <!-- {{ pctrl.addressSuite }}, <br/> -->
+                            {{ pctrl.addressCity }} <br/>
+                            <!-- {{ pctrl.addressCountry }} -->
                         </address>
                     </li>
                 </ul>
             </div>
 
-            <div class="pmo-block pmo-items hidden-xs">
+      <!--       <div class="pmo-block pmo-items hidden-xs">
                 <h2>Connections</h2>
 
                 <div class="pmob-body">
@@ -118,7 +121,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="pm-body clearfix">

@@ -67,6 +67,7 @@ require('./routes/adminAddUserToCourse.js')(app);
 require('./routes/adminGetAllStudentsAndProfessors.js')(app);
 require('./routes/adminGetCoursesOfUser.js')(app);
 require('./routes/adminDeleteStudentFromCourse.js')(app);
+require('./routes/updateUserSummary.js')(app);
 
 
 
