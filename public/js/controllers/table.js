@@ -1,7 +1,108 @@
 materialAdmin
-    .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http) {
-  
-      
+    .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage) {
+    
+
+       this.deleteUserFromCourseCourseSelect = function(user){
+        console.log(user.userID)
+        console.log($scope.selectedCourse)
+
+            var r = confirm("Tem certeza que quer deletar " + user.firstName + " " + user.lastName + " do curso " + $scope.selectedCourse.courseID + " -- " + $scope.selectedCourse.courseSection + " -- " + $scope.selectedCourse.courseName + " ?");
+            if (r == true) {
+               $http({
+                        method: 'POST',
+                        url: 'http://localhost:3000/deleteStudentFromCourse',
+                        data: {
+                            'userID': user.userID,
+                            'courseID': $scope.selectedCourse.courseID
+                        }
+                  })
+                  .then(function(response){
+                       console.log(response.data)
+                       user.userID = ''
+                       user.userType = ''
+                       user.firstName = ''
+                       user.lastName = ''
+                       user.email = ''
+
+                  
+                  })
+          }
+
+      }
+
+
+
+      this.deleteUserFromCourseUserSelect = function(course){
+        console.log(course.courseID)
+        console.log($scope.selectedUser)
+
+            var r = confirm("Tem certeza que quer deletar " + $scope.selectedUser.firstName + " " + $scope.selectedUser.lastName + " do curso " + course.courseID + " -- " + course.courseSection + " -- " + course.courseName + " ?");
+            if (r == true) {
+               $http({
+                        method: 'POST',
+                        url: 'http://localhost:3000/deleteStudentFromCourse',
+                        data: {
+                            'userID': $scope.selectedUser.userID,
+                            'courseID': course.courseID
+                        }
+                  })
+                  .then(function(response){
+                       console.log(response.data)
+                       course.courseID = ''
+                       course.courseYear = ''
+                       course.courseSection = ''
+                       course.courseName = ''
+                  
+                  })
+          }
+
+      }
+
+
+      this.getCoursesOfUser = function(selected){
+          $scope.selectedUser = selected;
+              $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/getCoursesOfUser',
+                  data: {
+                      'userID': selected.userID
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
+                 $scope.courses = response.data;
+
+            
+            })
+      }
+
+
+
+      this.getAllStudentsAndProfessors = function(){
+            $http({
+                  method: 'GET',
+                  url: 'http://localhost:3000/getAllStudentsAndProfessors',
+                  data: {
+                      /*'Email': $('#registerEmail').val()*/
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
+
+                var users = response.data;
+
+               //function AngularWayCtrl($resource) {
+                  /*var vm = this;
+                  $resource(users).query().$promise.then(function(users) {
+                      vm.users = users;
+                  });*/
+                //}
+               $scope.users = users;
+
+            })
+      }
+
+
       $scope.changedValue = function() {
             console.log($scope.blisterPackTemplateSelected);
       }
@@ -9,10 +110,10 @@ materialAdmin
 
 
 
-      this.getCourseProfessors = function(selected){
+      this.getCourseUsers = function(selected){
               
               console.log(selected)
-
+              $scope.selectedCourse = selected;
               
               $http({
                   method: 'POST',
@@ -51,13 +152,43 @@ materialAdmin
       }
 
 
-       this.getCourseGrades = function(){
-              
-         $http({
+
+      this.getCoursesOfStudent = function(){
+          
+          var user = JSON.parse($sessionStorage.user);
+          var userID = user.userID; 
+
+          //$scope.selectedUser = selected;
+              $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/getCoursesOfUser',
+                  data: {
+                      'userID': userID
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
+                 $scope.courses = response.data;
+
+            
+            })
+      }
+
+
+       this.getCourseGrades = function(course){
+          
+
+          var user = JSON.parse($sessionStorage.user);
+          var userID = user.userID; 
+          console.log(userID)
+          console.log(course)
+
+           $http({
                   method: 'POST',
                   url: 'http://localhost:3000/getGrades',
                   data: {
-                      'UserID': '250607166'
+                      'UserID': userID,
+                      'courseID': course.courseID
                      /* 'Email': '43432',
                       'UserID':'342432432',
                       'FirstName': '32323232',
@@ -242,7 +373,7 @@ materialAdmin
         }
 
         this.deleteUser = function(user){
-            var r = confirm("Tem Certeze que quer deletar " + user.firstName + " " + user.lastName + "?");
+            var r = confirm("Tem certeza que quer deletar " + user.firstName + " " + user.lastName + "?");
             if (r == true) {
                 //x = "Yes";
                $http({
@@ -313,9 +444,17 @@ materialAdmin
               })
         }
 
+       /* this.yearChanged = function(course, yearVal){
+          $scope.course.year = yearVal;
+          console.log(course)
+        }*/
+
        this.updateCourses = function(course){
 
-          /***********CHECK IF YEAR AND SECTION AND COURSENAME ALREADY EXISTS!!!ELSE DO BELOW*************/
+            /*if oyu make ng-model w.year it will update to the year that is selected*/
+            /*so change ng-model to somehting like "hello" and it will store the original value*/
+            /*you can compare the original value to the changed ajax one */
+            /*in a text box  its the samething!!*/
 
               var e = document.getElementById("courseSectionDropdown");
               var courseSection = e.options[e.selectedIndex].value;
@@ -323,27 +462,84 @@ materialAdmin
               var f = document.getElementById("courseYearDropdown");
               var courseYear = f.options[f.selectedIndex].value;
 
+              console.log(courseYear)
+              console.log(course.courseYear)
+
+
+             /* console.log(courseSection)
+              console.log(course.courseSection)*/
+
               var sectionBool = false;
               var yearBool = false;
 
               if (courseSection.indexOf('?') > -1){
                   sectionBool = true;
-                  //courseSection = course.courseSection;
+                  courseSection = course.courseSection;
               }
 
               if(courseYear.indexOf('?') > -1){
                   yearBool = true;
-                  //courseYear = course.courseYear;
+                  courseYear = course.courseYear 
               }
 
-             var courseName = $('#courseName').val()
-             var courseDescription = $('#courseDescription').val()
 
-             console.log(courseName)
-             console.log(courseDescription)
+             /*var courseName = $('#courseName').val()
+             var courseDescription = $('#courseDescription').val()*/
+
+            /* console.log(courseName)
+             console.log(course.courseName)*/
+
+              $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/checkCourseExists',
+                  data: {
+                        'courseID': course.courseID,
+                        'courseName': course.courseName,
+                        'courseYear': courseYear,
+                        'courseSection': courseSection,
+                        'courseDescription': course.courseDescription
+                  }
+              })
+              .then(function(response){
+                  if (response.data.indexOf('Este') > -1){
+                    //course already exists
+                    alert('Este curso ja existe!')
+
+                  }
+                  else{
+                          $http({
+                              method: 'POST',
+                              url: 'http://localhost:3000/updateCourses',
+                              data: {
+                                    'courseID': course.courseID,
+                                    'courseName': course.courseName,
+                                    'courseYear': course.courseYear,
+                                    'courseSection': course.courseSection,
+                                    'courseDescription': course.courseDescription
+                                  }
+                          })
+                          .then(function(response){
+                             console.log(response.data)
+                          })  
+            
+                  }
+              })
+
+                  
+
+            
 
 
-             if(course.courseName         ==    courseName               && 
+
+             
+             //var courseDescription = $('#courseDescription').val()
+
+             //console.log(courseName)
+            // console.log(courseDescription)
+             //console.log(course)
+}
+
+            /* if(course.courseName         ==    courseName               && 
                 course.courseDescription  ==    courseDescription        &&
                 sectionBool               ==    true                     &&
                 yearBool                  ==    true                      ){ //nothing has changed    
@@ -360,7 +556,7 @@ materialAdmin
 
                   alert('something has changed')
 
-                }
+                }*/
 
 
 
@@ -459,7 +655,7 @@ materialAdmin
 */
 
 
-        }
+       // }
 
 
 
@@ -468,8 +664,7 @@ materialAdmin
 
 
 
-    })
-
+    })//end of controller
 
     .controller('assignType', function($filter, $sce, ngTableParams, tableService) {
         //alert('testss')

@@ -11,487 +11,261 @@
 
     <section id="content">
 
-        <div class="container">
-            <div class="block-header">
-                <h2>Painel</h2>
 
-                <ul class="actions">
-                    <li>
-                        <a href="">
-                            <i class="zmdi zmdi-trending-up"></i>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="">
-                            <i class="zmdi zmdi-check-all"></i>
-                        </a>
-                    </li>
-                    <li class="dropdown" uib-dropdown>
-                        <a href="" uib-dropdown-toggle>
-                            <i class="zmdi zmdi-more-vert"></i>
-                        </a>
+            <div class="container">
+    <div class="block-header">
+        <h2>Memsagens</h2>
+    </div>
 
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li>
-                                <a href="">Refresh</a>
-                            </li>
-                            <li>
-                                <a href="">Manage Widgets</a>
-                            </li>
-                            <li>
-                                <a href="">Widgets Settings</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
+    <div class="card m-b-0" id="messages-main">
 
+        <div class="ms-menu" data-ng-class="{ 'toggled': mactrl.lvMenuStat }">
+            <div class="ms-block">
+                <div class="ms-user">
+                    <img src="img/profile-pics/4.jpg" alt="">
+                    <div>Signed in as <br/> m-hollaway@gmail.com</div>
+                </div>
             </div>
 
-         <!--    <div class="card">
-                <div class="card-header">
-                    <h2>Sales Statistics <small>Vestibulum purus quam scelerisque, mollis nonummy metus</small></h2>
+            <div class="ms-block">
+                <div class="dropdown" uib-dropdown>
+                    <a class="btn btn-primary btn-block" href="" uib-dropdown-toggle>Messages <i class="caret m-l-5"></i></a>
 
-                    <ul class="actions">
+                    <ul class="dropdown-menu dm-icon w-100">
+                        <li><a href=""><i class="zmdi zmdi-email"></i> Messages</a></li>
+                        <li><a href=""><i class="zmdi zmdi-account"></i> Contacts</a></li>
+                        <li><a href=""><i class="zmdi zmdi-format-list-bulleted"> </i>Todo Lists</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="listview lv-user m-t-20">
+                <div class="lv-item media active">
+                    <div class="lv-avatar pull-left">
+                        <img src="img/profile-pics/1.jpg" alt="">
+                    </div>
+                    <div class="media-body">
+                        <div class="lv-title">Davil Parnell</div>
+                        <div class="lv-small">Fierent fastidii recteque ad pro</div>
+                    </div>
+                </div>
+
+                <div class="lv-item media">
+                    <div class="lv-avatar bgm-red pull-left">a</div>
+                    <div class="media-body">
+                        <div class="lv-title">Ann Watkinson</div>
+                        <div class="lv-small">Cum sociis natoque penatibus </div>
+                    </div>
+                </div>
+
+                <div class="lv-item media">
+                    <div class="lv-avatar bgm-orange pull-left">m</div>
+                    <div class="media-body">
+                        <div class="lv-title">Marse Walter</div>
+                        <div class="lv-small">Suspendisse sapien ligula</div>
+                    </div>
+                </div>
+
+                <div class="lv-item media">
+                    <div class="lv-avatar pull-left">
+                        <img src="img/profile-pics/2.jpg" alt="">
+                    </div>
+                    <div class="media-body">
+                        <div class="lv-title">Jeremy Robbins</div>
+                        <div class="lv-small">Phasellus porttitor tellus nec</div>
+                    </div>
+                </div>
+
+                <div class="lv-item media">
+                    <div class="lv-avatar pull-left">
+                        <img src="img/profile-pics/3.jpg" alt="">
+                    </div>
+                    <div class="media-body">
+                        <div class="lv-title">Reginald Horace</div>
+                        <div class="lv-small">Quisque consequat arcu eget</div>
+                    </div>
+                </div>
+
+                <div class="lv-item media">
+                    <div class="lv-avatar bgm-cyan pull-left">s</div>
+                    <div class="media-body">
+                        <div class="lv-title">Shark Henry</div>
+                        <div class="lv-small">Nam lobortis odio et leo maximu</div>
+                    </div>
+                </div>
+
+                <div class="lv-item media">
+                    <div class="lv-avatar bgm-purple pull-left">p</div>
+                    <div class="media-body">
+                        <div class="lv-title">Paul Van Dack</div>
+                        <div class="lv-small">Nam posuere purus sed velit auctor sodales</div>
+                    </div>
+                </div>
+
+                <div class="lv-item media">
+                    <div class="lv-avatar pull-left">
+                        <img src="img/profile-pics/4.jpg" alt="">
+                    </div>
+                    <div class="media-body">
+                        <div class="lv-title">James Anderson</div>
+                        <div class="lv-small">Vivamus imperdiet sagittis quam</div>
+                    </div>
+                </div>
+
+                <div class="lv-item media">
+                    <div class="lv-avatar pull-left">
+                        <img src="img/profile-pics/6.jpg" alt="">
+                    </div>
+                    <div class="media-body">
+                        <div class="lv-title">Kane Williams</div>
+                        <div class="lv-small">Suspendisse justo nulla luctus nec</div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+ 
+        <div class="ms-body">
+            <div class="listview lv-message">
+                <div class="lv-header-alt clearfix">
+                    <div id="ms-menu-trigger"  data-ng-class="{ 'open': mactrl.lvMenuStat }" data-ng-click="mactrl.lvMenuStat = (mactrl.lvMenuStat===true ? false : true )">
+                        <div class="line-wrap">
+                            <div class="line top"></div>
+                            <div class="line center"></div>
+                            <div class="line bottom"></div>
+                        </div>
+                    </div>
+
+                    <div class="lvh-label hidden-xs">
+                        <div class="lv-avatar pull-left">
+                            <img src="img/profile-pics/1.jpg" alt="">
+                        </div>
+                        <span class="c-black">David Parbell</span>
+                    </div>
+
+                    <ul class="lv-actions actions">
                         <li>
                             <a href="">
-                                <i class="zmdi zmdi-refresh-alt"></i>
+                                <i class="zmdi zmdi-delete"></i>
                             </a>
                         </li>
                         <li>
                             <a href="">
-                                <i class="zmdi zmdi-download"></i>
+                                <i class="zmdi zmdi-check"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="zmdi zmdi-time"></i>
                             </a>
                         </li>
                         <li class="dropdown" uib-dropdown>
-                            <a href="" uib-dropdown-toggle>
+                            <a href="" uib-dropdown-toggle aria-expanded="true">
+                                <i class="zmdi zmdi-sort"></i>
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li>
+                                    <a href="">Latest</a>
+                                </li>
+                                <li>
+                                    <a href="">Oldest</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="dropdown" uib-dropdown>
+                            <a href="" uib-dropdown-toggle aria-expanded="true">
                                 <i class="zmdi zmdi-more-vert"></i>
                             </a>
 
                             <ul class="dropdown-menu dropdown-menu-right">
                                 <li>
-                                    <a href="">Change Date Range</a>
+                                    <a href="">Refresh</a>
                                 </li>
                                 <li>
-                                    <a href="">Change Graph Type</a>
-                                </li>
-                                <li>
-                                    <a href="">Other Settings</a>
+                                    <a href="">Message Settings</a>
                                 </li>
                             </ul>
                         </li>
                     </ul>
                 </div>
 
-                <div class="card-body">
-                    <div class="chart-edge">
-                        <div class="flot-chart" data-curvedline-chart></div>
+                <div class="lv-body">
+                    <div class="lv-item media">
+                        <div class="lv-avatar pull-left">
+                            <img src="img/profile-pics/1.jpg" alt="">
+                        </div>
+                        <div class="media-body">
+                            <div class="ms-item">
+                                Quisque consequat arcu eget odio cursus, ut tempor arcu vestibulum. Etiam ex arcu, porta a urna non, lacinia pellentesque orci. Proin semper sagittis erat, eget condimentum sapien viverra et. Mauris volutpat magna nibh, et condimentum est rutrum a. Nunc sed turpis mi. In eu massa a sem pulvinar lobortis.
+                            </div>
+                            <small class="ms-date"><i class="zmdi zmdi-time"></i> 20/02/2015 at 09:00</small>
+                        </div>
+                    </div>  
+
+                    <div class="lv-item media right">
+                        <div class="lv-avatar pull-right">
+                            <img src="img/profile-pics/8.jpg" alt=""> 
+                        </div>
+                        <div class="media-body">
+                            <div class="ms-item">
+                                Mauris volutpat magna nibh, et condimentum est rutrum a. Nunc sed turpis mi. In eu massa a sem pulvinar lobortis.
+                            </div>
+                            <small class="ms-date"><i class="zmdi zmdi-time"></i> 20/02/2015 at 09:30</small>
+                        </div> 
+                    </div>  
+
+                    <div class="lv-item media">
+                        <div class="lv-avatar pull-left">
+                            <img src="img/profile-pics/1.jpg" alt="">
+                        </div>
+                        <div class="media-body">
+                            <div class="ms-item">
+                                Etiam ex arcumentum
+                            </div>
+                            <small class="ms-date"><i class="zmdi zmdi-time"></i> 20/02/2015 at 09:33</small>
+                        </div>
                     </div>
+
+                    <div class="lv-item media right">
+                        <div class="lv-avatar pull-right">
+                            <img src="img/profile-pics/8.jpg" alt="">
+                        </div>
+                        <div class="media-body">
+                            <div class="ms-item">
+                                Etiam nec facilisis lacus. Nulla imperdiet augue ullamcorper dui ullamcorper, eu laoreet sem consectetur. Aenean et ligula risus. Praesent sed posuere sem. Cum sociis natoque penatibus et magnis dis parturient montes,
+                            </div>
+                            <small class="ms-date"><i class="zmdi zmdi-time"></i> 20/02/2015 at 10:10</small>
+                        </div>
+                    </div>
+
+                    <div class="lv-item media">
+                        <div class="lv-avatar pull-left">
+                            <img src="img/profile-pics/1.jpg" alt="">
+                        </div>
+                        <div class="media-body">
+                            <div class="ms-item">
+                                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam ac tortor ut elit sodales varius. Mauris id ipsum id mauris malesuada tincidunt. Vestibulum elit massa, pulvinar at sapien sed, luctus vestibulum eros. Etiam finibus tristique ante, vitae rhoncus sapien volutpat eget
+                            </div>
+                            <small class="ms-date"><i class="zmdi zmdi-time"></i> 20/02/2015 at 10:24</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="clearfix"></div>
+
+                <div class="lv-footer ms-reply">
+                    <textarea placeholder="What's on your mind..."></textarea>
+                    <button><i class="zmdi zmdi-mail-send"></i></button>
                 </div>
             </div>
- -->
-          <!--   <div class="mini-charts">
-                <div class="row">
-                    <div class="col-sm-6 col-md-3">
-                        <div class="mini-charts-item bgm-cyan">
-                            <div class="clearfix">
-                                <div class="chart stats-bar" data-sparkline-bar></div>
-                                <div class="count">
-                                    <small>Website Traffics</small>
-                                    <h2>987,459</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-                        <div class="mini-charts-item bgm-lightgreen">
-                            <div class="clearfix">
-                                <div class="chart stats-bar-2" data-sparkline-bar></div>
-                                <div class="count">
-                                    <small>Website Impressions</small>
-                                    <h2>356,785K</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-                        <div class="mini-charts-item bgm-orange">
-                            <div class="clearfix">
-                                <div class="chart stats-line" data-sparkline-line></div>
-                                <div class="count">
-                                    <small>Total Sales</small>
-                                    <h2>$ 458,778</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-3">
-                        <div class="mini-charts-item bgm-bluegray">
-                            <div class="clearfix">
-                                <div class="chart stats-line-2" data-sparkline-line></div>
-                                <div class="count">
-                                    <small>Support Tickets</small>
-                                    <h2>23,856</h2>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-
-
-            <div class="dash-widgets">
-                <div class="row">
-                    <!-- <div class="col-md-3 col-sm-6">
-                        <div id="site-visits" class="dash-widget-item bgm-teal">
-                            <div class="dash-widget-header">
-                                <div class="p-20">
-                                    <div class="dash-widget-visits" data-sparkline-line></div>
-                                </div>
-
-                                <div class="dash-widget-title">For the past 30 days</div>
-
-                                <ul class="actions actions-alt">
-                                    <li class="dropdown" uib-dropdown>
-                                        <a href="" uib-dropdown-toggle>
-                                            <i class="zmdi zmdi-more-vert"></i>
-                                        </a>
-
-                                        <ul class="dropdown-menu dropdown-menu-right">
-                                            <li>
-                                                <a href="">Refresh</a>
-                                            </li>
-                                            <li>
-                                                <a href="">Manage Widgets</a>
-                                            </li>
-                                            <li>
-                                                <a href="">Widgets Settings</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <div class="p-20">
-
-                                <small>Page Views</small>
-                                <h3 class="m-0 f-400">47,896,536</h3>
-
-                                <br/>
-
-                                <small>Site Visitors</small>
-                                <h3 class="m-0 f-400">24,456,799</h3>
-
-                                <br/>
-
-                                <small>Total Clicks</small>
-                                <h3 class="m-0 f-400">13,965</h3>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <div class="col-md-12 col-sm-12">
-                        <div id="pie-charts" class="dash-widget-item">
-                            <div class="bgm-pink">
-                                <div class="dash-widget-header">
-                                    <div class="dash-widget-title">Notas</div>
-                                </div>
-
-                                <div class="clearfix"></div>
-
-                                <div class="text-center p-20 m-t-25">
-                                    <div class="easy-pie main-pie" data-percent="88" data-easypie-chart>
-                                        <div class="percent">88</div>
-                                        <div class="pie-title">Total</div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="p-t-20 p-b-20 text-center">
-                                <div class="easy-pie sub-pie-2" data-percent="85" data-easypie-chart>
-                                    <div class="percent">85</div>
-                                    <div class="pie-title">Endodontia</div>
-                                </div>
-                                <div class="easy-pie sub-pie-1" data-percent="90" data-easypie-chart>
-                                    <div class="percent">90</div>
-                                    <div class="pie-title">Ortodontia</div>
-                                </div>
-                                 <div class="easy-pie sub-pie-1" data-percent="92" data-easypie-chart>
-                                    <div class="percent">92</div>
-                                    <div class="pie-title">Implantodonia</div>
-                                </div>
-                                <div class="easy-pie sub-pie-1" data-percent="94" data-easypie-chart>
-                                    <div class="percent">94</div>
-                                    <div class="pie-title">Cirurgia Oral</div>
-                                </div>
-                                <div class="easy-pie sub-pie-2" data-percent="83" data-easypie-chart>
-                                    <div class="percent">83</div>
-                                    <div class="pie-title">Molares</div>
-                                </div>
-                               
-                            </div>
-                        </div>
-                    </div>
-
-                  <!--   <div class="col-md-3 col-sm-6">
-                        <div class="dash-widget-item bgm-lime">
-                            <div id="weather-widget" data-weather-widget></div>
-                        </div>
-                    </div> -->
-
-                   <!--  <div class="col-md-3 col-sm-6">
-                        <div id="best-selling" class="dash-widget-item" data-ng-controller="bestsellingCtrl as wctrl">
-                            <div class="dash-widget-header">
-                                <div class="dash-widget-title">Best Sellings</div>
-                                <img src="img/widgets/alpha.jpg" alt="">
-                                <div class="main-item">
-                                    <small>Samsung Galaxy Alpha</small>
-                                    <h2>$799.99</h2>
-                                </div>
-                            </div>
-
-                            <div class="listview p-t-5">
-                                <a class="lv-item" href="" data-ng-repeat="w in wctrl.bsResult.list">
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <img class="lv-img-sm" data-ng-src="img/widgets/{{ w.img }}" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="lv-title">{{ w.name }}</div>
-                                            <small class="lv-small">{{ w.range }}</small>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="clearfix"></div>
-
-                                <a class="lv-footer" href="">
-                                    View All
-                                </a>
-                            </div>
-                        </div>
-                    </div> -->
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-6">
-                  
-                    <!-- Recent Items -->
-                   <!--  <div class="card" data-ng-controller="recentitemCtrl as rictrl">
-                        <div class="card-header">
-                            <h2>Recent Items <small>Phasellus condimentum ipsum id auctor imperdie</small></h2>
-                            <ul class="actions">
-                                <li class="dropdown" uib-dropdown>
-                                    <a href="" uib-dropdown-toggle>
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="">Refresh</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Settings</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Other Settings</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="card-body m-t-0">
-                            <table class="table table-inner table-vmiddle">
-                                <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th style="width: 60px">Price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr data-ng-repeat="w in rictrl.riResult.list">
-                                    <td class="f-500 c-cyan">{{ w.id }}</td>
-                                    <td>{{ w.name }}</td>
-                                    <td class="f-500 c-cyan">{{ w.price }}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div id="recent-items-chart" class="flot-chart" data-line-chart></div>
-                    </div> -->
-
-                    <!-- Todo Lists -->
-           <!--          <div id="todo-lists" data-ng-controller="todoCtrl as tctrl">
-                        <div class="tl-header">
-                            <h2>Todo Lists</h2>
-                            <small>Add, edit and manage your Todo Lists</small>
-
-                            <ul class="actions actions-alt">
-                                <li class="dropdown" uib-dropdown>
-                                    <a href="" uib-dropdown-toggle>
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="">Refresh</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Manage Widgets</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Widgets Settings</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div class="clearfix"></div>
-
-                        <div class="tl-body">
-                            <div id="add-tl-item" data-ng-class="{ 'toggled': tctrl.addTodoStat }" data-ng-click="tctrl.addTodoStat = true">
-                                <i class="add-new-item zmdi zmdi-plus" data-ng-click="tctrl.addTodo($event)"></i>
-
-                                <div class="add-tl-body">
-                                    <textarea placeholder="What you want to do..." data-ng-model="tctrl.todo"></textarea>
-
-                                    <div class="add-tl-actions">
-                                        <a class="zmdi zmdi-close" data-tl-action="dismiss" data-ng-click="tctrl.addTodoStat = false; $event.stopPropagation()"></a>
-                                        <a class="zmdi zmdi-check" data-tl-action="save" data-ng-click="tctrl.addTodoStat = false; $event.stopPropagation()"></a>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="checkbox media" data-ng-repeat="w in tctrl.tdResult.list">
-                                <div class="pull-right">
-                                    <ul class="actions actions-alt">
-                                        <li class="dropdown" uib-dropdown>
-                                            <a href="" uib-dropdown-toggle>
-                                                <i class="zmdi zmdi-more-vert"></i>
-                                            </a>
-
-                                            <ul class="dropdown-menu dropdown-menu-right">
-                                                <li><a href="">Delete</a></li>
-                                                <li><a href="">Archive</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="media-body">
-                                    <label>
-                                        <input type="checkbox">
-                                        <i class="input-helper"></i>
-                                        <span>{{ w.todo }}</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div> -->
-                </div>
-
-                <!-- <div class="col-sm-6"> -->
-                   
-
-                   <!-- Calendar -->
-                    <!-- <div id="calendar-widget" data-full-calendar></div> -->
-
-                    <!-- Recent Posts -->
-                 <!--    <div class="card" data-ng-controller="recentpostCtrl as rpctrl">
-                        <div class="card-header ch-alt m-b-20">
-                            <h2>Recent Posts <small>Phasellus condimentum ipsum id auctor imperdie</small></h2>
-                            <ul class="actions">
-                                <li>
-                                    <a href="">
-                                        <i class="zmdi zmdi-refresh-alt"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="zmdi zmdi-download"></i>
-                                    </a>
-                                </li>
-                                <li class="dropdown" uib-dropdown>
-                                    <a href="" uib-dropdown-toggle>
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="">Change Date Range</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Change Graph Type</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Other Settings</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-
-                            <button class="btn bgm-cyan btn-float"><i class="zmdi zmdi-plus"></i></button>
-                        </div>
-
-                        <div class="card-body">
-                            <div class="listview">
-
-                                <a class="lv-item" href="" data-ng-repeat="w in rpctrl.rpResult.list">
-                                    <div class="media">
-                                        <div class="pull-left">
-                                            <img class="lv-img-sm" data-ng-src="img/profile-pics/{{ w.img }}" alt="">
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="lv-title">{{ w.user }}</div>
-                                            <small class="lv-small">{{ w.text }}</small>
-                                        </div>
-                                    </div>
-                                </a>
-
-                                <div class="clearfix"></div>
-                                <div>                         <a href="views/login.html">Login and Sign Up</a>
-</div>
-                                <a class="lv-footer" href="">View All</a>
-                            </div>
-                        </div>
-                    </div> -->
-                <!-- </div> -->
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </div>
+    </div>
+</div>
+
+
+
     </section>
 </section>
 

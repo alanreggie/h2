@@ -366,7 +366,7 @@ materialAdmin
                  })
                 }
                 else{
-                    $('#responseMessageRegister').text( 'Enter all fields!' )
+                    $('#responseMessageRegister').text( 'Prenche todos os campos!' )
                 }
             }
 
@@ -396,7 +396,7 @@ materialAdmin
                 method: 'POST',
                 url: 'http://localhost:3000/userlogin',
                 data: {
-                    'Email': $('#username').val(),
+                    'Email': $('#username').val().trim(),
                     'Password': $('#password').val()
                 }
             })
@@ -416,7 +416,7 @@ materialAdmin
                    var userType = response.data.userType;
                    var user = response.data;
                    $sessionStorage.active = 1;
-                   $sessionStorage.user = JSON.stringify(user);
+                   $sessionStorage.user = JSON.stringify(user)
 
                    if (userType == 'Admin'){
                         $location.path('/admin')

@@ -15,14 +15,13 @@ module.exports = function (app){
 	
 
 		var userID = req.body.UserID;
+		var courseID = req.body.courseID;
 		console.log(userID)
 
-		var Email = req.body.Email;
-		var Password = req.body.Password;
 
 
 		/*where user.userID=?',[userID]*/
-		connection.query('SELECT * from (((user INNER JOIN UserCourseGrade on user.userID = UserCourseGrade.userID) INNER JOIN course on UserCourseGrade.courseID = course.courseID) INNER JOIN grade on UserCourseGrade.gradeID = grade.gradeID) where user.userID=?' , [userID] ,  function(err, rows, fields) { 
+		connection.query('SELECT * from (((user INNER JOIN UserCourseGrade on user.userID = UserCourseGrade.userID) INNER JOIN course on UserCourseGrade.courseID = course.courseID) INNER JOIN grade on UserCourseGrade.gradeID = grade.gradeID) where user.userID=? and course.courseID =?' , [userID, courseID] ,  function(err, rows, fields) { 
 			if(err){
 		    	res.send(err)	
 		    }

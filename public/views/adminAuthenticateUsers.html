@@ -182,17 +182,15 @@
                             </div>           
                         </td>
 
-                       
-
-                        <td data-title="'Editar'">
-                            <button type="button" class="btn btn-default" ng-if="!w.$edit; !w.apple" ng-click="w.$edit = true"><i class="zmdi zmdi-edit"></i></button>
-                            <button type="button" class="btn btn-success" ng-if="w.$edit && !w.apple;" ng-click="w.$edit = false; tctrl.updateUsers(w)"><i class="zmdi zmdi-check"></i></button>
+            
+                        <td data-title="'Editar'" ng-if="!w.apple">
+                            <button type="button" class="btn btn-default" ng-if="!w.$edit; " ng-click="w.$edit = true"><i class="zmdi zmdi-edit"></i></button>
+                            <button type="button" class="btn btn-success" ng-if="w.$edit" ng-click="w.$edit = false; tctrl.updateUsers(w)"><i class="zmdi zmdi-check"></i></button>
                        </td>
 
                         <td data-title="'Deletar'">
-                        <button type="button" class="btn btn-default" ng-if="!w.apple" ng-click="tctrl.deleteUser(w); w.apple = true"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></button>
-                         <div ng-if"w.apple"></div>   
-                            <!-- <button type="button" class="btn btn-success" ng-if="false" ng-click="w.$edit = false; tctrl.updateUsers(w)"><i class="zmdi zmdi-check"></i></button> -->
+                            <button type="button" class="btn btn-default" ng-if="!w.apple" ng-click="tctrl.deleteUser(w); w.apple = true"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></button>
+                             <div ng-if"w.apple"></div>   
                         </td>
 
                     </tr>

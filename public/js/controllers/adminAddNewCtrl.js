@@ -6,6 +6,57 @@ materialAdmin
     
     .controller('adminAddNewCtrl', function($scope, $http, $window){
     	
+    	this.submitStudentToCourses = function(){
+
+    		var selectedCourseArr = []; 
+			$('#adminChosenCourses :selected').each(function(i, selected){ 
+			 	//console.log($(selected).text())
+			  selectedCourseArr[i] = $(selected).text(); 
+			});
+			//console.log(selectedCourseArr)
+
+			var e = document.getElementById("adminChosenStudent");
+            var student = e.options[e.selectedIndex].text;
+           // console.log(professor)
+
+           	var userName = student.split(" ")[2] + ' ' + student.split(" ")[3]
+            var studentID = student.split(" ")[0];
+            console.log(student)
+
+
+            var courseIDArray = []
+            for (i = 0; i < selectedCourseArr.length; i++){
+            	courseIDArray.push(selectedCourseArr[i].split(" ")[0])  ;
+            }
+            //console.log(courseIDArray)
+
+            //check whether professor is already in the course, then
+
+            if(student != '' && courseIDArray.length > 0 ){
+            	
+            	$http({
+	                  method: 'POST',
+	                  url: 'http://localhost:3000/addUserToCourse',
+	                  data: {
+	                      'courseArray': courseIDArray,
+	                      'userID': studentID,
+	                      'userName': userName
+	                  }
+	             })
+	              .then(function(response){
+	                    console.log(response.data)
+	               		$('#studentToCourseResponseMessage').text( response.data )   
+	             })
+
+
+            }
+
+    	}
+
+
+
+
+
     	this.submitProfessorToCourses = function(){
     		
     		var selectedCourseArr = []; 
@@ -18,7 +69,7 @@ materialAdmin
 			var e = document.getElementById("adminChosenProfessor");
             var professor = e.options[e.selectedIndex].text;
            // console.log(professor)
-           	
+
            	var userName = professor.split(" ")[1] + ' ' + professor.split(" ")[2]
             var professorID = professor.split(" ")[0];
             console.log(professor)
@@ -45,15 +96,12 @@ materialAdmin
 	             })
 	              .then(function(response){
 	                    console.log(response.data)
+	               		$('#professorToCourseResponseMessage').text( response.data )
+
+	                    
 	                   
 	             })
-
-
             }
-
-
-
-
     	}
 
 

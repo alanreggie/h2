@@ -15,25 +15,30 @@
                     <div class="card-body card-padding">
 
 
-                        <div class="form-group fg-float m-b-30" style="max-width: 100%">
+                    <div class="form-group fg-float m-b-30" style="max-width: 100%">
                             <div class="fg-line">
-                                 <select id="adminChosenStudents" chosen data-placeholder="Adicionar Estudantes ao Curso"  class="w-100" ng-model="blubb" ng-options="n.userID + ' ' + n.firstName + ' ' + n.lastName for n in students"></select>
+                                 <select id="adminChosenStudent" chosen data-placeholder="Adicionar Estudantes ao Curso"  class="w-100" ng-model="blubb" ng-options="(n.userID + ' -- ' + n.firstName + ' ' + n.lastName) for n in students">
+                                      <option></option>
+                                 </select>
+
+
                             </div>
                         </div> 
 
-
                        <div class="form-group fg-float m-b-30" style="max-width: 100%">
                             <div class="fg-line">
-                                 <select id="adminChosenCourses" chosen multiple data-placeholder="Cursos"  class="w-100" ng-model="blubb2" ng-options="h.courseID + ' ' + h.courseSection + ' ' + h.courseYear + ' ' + h.courseName for h in courses"></select>
+                                 <select id="adminChosenCourses" chosen multiple data-placeholder="Cursos"  class="w-100" ng-model="blubb2" ng-options="h.courseID + ' -- ' + h.courseSection + ' -- ' + h.courseYear + ' -- ' + h.courseName for h in courses"></select>
                             </div>
                         </div> 
 
                         
-                        <button class="btn btn-info" ng-click="actrl.submitStudentsToCourses()">Enviar</button>
+                        <button class="btn btn-info" ng-click="actrl.submitStudentToCourses()">Enviar</button>
                         <button class="btn btn-link" ng-click="actrl.reload()" >Reiniciar</button>
 
                         <h5 id="studentToCourseResponseMessage"></h5>
 
+
+                        
                     </div>
                 </div>
             </div>

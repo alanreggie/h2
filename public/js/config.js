@@ -316,9 +316,47 @@ materialAdmin
             })
 
 
-             .state ('adminTables.admin-professors-in-course', {
-                url: '/adminTables-admin-professors-in-course',
-                templateUrl: 'views/adminProfessorsInCourse.html',
+             .state ('adminTables.admin-users-in-course', {
+                url: '/adminTables-admin-users-in-course',
+                templateUrl: 'views/adminUsersInCourse.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+                
+             
+            })
+
+             .state ('adminTables.admin-courses-of-user', {
+                url: '/adminTables-admin-courses-of-user',
+                templateUrl: 'views/adminCoursesOfUser.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -361,7 +399,7 @@ materialAdmin
             //------------------------------
             // TABLES
             //------------------------------
-        
+            
             .state ('tables', {
                 url: '/tables',
                 templateUrl: 'views/common.html'
@@ -370,6 +408,11 @@ materialAdmin
             .state ('adminTables', {
                 url: '/tables',
                 templateUrl: 'views/adminCommon.html'
+            })
+
+            .state ('studentTables', {
+                url: '/tables',
+                templateUrl: 'views/studentCommon.html'
             })
             
             .state ('tables.tables', {
@@ -529,7 +572,7 @@ materialAdmin
             })
 
 
-            .state ('tables.student-grades', {
+            .state ('studentTables.student-grades', {
                 url: '/student-grades',
                 templateUrl: 'views/studentGrades.html',
                 resolve: {
@@ -565,7 +608,59 @@ materialAdmin
                 }
             })
 
+            .state ('studentTables.student-course', {
+                url: '/student-course',
+                templateUrl: 'views/studentCourse.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+            })
+
+
+
+            //------------------------------
+            // MANAGER TABLES
+            //------------------------------
+
+            .state ('managerTables', {
+                url: '/tables',
+                templateUrl: 'views/managerCommon.html'
+            })  
+
+
+            
         
+
+
+
             //------------------------------
             // FORMS
             //------------------------------

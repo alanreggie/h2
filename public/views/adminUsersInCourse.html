@@ -8,7 +8,7 @@
       
     <div class="card">
         <div class="card-header">
-            <h2>Ver Todos Professor de um Curso</h2>
+            <h2 >Ver Todos Usuários em um Curso</h2>
         </div>
 
         <br>
@@ -16,7 +16,7 @@
         <!-- eventually make this multiple course..which profs  -->
         <div class="form-group fg-float m-b-30" style="max-width: 70%; margin: 0 auto">
             <div class="fg-line">
-                 <select id="adminChosenCourse" chosen data-placeholder="Escolhe o curso"  class="w-100" ng-model="blubb2" ng-options="(h.courseID + ' ' + h.courseSection + ' ' + h.courseYear + ' ' + h.courseName) for h in courses"  ng-change="tctrl.getCourseProfessors(blubb2)" >
+                 <select id="adminChosenCourse" chosen data-placeholder="Escolhe o curso"  class="w-100" ng-model="blubb2" ng-options="(h.courseID + ' -- ' + h.courseSection + ' -- ' + h.courseYear + ' -- ' + h.courseName) for h in courses"  ng-change="tctrl.getCourseUsers(blubb2)" >
                      <option></option>
                  </select>
             </div>
@@ -35,14 +35,15 @@
                         <td data-title="'ID'">
                             <span >{{ w.userID }}</span>
                         </td>
-                         <td data-title="'Email'">
-                            <span >{{ w.email }}</span> 
-                        </td>
 
                         <td data-title="'Typo de Usuário'">
                             <span >{{ w.userType }}</span>           
                         </td>
-                       
+
+                        <td data-title="'Email'">
+                            <span >{{ w.email }}</span> 
+                        </td>
+                      
                         <td data-title="'Primero Nome'">
                             <span >{{ w.firstName }}</span>
                         </td>
@@ -53,7 +54,7 @@
 
 
                         <td data-title="'Remover do Curso'">
-                            <button type="button" class="btn btn-default" ng-if="!w.apple" ng-click="w.apple = true"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></button>
+                            <button type="button" class="btn btn-default" ng-if="!w.apple" ng-click="w.apple = true; tctrl.deleteUserFromCourseCourseSelect(w)"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></button>
                             <div ng-if"w.apple"></div>   
                         </td>                         
 

@@ -81,7 +81,7 @@ module.exports = function (app){
 		                        to: Email, // list of receivers  + add the user who registered
 		                        subject: 'Bem-vindo a Facesc, '+ FirstName + '!', // Subject line 
 		                        text: '', // plaintext body 
-		                        html: '<h1>O administrador te adiciono ao systema do Facesc.</h1> \n Seu email/nome de usuario:\n\n' + '<strong>' + Email + '</strong>. \n\nSua senha e: <strong>' + Password + '</strong>'
+		                        html: '<h1>O administrador te adicionado ao systema do Facesc.</h1> \n Seu email/nome de usuario:\n\n' + '<strong>' + Email + '</strong>. \n\nSua senha e: <strong>' + Password + '</strong>'
 		                    };
 		                    transporter.sendMail(mailOptions, function(error, info){
 		                        if(error){
@@ -92,7 +92,7 @@ module.exports = function (app){
 		                        }
 		                    });
 							
-							res.send('O ' + FirstName +' ' + LastName+ ' foi adiciono ao banco de dados! Um email foi mandado para ' + Email +' com o nome de usuario e senha.')
+							res.send('O ' + FirstName +' ' + LastName+ ' foi adicionado ao banco de dados! Um email foi mandado para ' + Email +' com o nome de usuario e senha.')
 						})
 					});	
 
