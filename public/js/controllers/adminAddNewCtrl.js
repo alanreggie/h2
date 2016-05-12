@@ -4,8 +4,32 @@ materialAdmin
     // Controller for adding new users and courses
     // =========================================================================
     
-    .controller('adminAddNewCtrl', function($scope, $http, $window){
+    .controller('adminAddNewCtrl', function($scope, $http, $window, $sessionStorage, $state){
     	
+    	this.submitProblem = function(){
+    		
+			var problem = $('#problem').val()
+			var user = JSON.parse($sessionStorage.user);
+          	var userID = user.userID; 
+
+    		$http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/submitProblem',
+                  data: {
+                      'problem': problem,
+                      'userID': userID,
+                      'date': Date()
+                  }
+	             })
+	              .then(function(response){
+	                    console.log(response.data)
+	                    $state.go('student')
+
+	             })
+    		}
+
+
+
     	this.submitStudentToCourses = function(){
 
     		var selectedCourseArr = []; 

@@ -1,0 +1,65 @@
+<div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllProfessors();">
+    <div class="block-header">
+            <!-- <h1 style="text-align:center" >Enviar um Problema </h1>  -->
+
+
+        <div class="col-sm-12" data-ng-controller="TabsDemoCtrl">
+            <div class="card" style=" width:800px; max-width:800px; margin: 0 auto">
+                
+                <div class="card" >
+                    <div class="card-header"><strong>Enviar um Problema</strong></div>
+                    <div class="card-body card-padding">
+
+        
+                        <br>
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                            <textarea id="problem" class="form-control" rows="7" ></textarea>
+                                <label class="fg-label">Descrição do Problema</label>
+                            </div>
+                        </div>
+
+                       
+
+
+
+
+                    </div>
+
+
+
+
+
+                <div class="col-sm-3">
+                    <p class="f-500 c-black m-b-20"></p>
+
+                    <button class="btn btn-info" data-swal-success="O seu problema foi enviado a o administrador." ng-click="actrl.submitProblem()">Enviar</button>
+
+                     <button  class="btn btn-link" ng-click="actrl.reload()" >Reiniciar</button>
+                </div>
+
+
+
+                    <div >    
+                       <!--  <button style="margin: -20px -50px; position:relative;top:50%;left:50%;" class="btn btn-info" >Enviar</button> -->
+                        <br>
+                        <br>
+                       
+                    </div>
+
+
+
+                    <br>
+                    <br>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

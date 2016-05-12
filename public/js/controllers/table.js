@@ -1,6 +1,30 @@
 materialAdmin
     .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage) {
-    
+      
+      this.deleteProblem = function(problem){
+                  
+
+                
+      }
+
+
+      this.getProblems = function (){
+          $http({
+                  method: 'GET',
+                  url: 'http://localhost:3000/getProblems',
+                  data: {
+                      /*'Email': $('#registerEmail').val()*/
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
+
+                var problems = response.data;
+                $scope.problems = problems;
+
+            })
+      }
+
 
        this.deleteUserFromCourseCourseSelect = function(user){
         console.log(user.userID)
@@ -396,6 +420,7 @@ materialAdmin
                 })
             } 
             else {
+              //user.apple = false
                 //x = "You pressed Cancel!";
             }
            

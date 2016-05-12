@@ -70,8 +70,10 @@ materialAdmin
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
+                
                 element.click(function(){
-                    swal("Good job!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat, tincidunt vitae ipsum et, pellentesque maximus enim. Mauris eleifend ex semper, lobortis purus sed, pharetra felis", "success")
+                    console.log(attrs)
+                    swal("Sucesso!", attrs.swalSuccess, "success")
 
                 });
             }
@@ -101,26 +103,43 @@ materialAdmin
     })
 
     //Parameter
-    .directive('swalParams', function(){
+    .directive('swalParams', function($http){
         return {
             restrict: 'A',
             link: function(scope, element, attrs) {
                 element.click(function(){
                     swal({   
-                        title: "Are you sure?",   
-                        text: "You will not be able to recover this imaginary file!",   
+                        title: "Tem Certeza?",   
+                        text: "Vai deleter isso para sempre!",   
                         type: "warning",   
                         showCancelButton: true,   
                         confirmButtonColor: "#DD6B55",   
-                        confirmButtonText: "Yes, delete it!",   
-                        cancelButtonText: "No, cancel plx!",   
+                        confirmButtonText: "Sim!",   
+                        cancelButtonText: "Não!",   
                         closeOnConfirm: false,   
                         closeOnCancel: false 
                     }, function(isConfirm){   
-                        if (isConfirm) {     
-                            swal("Deleted!", "Your imaginary file has been deleted.", "success");   
+                        if (isConfirm) {  
+                            if(attrs.func == 'deleteProblem'){
+                                var problem = JSON.parse(attrs.swalParams);
+                                //console.log(JSON.parse(attrs.swalParams).problemID)
+                               
+                                $http({
+                                        method: 'POST',
+                                        url: 'http://localhost:3000/deleteProblem',
+                                        data: {
+                                            'problemID': problem.problemID
+                                            
+                                        }
+                                  })
+                                  .then(function(response){
+                                       console.log(response.data)
+                                             
+                                  })
+                            }  
+                            swal("Deletado!", "", "success"); 
                         } else {     
-                            swal("Cancelled", "Your imaginary file is safe :)", "error");   
+                            swal("Cancelado", "", "error");   
                         } 
                     });
                 });

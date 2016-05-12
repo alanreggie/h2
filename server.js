@@ -68,6 +68,9 @@ require('./routes/adminGetAllStudentsAndProfessors.js')(app);
 require('./routes/adminGetCoursesOfUser.js')(app);
 require('./routes/adminDeleteStudentFromCourse.js')(app);
 require('./routes/updateUserSummary.js')(app);
+require('./routes/submitProblem.js')(app);
+require('./routes/getProblems.js')(app);
+require('./routes/deleteProblem.js')(app);
 
 
 
