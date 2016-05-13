@@ -1,0 +1,39 @@
+
+@media screen and (min-height: 300px){
+  /* some CSS here */
+  .size1{
+  	height: 200px !important;
+  }
+}
+
+@media screen and (min-height: 520px){
+  /* some CSS here */
+  .size1{
+  	height: 400px !important;
+  }
+}
+
+
+@media screen and (min-height: 700px){
+  /* some CSS here */
+  .size1{
+    height: 600px !important;
+    
+  }
+}
+
+
+
+
+/*nav ul a{
+	font-size:14pt !important;
+}*/
+
+
+/*.btn.btn-default{
+	max-width: 100px;
+}	
+*/
+/*input{
+    max-width: 200px !important;
+}*/

@@ -124,7 +124,7 @@ materialAdmin
                                 var problem = JSON.parse(attrs.swalParams);
                                 //console.log(JSON.parse(attrs.swalParams).problemID)
                                
-                                $http({
+                               /* $http({
                                         method: 'POST',
                                         url: 'http://localhost:3000/deleteProblem',
                                         data: {
@@ -135,7 +135,7 @@ materialAdmin
                                   .then(function(response){
                                        console.log(response.data)
                                              
-                                  })
+                                  })*/
                             }  
                             swal("Deletado!", "", "success"); 
                         } else {     

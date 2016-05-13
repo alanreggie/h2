@@ -71,6 +71,7 @@ require('./routes/updateUserSummary.js')(app);
 require('./routes/submitProblem.js')(app);
 require('./routes/getProblems.js')(app);
 require('./routes/deleteProblem.js')(app);
+require('./routes/getClassMates.js')(app);
 
 
 
