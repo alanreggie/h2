@@ -1,6 +1,9 @@
 materialAdmin
     .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage) {
       
+      
+
+      
       this.deleteProblem = function(problem){
                   
 

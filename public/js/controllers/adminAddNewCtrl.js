@@ -6,6 +6,47 @@ materialAdmin
     
     .controller('adminAddNewCtrl', function($scope, $http, $window, $sessionStorage, $state){
     		
+    	this.submitGrade = function(){
+    		//alert($scope.selectedUser == null)
+    		//alert($scope.selectedCourse.courseID)
+
+    		var gradeDescription = $('#gradeDescription').val()
+    		var grade = $('#grade').val()
+    		//console.log(grade == '')
+
+    		if ($scope.selectedUser == null || $scope.selectedCourse == null || grade == ''  ){
+    			$('#responseMessage').text( 'Prenche todos os campos mandatorios!' )   
+    		}
+    		else{
+    			$http({
+	                  method: 'POST',
+	                  url: 'http://localhost:3000/addGrade',
+	                  data: {
+	                      'courseID': $scope.selectedCourse,
+	                      'userID': $scope.selectedUser,
+	                      'grade': grade,
+	                      'gradeDescription': gradeDescription
+	                  }
+	            })
+	            .then(function(response){
+	                 //console.log(response.data)
+	                 //$scope.pcourses = response.data;
+	                 
+	            
+	            })
+    		}
+    	
+
+
+
+
+    	}
+
+    	this.storeUser = function(user){
+    		//$scope.selectedUser = user;
+    	}
+    	
+
     	this.getCourseStudents = function (selected){
            console.log(selected)
               $scope.selectedCourse = selected;
