@@ -1,0 +1,95 @@
+<div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getCoursesOfStudent()">
+    <div class="block-header">
+            <h1 style="text-align:center" >Adicionar Notas</h1> 
+
+
+        <div class="col-sm-12" data-ng-controller="TabsDemoCtrl">
+            <div class="card" style=" width:800px; max-width:800px; margin: 0 auto">
+                <div class="card-header">
+                    <!-- <h2>Formulário <small>Adiciona um curso novo!</small></h2> -->
+                </div>
+
+
+                <div class="card" >
+                    <div class="card-body card-padding">
+
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <select id="studentChosenCourse" chosen data-placeholder="Escolhe o curso"  class="w-100" ng-model="h" ng-options="(h.courseID + ' -- ' + h.courseSection + ' -- ' + h.courseYear + ' -- ' + h.courseName) for h in courses" ng-change="actrl.getCourseStudents(h)"  >
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div> 
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <select id="studentChosenUser" chosen data-placeholder="Escolhe o estudante"  class="w-100" ng-model="n" ng-options="(n.userID + ' -- ' + n.firstName + ' -- ' + n.lastName) for n in pcourses" >
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div> 
+
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input id="grade" type="text" class="form-control input-sm">
+                                <label class="fg-label">Nota</label>
+                            </div>
+                        </div>
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input id="courseName" type="text" class="form-control input-sm">
+                                <label class="fg-label">Descrição da Nota</label>
+                            </div>
+                        </div>
+
+
+
+                        <br>
+
+
+                    </div>
+
+                    <div >    
+                        <button style="margin: -20px -50px; position:relative;top:50%;left:50%;" class="btn btn-info" ng-click="actrl.submitGrade()">Enviar</button>
+                        <br>
+                        <br>
+                        <button style="margin: 0px -60px; position:relative;top:50%;left:50%;" class="btn btn-link" ng-click="actrl.reload()" >Reiniciar</button>
+                    </div>
+
+
+                    <h5 style="margin: 0px -350px; position:relative;top:50%;left:50%;" id="courseResponseMessage"></h5>
+
+                    <br>
+                    <br>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllProfessors();">
+    <div class="block-header">
+            <h1 style="text-align:center">Adiçionar <small>Cursos</small></h1>
+
+
+        <div class="col-sm-12"  data-ng-controller="TabsDemoCtrl">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Formulário <small>Adiçionar curso novo!</small></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+

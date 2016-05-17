@@ -12,16 +12,16 @@
     <section id="content">
 
 
-        <div class="container">
+        <div class="container" style="">
             <!-- <div class="block-header">
                 <h2>Memsagens</h2>
             </div> -->
 
 
+<!-- styleReg -->
+            <div class="card m-b-0 " id="messages-main" data-ng-controller="messageCtrl as mctrl" data-ng-init="mctrl.init()" style="overflow:hidden !important; ">  <!--  -->
 
-            <div class="card m-b-0 " id="messages-main" data-ng-controller="messageCtrl as mctrl" data-ng-init="mctrl.init()" style="overflow:hidden !important;">
-
-                <div class="ms-menu " data-ng-class="{ 'toggled': mactrl.lvMenuStat }" style="height: 600px !important; overflow: scroll !important; ">
+                <div class="ms-menu " data-ng-class="{ 'toggled': mactrl.lvMenuStat }" style="overflow: scroll !important; ">
                     <div class="ms-block">
                         <div class="ms-user">
                             <img src="img/profile-pics/4.jpg" alt="">
@@ -52,7 +52,7 @@
 
 
 
-                        <div class="lv-item media active">
+                        <!-- <div class="lv-item media active">
                             <div class="lv-avatar pull-left">
                                 <img src="img/profile-pics/1.jpg" alt="">
                             </div>
@@ -60,12 +60,12 @@
                                 <div class="lv-title">Davil Parnell</div>
                                 <div class="lv-small">Fierent fastidii recteque ad pro</div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <div class="lv-item media" ng-repeat="w in classmates">
-                            <div class="lv-avatar bgm-red pull-left">a</div>
+                        <div class="lv-item media" ng-repeat="w in classmates" >
+                            <div class="lv-avatar bgm-cyan pull-left">{{w.firstName[0]}}</div>
                             <div class="media-body">
-                                <div class="lv-title">{{w.firstName}}</div>
+                                <div class="lv-title">{{w.firstName}} {{w.lastName}}</div>
                                 <div class="lv-small">{{w.email}} </div>
                             </div>
                         </div>
@@ -149,20 +149,20 @@
                                 </div>
                             </div>
 
-                            <div class="lvh-label hidden-xs">
+                             <!-- <div class="lvh-label hidden-xs">
                                 <div class="lv-avatar pull-left">
                                     <img src="img/profile-pics/1.jpg" alt="">
                                 </div>
                                 <span class="c-black">David Parbell</span>
-                            </div>
+                            </div> -->
 
-                            <ul class="lv-actions actions">
+                           <ul class="lv-actions actions">
                                 <li>
-                                    <a href="">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </a>
+                                    
+                                       <i> David Parbell</i>
+                                    
                                 </li>
-                                <li>
+                             <!--    <li>
                                     <a href="">
                                         <i class="zmdi zmdi-check"></i>
                                     </a>
@@ -200,7 +200,7 @@
                                         </li>
                                     </ul>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </div>
 
                         <div class="lv-body">
@@ -304,8 +304,8 @@
 
                         <div class="clearfix"></div>
 
-                        <div class="lv-footer ms-reply">
-                            <textarea placeholder="What's on your mind..."></textarea>
+                        <div class="lv-footer ms-reply" >
+                            <textarea placeholder="What's on your mind..." ></textarea>
                             <button><i class="zmdi zmdi-mail-send"></i></button>
                         </div>
                     </div>

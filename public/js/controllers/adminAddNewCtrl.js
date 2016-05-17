@@ -5,7 +5,49 @@ materialAdmin
     // =========================================================================
     
     .controller('adminAddNewCtrl', function($scope, $http, $window, $sessionStorage, $state){
-    	
+    		
+    	this.getCourseStudents = function (selected){
+           console.log(selected)
+              $scope.selectedCourse = selected;
+              
+              $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/getStudentsInCourse',
+                  data: {
+                      'courseID': selected.courseID
+                  }
+            })
+            .then(function(response){
+                 //console.log(response.data)
+                 $scope.pcourses = response.data;
+
+            
+            })
+      }
+
+    		
+    	this.getCoursesOfStudent = function(){
+          
+          var user = JSON.parse($sessionStorage.user);
+          var userID = user.userID; 
+
+          //$scope.selectedUser = selected;
+              $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/getCoursesOfUser',
+                  data: {
+                      'userID': userID
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
+                 $scope.courses = response.data;
+
+            
+            })
+      }
+
+
     	this.submitProblem = function(){
     		
 			var problem = $('#problem').val()

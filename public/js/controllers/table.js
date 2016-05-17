@@ -147,7 +147,26 @@ materialAdmin
                   }
             })
             .then(function(response){
-                 console.log(response.data)
+                 //console.log(response.data)
+                 $scope.pcourses = response.data;
+
+            
+            })
+      }
+
+      this.getCourseStudents = function (selected){
+           console.log(selected)
+              $scope.selectedCourse = selected;
+              
+              $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/getStudentsInCourse',
+                  data: {
+                      'courseID': selected.courseID
+                  }
+            })
+            .then(function(response){
+                 //console.log(response.data)
                  $scope.pcourses = response.data;
 
             
@@ -155,6 +174,27 @@ materialAdmin
       }
 
 
+      this.getStudentGradesInCourse = function(student){
+          console.log($scope.selectedCourse.courseID)
+          console.log(student.userID)
+
+
+              $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/getGrades',
+                  data: {
+                      'courseID': $scope.selectedCourse.courseID,
+                      'UserID': student.userID
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
+                 $scope.pgrades = response.data;
+
+            
+            })
+
+      }
 
 
         this.getAllCourses = function(){
