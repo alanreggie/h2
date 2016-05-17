@@ -34,62 +34,52 @@
 
         <div class="card-body">
 
-<!-- IF HAVE TIME SHOW INFO ON COURSE
-        	 <div class="card-body">
-                <div class="table-responsive">
-                    <table ng-table="tctrl.tableSorting" class="table table-striped table-vmiddle">
-                        <tr ng-repeat="w in pgrades">
-                            <td data-title="'ID'"  sortable="'userID'">
-                                {{ w.userID }} 
-                            </td> 
-                            <td data-title="'Nome'" sortable="'w.firstName'">
-                                {{ w.firstName }} {{ w.lastName }}
-                            </td>
+<!-- IF HAVE TIME SHOW INFO ON COURSE -->
 
-                            <td data-title="'Nota'" sortable="'w.courseName'">
-                                {{ w.grade }}
-                            </td>
 
-                             <td data-title="'Descrição'" sortable="'w.courseName'">
-                                {{ w.description }}
-                            </td>
 
-                        </tr>
-                    </table>
-                </div>
+
+
+
+
+         <!-- <div class="card-body"> -->
+            <div class="table-responsive">
+                <table ng-table="tctrl.tableEdit " class="table table-striped table-vmiddle">
+                    <tr ng-repeat="w in pgrades"  ng-class="{ 'active': w.$edit }">                         
+
+                        <td data-title="'Nome'">
+                            <span ng-if="true">{{ w.firstName }} {{ w.lastName }}</span>
+                            <div ng-if="false"><input class="form-control" type="text" ng-model="w.userID" /></div>
+                        </td>
+
+                         <td data-title="'Nota'">
+                            <span ng-if="!w.$edit">{{ w.grade }}</span>
+                            <div ng-if="w.$edit"><input class="form-control" type="text" ng-model="w.grade" /></div>
+                        </td>
+
+                        <td data-title="'Descrição'">
+                            <span ng-if="!w.$edit">{{ w.description }}</span>
+                            <div ng-if="w.$edit"><input class="form-control" type="text" ng-model="w.description" /></div>
+                        </td>
+                        
+                        <td data-title="'Editar'" ng-if="!w.apple">
+                            <button type="button" class="btn btn-default" ng-if="!w.$edit; " ng-click="w.$edit = true"><i class="zmdi zmdi-edit"></i></button>
+                            <button type="button" class="btn btn-success" ng-if="w.$edit" ng-click="w.$edit = false; tctrl.updateGrade(w)"><i class="zmdi zmdi-check"></i></button>
+                       </td>
+
+                        <td data-title="'Deletar'">
+                            <button type="button" class="btn btn-default" ng-if="!w.apple" ng-click="tctrl.deleteGrade(w); w.apple = true"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></button>
+                            <div ng-if"w.apple"></div>   
+                        </td>     
+
+                    </tr>
+                </table>
             </div>
-
-            <br> -->
-
+        <!-- </div> -->
 
 
 
 
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table ng-table="tctrl.tableSorting" class="table table-striped table-vmiddle">
-                        <tr ng-repeat="w in pgrades">
-                            <td data-title="'ID'"  sortable="'userID'">
-                                {{ w.userID }} 
-                            </td> 
-                            <td data-title="'Nome'" sortable="'w.firstName'">
-                                {{ w.firstName }} {{ w.lastName }}
-                            </td>
-<!--   <td data-title="'Sobre Nome'" sortable="'lastName'">
-{{ w.lastName }}
-</td> -->
-                            <td data-title="'Nota'" sortable="'w.courseName'">
-                                {{ w.grade }}
-                            </td>
-
-                             <td data-title="'Descrição'" sortable="'w.courseName'">
-                                {{ w.description }}
-                            </td>
-
-                        </tr>
-                    </table>
-                </div>
-            </div>
         </div>
     </div>   
 </div>

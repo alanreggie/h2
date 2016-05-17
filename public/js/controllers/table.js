@@ -2,6 +2,44 @@ materialAdmin
     .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage) {
       
       
+      this.updateGrade = function(grade){
+        console.log(grade)
+              $http({
+                    method: 'POST',
+                    url: 'http://localhost:3000/updateGrade',
+                    data: {
+                        'gradeID': grade.gradeID,
+                        'grade': grade.grade,
+                        'gradeDescription': grade.description
+                    }
+              })
+              .then(function(response){
+                  // console.log(response.data)   
+              })
+      }
+
+
+      this.deleteGrade = function(grade){
+              
+          $http({
+                method: 'POST',
+                url: 'http://localhost:3000/deleteGrade',
+                data: {
+                    'gradeID': grade.gradeID,
+                    'courseID': grade.courseID,
+                    'userID': grade.userID
+                }
+          })
+          .then(function(response){
+             if(response.data.indexOf("success") > -1){
+                   grade.firstName = ''
+                   grade.lastName = ''
+                   grade.grade = ''
+                   grade.description = ''
+             }              
+          })
+      }
+
 
       
       this.deleteProblem = function(problem){
