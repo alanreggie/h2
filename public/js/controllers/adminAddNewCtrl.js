@@ -6,6 +6,45 @@ materialAdmin
     
     .controller('adminAddNewCtrl', function($scope, $http, $window, $sessionStorage, $state){
     		
+      this.submitAnnouncement = function(){
+        
+          var user = JSON.parse($sessionStorage.user);
+          var userID = user.userID; 
+
+          var subject = $('#subject').val()
+          var announcement = $('#announcement').val()
+
+          //console.log($scope.course.courseID)
+          //console.log(subject)
+          //console.log(announcement)
+
+          $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/sendAnnouncement',
+                  data: {
+                      'courseID': $scope.course.courseID,
+                      'userID': userID,
+                      'date': Date(),
+                      'subject': subject,
+                      'announcement': announcement
+                  }
+            })
+            .then(function(response){
+                 console.log(response.data)
+                 //$scope.pcourses = response.data;
+
+                 $('#responseMessage').text( response.data ) 
+
+            
+            })
+
+      }
+
+      this.setCourseForAnnouncement = function(course){
+        $scope.course = course
+      }
+
+
 
     	this.submitGrade = function(){
     		//alert($scope.selectedUser == null)

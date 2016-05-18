@@ -76,6 +76,7 @@ require('./routes/getStudentsInCourse.js')(app);
 require('./routes/addGrade.js')(app);
 require('./routes/updateGrade.js')(app);
 require('./routes/deleteGrade.js')(app);
+require('./routes/sendAnnouncement.js')(app);
 
 
 

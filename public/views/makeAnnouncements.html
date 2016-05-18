@@ -1,0 +1,85 @@
+<div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getCoursesOfStudent()">
+    <div class="block-header">
+            <h1 style="text-align:center" >Mandar Anúncio</h1> 
+
+
+        <div class="col-sm-12" data-ng-controller="TabsDemoCtrl">
+            <div class="card" style=" width:800px; max-width:800px; margin: 0 auto">
+                <div class="card-header">
+                    <!-- <h2>Formulário <small>Adiciona um curso novo!</small></h2> -->
+                </div>
+
+
+                <div class="card" >
+                    <div class="card-body card-padding">
+
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <select id="studentChosenCourse" chosen data-placeholder="Escolhe o curso"  class="w-100" ng-model="h" ng-options="(h.courseID + ' -- ' + h.courseSection + ' -- ' + h.courseYear + ' -- ' + h.courseName) for h in courses" ng-change="actrl.setCourseForAnnouncement(h)"  >
+                                    <option></option>
+                                </select>
+                            </div>
+                        </div> 
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                                <input id="subject" type="text" class="form-control input-sm">
+                                <label class="fg-label">Assunto</label>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group fg-float m-b-30">
+                            <div class="fg-line">
+                            <textarea id="announcement" class="form-control" rows="4" ></textarea>
+                                <label class="fg-label">Anúncio</label>
+                            </div>
+                        </div>
+
+                        <br>
+
+
+                    </div>
+
+                    <div >    
+                        <button style="margin: -20px -50px; position:relative;top:50%;left:50%;" class="btn btn-info" ng-click="actrl.submitAnnouncement()">Enviar</button>
+                        <br>
+                        <br>
+                        <button style="margin: 0px -60px; position:relative;top:50%;left:50%;" class="btn btn-link" ng-click="actrl.reload()" >Reiniciar</button>
+                    </div>
+
+
+                    <h5 style="margin: 0px -350px; position:relative;top:50%;left:50%;" id="responseMessage"></h5>
+
+                    <br>
+                    <br>
+
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllProfessors();">
+    <div class="block-header">
+            <h1 style="text-align:center">Adiçionar <small>Cursos</small></h1>
+
+
+        <div class="col-sm-12"  data-ng-controller="TabsDemoCtrl">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Formulário <small>Adiçionar curso novo!</small></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+
+
+
