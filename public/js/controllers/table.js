@@ -1,6 +1,19 @@
 materialAdmin
     .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage) {
       
+      this.getCourseAnnouncements = function(course){
+           $http({
+                    method: 'POST',
+                    url: 'http://localhost:3000/getCourseAnnouncements',
+                    data: {
+                        'courseID': course.courseID,
+                    }
+              })
+              .then(function(response){
+                  $scope.annoucements = response.data;
+                  // console.log(response.data)   
+              })
+      }
       
       this.updateGrade = function(grade){
         console.log(grade)
