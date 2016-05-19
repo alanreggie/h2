@@ -6,6 +6,49 @@ materialAdmin
     
     .controller('adminAddNewCtrl', function($scope, $http, $window, $sessionStorage, $state){
     		
+      this.updatePassword = function(){
+
+          var user = JSON.parse($sessionStorage.user);
+          var userID = user.userID; 
+
+
+          var pass1 = $('#pass1').val()
+          var pass2 = $('#pass2').val()
+
+          console.log(pass1)
+          console.log(pass2)
+
+          if (pass1 == pass2){
+
+              $http({
+                    method: 'POST',
+                    url: 'http://localhost:3000/updatePassword',
+                    data: {
+                        'userID': userID,
+                        'password': pass1
+                    }
+              })
+              .then(function(response){
+
+                   console.log(response.data)
+                  if(response.data.indexOf("Erro") > -1){
+                    $('#responseMessage').text( 'Erro. Reinicia o formulario.' ) 
+
+                  }
+                  else{
+                     $('#responseMessage').text( 'Succeso!' ) 
+                  }
+
+              
+              })
+          }
+          else{
+              $('#responseMessage').text( 'As senhas não são igual!' ) 
+          }
+      }
+
+
+
       this.submitAnnouncement = function(){
         
           var user = JSON.parse($sessionStorage.user);
@@ -30,10 +73,15 @@ materialAdmin
                   }
             })
             .then(function(response){
-                 console.log(response.data)
-                 //$scope.pcourses = response.data;
 
-                 $('#responseMessage').text( response.data ) 
+                 console.log(response.data)
+                if(response.data.indexOf("error") > -1){
+                  $('#responseMessage').text( 'Erro. Reinicia o formulario.' ) 
+
+                }
+                else{
+                   $('#responseMessage').text( 'Succeso!' ) 
+                }
 
             
             })

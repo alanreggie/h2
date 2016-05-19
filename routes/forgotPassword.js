@@ -51,8 +51,10 @@ module.exports = function (app){
 	        		//send new password
 	        		var randomToken = require('random-token').create('abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
 					var newPass = randomToken(16);
+					var salt = randomToken(16);
+
 					console.log(newPass)
-					newPassForStorage = sha256(newPass) 
+					newPassForStorage = sha256(newPass) + salt
 					var userID = rows[0].userID;
 
 					connection.query('DELETE FROM password WHERE userID = ' + userID, function (err, result) {
@@ -60,7 +62,7 @@ module.exports = function (app){
 	        				res.send(err)	
 	        			}	
 
-	        			connection.query('INSERT INTO password SET ?', {userID: userID, password: newPassForStorage, salt: ''}, function(err, result) {
+	        			connection.query('INSERT INTO password SET ?', {userID: userID, password: newPassForStorage, salt: salt}, function(err, result) {
 	        				if(err){
 	        					res.send(err)	
 	        				}

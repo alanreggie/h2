@@ -78,6 +78,8 @@ require('./routes/updateGrade.js')(app);
 require('./routes/deleteGrade.js')(app);
 require('./routes/sendAnnouncement.js')(app);
 require('./routes/getCourseAnnouncements.js')(app);
+require('./routes/updatePassword.js')(app);
+require('./routes/submitReview.js')(app);
 
 
 

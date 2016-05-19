@@ -1,6 +1,64 @@
 materialAdmin
     .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage) {
-      
+        
+      this.submitReview = function(){
+
+          var user = JSON.parse($sessionStorage.user);
+          var userID = user.userID; 
+
+          // console.log(this.val0) 
+          // console.log(this.val1) 
+          // console.log(this.val2) 
+          // console.log(this.val3) 
+          // console.log(this.val4) 
+          // console.log(this.otherDetails)
+          if(this.h == undefined){
+              $('#responseMessage').text( 'Eschole o curso!' ) 
+          }
+          else{
+              var val0 = this.val0 
+              var val1 = this.val1 
+              var val2 = this.val2 
+              var val3 = this.val3 
+              var val4 = this.val4 
+              var otherDetails = this.otherDetails
+              var courseID = this.h.courseID 
+
+              $http({
+                        method: 'POST',
+                        url: 'http://localhost:3000/submitReview',
+                        data: {
+                            'courseID': courseID,
+                            'userID': userID,
+                            'val0': val0,
+                            'val1': val1,
+                            'val2': val2,
+                            'val3': val3,
+                            'val4': val4,
+                            'otherDetails': otherDetails,
+                        }
+                  })
+                  .then(function(response){
+                      if(response.data.indexOf("Erro") > -1){
+                        $('#responseMessage').text( 'Erro. Reinicia o formulario.' ) 
+
+                      }
+                      else{
+                         $('#responseMessage').text( 'Enviado!' ) 
+                      }
+                      
+
+                  })
+
+          }
+          
+ 
+      }
+
+      this.reload = function(){
+        $window.location.reload();
+      }
+
       this.getCourseAnnouncements = function(course){
            $http({
                     method: 'POST',

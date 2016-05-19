@@ -40,9 +40,7 @@ module.exports = function (app){
 		console.log(date)
 		console.log(subject)
 		console.log(announcement)*/
-        
-        //insert into db, then get all the emails of everyone in the course, then 
-        
+               
 		connection.query('INSERT INTO announcement SET ?', {courseID: courseID, userID: userID, date: date, subject:subject, announcement: announcement}, function(err, result) {
   			if (err){
   				res.send('error')
@@ -50,7 +48,7 @@ module.exports = function (app){
   			else{
   				
 
-				connection.query('SELECT user.email from (user INNER JOIN UserCourseGrade on UserCourseGrade.userID = user.userID) where UserCourseGrade.courseID =? and user.userType in (\'Estudante\') group by user.userID order by user.userID desc', [courseID], function(err, rows, fields) {
+				connection.query('SELECT user.email from (user INNER JOIN UserCourseGrade on UserCourseGrade.userID = user.userID) where UserCourseGrade.courseID =? and user.userType in (\'Estudante\', \'Professor\') group by user.userID order by user.userID desc', [courseID], function(err, rows, fields) {
 		        	if(err){
 		        		res.send('error')	
 		        	}
@@ -80,26 +78,10 @@ module.exports = function (app){
 
 		        	//console.log(rows)
 
-		        	res.send(rows);
+		        	res.send('hello');
 			    })
 
-  				/*var mailOptions = {
-                    from: 'administrador@facesc.com', // sender address 
-                    to: em, // list of receivers 
-                    subject: subject, // Subject line 
-                    text: '', // plaintext body 
-                    html: announcement
-                };
-                transporter.sendMail(mailOptions, function(error, info){
-                    if(error){
-                        console.log(error);        
-                    }
-                    else{
-                        console.log('Message sent: ' + info.response);                            
-                    }
-                });
-				
-				res.send('sent')*/
+  				
   			}
 
 			

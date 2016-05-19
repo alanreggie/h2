@@ -1,0 +1,119 @@
+<div class="container" data-ng-controller="tableCtrl as tctrl">
+
+    <div data-ng-init="tctrl.getCoursesOfStudent()"></div>
+
+    <div class="block-header" style="text-align: center">
+        <h1 >Preencher Formulário</h1>
+    </div>
+
+    <div class="card">
+        <div  class="card-header">
+
+        </div>
+
+        <br>
+
+        <div class="card-body card-padding" >
+        <div class="form-group fg-float m-b-30" style="max-width: 40%; ">
+            <div class="fg-line">
+                <select id="studentChosenCourse" chosen data-placeholder="Escolhe o curso"  class="w-100" ng-model="tctrl.h" ng-options="(h.courseID + ' -- ' + h.courseSection + ' -- ' + h.courseYear + ' -- ' + h.courseName) for h in courses"  ng-change="tctrl.showForm()" >
+                    <option></option>
+                </select>
+            </div>
+        </div> 
+        </div>
+
+        <div class="card-body">
+            <div class="card-body card-padding">
+
+                
+                <div class="card-body card-padding" >
+                        <p class="f-500 c-black m-b-5">Conteúdo da Aula</p>
+                        <small class="c-gray">Valor: {{tctrl.val0}}</small>
+
+                        <br/>
+                        <br/>
+                
+                         <div slider class="input-slider" ng-model="tctrl.val0" start=1 end=10 ></div> 
+
+                        
+                </div>
+
+
+                 <div class="card-body card-padding" >
+                        <p class="f-500 c-black m-b-5">Didática do Professor</p>
+                        <small class="c-gray">Valor: {{tctrl.val1}}</small>
+
+                        <br/>
+                        <br/>
+                
+                         <div slider class="input-slider" ng-model="tctrl.val1" start=1 end=10 ></div> 
+
+                </div>
+
+
+                 <div class="card-body card-padding" >
+                        <p class="f-500 c-black m-b-5">Material Audio-Visual</p>
+                        <small class="c-gray">Valor: {{tctrl.val2}}</small>
+
+                        <br/>
+                        <br/>
+                
+                         <div slider class="input-slider" ng-model="tctrl.val2" start=1 end=10 ></div>
+
+                </div>
+
+
+                 <div class="card-body card-padding" >
+                        <p class="f-500 c-black m-b-5">Limpeza da Sala de Aula</p>
+                        <small class="c-gray">Valor: {{tctrl.val3}}</small>
+
+                        <br/>
+                        <br/>
+                
+                         <div slider class="input-slider" ng-model="tctrl.val3" start=1 end=10 ></div> 
+                </div>
+
+
+                 <div class="card-body card-padding" >
+                        <p class="f-500 c-black m-b-5">Coffee Break</p>
+                        <small class="c-gray">Valor: {{tctrl.val4}}</small>
+
+                        <br/>
+                        <br/>
+                
+                         <div slider class="input-slider" ng-model="tctrl.val4" start=1 end=10 ></div>
+                </div>
+
+                <br>
+
+                <div class="card-body card-padding" >
+                <div class="form-group fg-float m-b-30">
+                    <div class="fg-line">
+                    <textarea ng-model="tctrl.otherDetails" class="form-control" rows="4" ></textarea>
+                        <label class="fg-label">Outros Comentários</label>
+                    </div>
+                </div>
+                </div>
+
+
+                <button style="margin: -20px -50px; position:relative;top:50%;left:50%;" class="btn btn-info" ng-click="tctrl.submitReview()">Enviar</button>
+                <br>
+                <br>
+                <button style="margin: 0px -60px; position:relative;top:50%;left:50%; " class="btn btn-link" ng-click="tctrl.reload()" >Reiniciar</button>
+
+                <h5 id="responseMessage"></h5>
+
+            </div>
+
+
+
+        </div>
+
+
+    </div>   
+</div>
+
+
+
+
