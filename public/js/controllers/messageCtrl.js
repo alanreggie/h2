@@ -6,11 +6,80 @@ materialAdmin
     
     .controller('messageCtrl', function($scope, $http, $window, $sessionStorage, $state){
     	
+      this.sendMessage = function(message){
+        //alert(message)
+        var user = JSON.parse($sessionStorage.user)
+        var userID = user.userID
+        console.log($scope.user2.userID)
+
+        $http({
+                method: 'POST',
+                url: 'http://localhost:3000/postMessage',
+                data: {
+                    'user1': $scope.user2.userID,
+                    'user2': userID,
+                    'message': message,
+                    'date': Date()
+                }
+            })
+          .then(function(response){
+              console.log(response.data)
+              var res = response.data
+
+              /*if(res.indexOf("Erro") > -1){
+                  console.log('Message not sent')
+              }
+              else{
+                 $scope.messages = response.data
+                 $("#chatbox").animate({ scrollTop: $('#chatbox').prop("scrollHeight")});
+
+              }  */           
+            //console.log($scope.classmates)
+           })
+      }
+
+      this.getMessages = function(userFrom){
+          var user = JSON.parse($sessionStorage.user)
+          var userID = user.userID
+
+          $scope.user2 = userFrom
+
+          //alert(userFrom.userID)
+
+          $http({
+                method: 'POST',
+                url: 'http://localhost:3000/getMessages',
+                data: {
+                    'user1': userFrom.userID,
+                    'user2': userID
+                }
+            })
+          .then(function(response){
+              console.log(response.data)
+              var res = response.data
+
+              if(res.indexOf("Erro") > -1){
+                  console.log('Message not sent')
+              }
+              else{
+                 $scope.messages = response.data
+                 $("#chatbox").animate({ scrollTop: $('#chatbox').prop("scrollHeight")});
+
+              }             
+            //console.log($scope.classmates)
+           })
+           // $('#chatbox').scrollTop($('#chatbox').height())
+
+
+      }
+
+
     	this.init = function(){
-    		$("#chatbox").prop({ scrollTop: $("#chatbox").prop("scrollHeight") });
+              $("#chatbox").animate({ scrollTop: $('#chatbox').prop("scrollHeight")});
   
           	var app = JSON.parse($sessionStorage.user)
           	$scope.user = app
+
           
           	console.log(app)
           	$http({
@@ -23,7 +92,8 @@ materialAdmin
                 .then(function(response){
                     console.log(response.data)
                    // $('#responseMessageRegister').text( response.data )
-                 	$scope.classmates = response.data
+                 	  //if(response.data.length )
+                    $scope.classmates = response.data
 
                  	
                  	//console.log($scope.classmates)

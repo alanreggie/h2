@@ -40,11 +40,6 @@ module.exports = function (app){
 		 	  else{
 		 	  	res.send('woohoo');
 		 	  } 
-
-
-  
-  //       	
-
          })
          
     })

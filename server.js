@@ -80,7 +80,9 @@ require('./routes/sendAnnouncement.js')(app);
 require('./routes/getCourseAnnouncements.js')(app);
 require('./routes/updatePassword.js')(app);
 require('./routes/submitReview.js')(app);
-
+require('./routes/getReviewAverage.js')(app);
+require('./routes/getMessages.js')(app);
+require('./routes/postMessage.js')(app);
 
 
 

@@ -6,6 +6,84 @@ materialAdmin
     
     .controller('adminAddNewCtrl', function($scope, $http, $window, $sessionStorage, $state){
     		
+      this.populateReview = function(course){
+          //console.log(course)
+          
+          $http({
+                method: 'POST',
+                url: 'http://localhost:3000/getReviewAverage',
+                data: {
+                    'courseID': course.courseID,
+                    'number': 0
+                }
+              })
+              .then(function(response){
+                   $scope.zero = (response.data[0].avg)
+                   $scope.zero *= 10
+              })
+
+
+
+              $http({
+                method: 'POST',
+                url: 'http://localhost:3000/getReviewAverage',
+                data: {
+                    'courseID': course.courseID,
+                    'number': 1
+                }
+              })
+              .then(function(response){
+                   $scope.one = (response.data[0].avg)
+                   $scope.one *= 10
+              })
+
+
+              $http({
+                method: 'POST',
+                url: 'http://localhost:3000/getReviewAverage',
+                data: {
+                    'courseID': course.courseID,
+                    'number': 2
+                }
+              })
+              .then(function(response){
+                   $scope.two = (response.data[0].avg)
+                   $scope.two *= 10
+              })
+
+
+              $http({
+                method: 'POST',
+                url: 'http://localhost:3000/getReviewAverage',
+                data: {
+                    'courseID': course.courseID,
+                    'number': 3
+                }
+              })
+              .then(function(response){
+                   $scope.three = (response.data[0].avg)
+                   $scope.three *= 10
+              })
+
+
+
+              $http({
+                method: 'POST',
+                url: 'http://localhost:3000/getReviewAverage',
+                data: {
+                    'courseID': course.courseID,
+                    'number': 4
+                }
+              })
+              .then(function(response){
+                   $scope.four = (response.data[0].avg)
+                   $scope.four *= 10
+              })
+      }
+
+
+
+
       this.updatePassword = function(){
 
           var user = JSON.parse($sessionStorage.user);
@@ -415,7 +493,7 @@ materialAdmin
 
 		this.getAllCourses = function(){
 
-			$http({
+			       $http({
                   method: 'GET',
                   url: 'http://localhost:3000/getAllCourses',
                   data: {
@@ -425,9 +503,7 @@ materialAdmin
              .then(function(response){
                     console.log(response.data)
                     var courses = response.data;
-
                     $scope.courses = courses;
-                    
               })
 		}
 

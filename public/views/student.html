@@ -13,12 +13,8 @@
 
 
         <div class="container" style="">
-            <!-- <div class="block-header">
-                <h2>Memsagens</h2>
-            </div> -->
 
 
-<!-- styleReg -->
             <div class="card m-b-0 " id="messages-main" data-ng-controller="messageCtrl as mctrl" data-ng-init="mctrl.init()" style="overflow:hidden !important; ">  <!--  -->
 
                 <div class="ms-menu " data-ng-class="{ 'toggled': mactrl.lvMenuStat }" style="overflow: scroll !important; ">
@@ -32,19 +28,6 @@
                     </div>
 
                     <br>
-
-                    <!-- <div class="ms-block">
-                        <div class="dropdown" uib-dropdown >
-                            <a class="btn btn-primary btn-block" href="" uib-dropdown-toggle>Messages <i class="caret m-l-5"></i></a>
-
-                            <ul class="dropdown-menu dm-icon w-100">
-                                <li><a href=""><i class="zmdi zmdi-email"></i> Messages</a></li>
-                                <li><a href=""><i class="zmdi zmdi-account"></i> Contacts</a></li>
-                                <li><a href=""><i class="zmdi zmdi-format-list-bulleted"> </i>Todo Lists</a></li>
-                            </ul>
-                        </div>
-                    </div> -->
-
 
 
                     <div class="listview lv-user m-t-20">
@@ -62,7 +45,7 @@
                             </div>
                         </div> -->
 
-                        <div class="lv-item media" ng-repeat="w in classmates" >
+                        <div class="lv-item media" ng-repeat="w in classmates" ng-click="mctrl.getMessages(w)">
                             <div class="lv-avatar bgm-cyan pull-left">{{w.firstName[0]}}</div>
                             <div class="media-body">
                                 <div class="lv-title">{{w.firstName}} {{w.lastName}}</div>
@@ -70,69 +53,7 @@
                             </div>
                         </div>
 
-                       <!--  <div class="lv-item media">
-                            <div class="lv-avatar bgm-orange pull-left">m</div>
-                            <div class="media-body">
-                                <div class="lv-title">Marse Walter</div>
-                                <div class="lv-small">Suspendisse sapien ligula</div>
-                            </div>
-                        </div>
-
-                        <div class="lv-item media">
-                            <div class="lv-avatar pull-left">
-                                <img src="img/profile-pics/2.jpg" alt="">
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">Jeremy Robbins</div>
-                                <div class="lv-small">Phasellus porttitor tellus nec</div>
-                            </div>
-                        </div>
-
-                        <div class="lv-item media">
-                            <div class="lv-avatar pull-left">
-                                <img src="img/profile-pics/3.jpg" alt="">
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">Reginald Horace</div>
-                                <div class="lv-small">Quisque consequat arcu eget</div>
-                            </div>
-                        </div>
-
-                        <div class="lv-item media">
-                            <div class="lv-avatar bgm-cyan pull-left">s</div>
-                            <div class="media-body">
-                                <div class="lv-title">Shark Henry</div>
-                                <div class="lv-small">Nam lobortis odio et leo maximu</div>
-                            </div>
-                        </div>
-
-                        <div class="lv-item media">
-                            <div class="lv-avatar bgm-purple pull-left">p</div>
-                            <div class="media-body">
-                                <div class="lv-title">Paul Van Dack</div>
-                                <div class="lv-small">Nam posuere purus sed velit auctor sodales</div>
-                            </div>
-                        </div>
-
-                        <div class="lv-item media">
-                            <div class="lv-avatar pull-left">
-                                <img src="img/profile-pics/4.jpg" alt="">
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">James Anderson</div>
-                                <div class="lv-small">Vivamus imperdiet sagittis quam</div>
-                            </div>
-                        </div>
-
-                        <div class="lv-item media">
-                            <div class="lv-avatar pull-left">
-                                <img src="img/profile-pics/6.jpg" alt="">
-                            </div>
-                            <div class="media-body">
-                                <div class="lv-title">Kane Williams</div>
-                                <div class="lv-small">Suspendisse justo nulla luctus nec</div>
-                            </div>
-                        </div> -->
+                      
                     </div>
 
 
@@ -141,6 +62,8 @@
                 <div class="ms-body size1" id="chatbox" style=" overflow: scroll !important; " >
                     <div class="listview lv-message" >
                         <div class="lv-header-alt clearfix" style=" z-index: 1 !important; position: fixed !important;" >
+                            
+
                             <div id="ms-menu-trigger"  data-ng-class="{ 'open': mactrl.lvMenuStat }" data-ng-click="mactrl.lvMenuStat = (mactrl.lvMenuStat===true ? false : true )">
                                 <div class="line-wrap"  >
                                     <div class="line top" ></div>
@@ -149,12 +72,7 @@
                                 </div>
                             </div>
 
-                             <!-- <div class="lvh-label hidden-xs">
-                                <div class="lv-avatar pull-left">
-                                    <img src="img/profile-pics/1.jpg" alt="">
-                                </div>
-                                <span class="c-black">David Parbell</span>
-                            </div> -->
+                            
 
                            <ul class="lv-actions actions">
                                 <li>
@@ -162,49 +80,25 @@
                                        <i> David Parbell</i>
                                     
                                 </li>
-                             <!--    <li>
-                                    <a href="">
-                                        <i class="zmdi zmdi-check"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="">
-                                        <i class="zmdi zmdi-time"></i>
-                                    </a>
-                                </li>
-                                <li class="dropdown" uib-dropdown>
-                                    <a href="" uib-dropdown-toggle aria-expanded="true">
-                                        <i class="zmdi zmdi-sort"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="">Latest</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Oldest</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                                <li class="dropdown" uib-dropdown>
-                                    <a href="" uib-dropdown-toggle aria-expanded="true">
-                                        <i class="zmdi zmdi-more-vert"></i>
-                                    </a>
-
-                                    <ul class="dropdown-menu dropdown-menu-right">
-                                        <li>
-                                            <a href="">Refresh</a>
-                                        </li>
-                                        <li>
-                                            <a href="">Message Settings</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul> -->
+                            </ul>
+                             
                         </div>
-
+                        <br>
+                        <br>
+                        <br>
                         <div class="lv-body">
-                            <div class="lv-item media">
+                            <div class="" ng-repeat="m in messages" ng-attr-class="{{user2.userID == m.userID && 'lv-item media' || 'lv-item media right' }}">
+                                <div ng-attr-class="{{user2.userID == m.userID && 'lv-avatar bgm-brown pull-left' || 'lv-avatar bgm-bluegray pull-right' }}">{{m.firstName[0]}}</div>
+
+                                <div class="media-body" >
+                                    <div class="ms-item">
+                                        {{m.message}}
+                                    </div>
+                                    <small class="ms-date"><i class="zmdi zmdi-time"></i> {{ m.date}}</small>
+                                </div>
+                            </div>
+
+                            <!-- <div class="lv-item media">
                                 <div class="lv-avatar pull-left">
                                     <img src="img/profile-pics/1.jpg" alt="">
                                 </div>
@@ -262,51 +156,23 @@
                                     </div>
                                     <small class="ms-date"><i class="zmdi zmdi-time"></i> 20/02/2015 at 10:24</small>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- added three -->
-                            <div class="lv-item media">
-                                <div class="lv-avatar pull-left">
-                                    <img src="img/profile-pics/1.jpg" alt="">
-                                </div>
-                                <div class="media-body">
-                                    <div class="ms-item">
-                                        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam ac tortor ut elit sodales varius. Mauris id ipsum id mauris malesuada tincidunt. Vestibulum elit massa, pulvinar at sapien sed, luctus vestibulum eros. Etiam finibus tristique ante, vitae rhoncus sapien volutpat eget
-                                    </div>
-                                    <small class="ms-date"><i class="zmdi zmdi-time"></i> 20/02/2015 at 10:24</small>
-                                </div>
-                            </div>
+                            
 
 
-                            <div class="lv-item media">
-                                <div class="lv-avatar pull-left">
-                                    <img src="img/profile-pics/1.jpg" alt="">
-                                </div>
-                                <div class="media-body">
-                                    <div class="ms-item">
-                                        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam ac tortor ut elit sodales varius. Mauris id ipsum id mauris malesuada tincidunt. Vestibulum elit massa, pulvinar at sapien sed, luctus vestibulum eros. Etiam finibus tristique ante, vitae rhoncus sapien volutpat eget
-                                    </div>
-                                    <small class="ms-date"><i class="zmdi zmdi-time"></i> 20/02/2015 at 10:24</small>
-                                </div>
-                            </div>
-
-                            <div class="lv-item media">
-                                <div class="lv-avatar pull-left">
-                                    <img src="img/profile-pics/1.jpg" alt="">
-                                </div>
-                                <div class="media-body">
-                                    <div class="ms-item">
-                                        Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam ac tortor ut elit sodales varius. Mauris id ipsum id mauris malesuada tincidunt. Vestibulum elit massa, pulvinar at sapien sed, luctus vestibulum eros. Etiam finibus tristique ante, vitae rhoncus sapien volutpat eget
-                                    </div>
-                                    <small class="ms-date"><i class="zmdi zmdi-time"></i> 20/02/2015 at 10:24</small>
-                                </div>
-                            </div>
-                        </div>
-
+                            
+                            
                         <div class="clearfix"></div>
-
+                        <br>
+                           
                         <div class="lv-footer ms-reply" >
-                            <textarea placeholder="What's on your mind..." ></textarea>
-                            <button><i class="zmdi zmdi-mail-send"></i></button>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <textarea ng-model="mctrl.message" placeholder="What's on your mind..." ></textarea>
+                            <button ng-click="mctrl.sendMessage(mctrl.message)" ><i class="zmdi zmdi-mail-send" ></i></button>
                         </div>
                     </div>
                 </div>
@@ -318,5 +184,4 @@
     </section>
 </section>
 
-<!-- <footer id="footer" data-ng-include="'template/footer.html'"></footer> -->
 
