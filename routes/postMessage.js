@@ -22,6 +22,55 @@ module.exports = function (app){
       	
       	//check if convo already exists, if it doesn't, add a UserConvo and a convo, else just add a convo.
 
+      	connection.query('SELECT * from ((UserConvo INNER JOIN convo on convo.convoID = UserConvo.convoID) INNER JOIN user on convo.userID = user.userID) where (UserConvo.ID1 =? and UserConvo.ID2 =?) OR (UserConvo.ID1 =? and UserConvo.ID2 =?)', [userID1, userID2, userID2, userID1] ,function(err, rows, fields) {
+        	if(err){
+        		res.send('Erro')	
+        	}
+        	else{
+        		if(rows.length == 0){ //create UserConvo and Convo
+
+					connection.query('INSERT INTO UserConvo SET ?', {ID1: userID1, ID2: userID2}, function(err, result) {
+			  			if (err){
+			  				res.send('Erro');
+			  			} 
+			  			else{
+
+							var convoID = result.insertId; 
+							console.log(convoID)
+							
+
+							connection.query('INSERT INTO convo SET ?', {convoID: convoID, userID: userID1, message: message, date:date}, function(err, result) {
+								if (err){
+									res.send('Erro');
+								} 
+								else{
+									res.send('Adicionado!')
+								}
+							})
+			  			}
+			  		})
+
+        		}
+        		else{ //add new Convo
+
+        			//console.log(rows[0].convoID)
+        			var convoID = rows[0].convoID
+        			connection.query('INSERT INTO convo SET ?', {convoID: convoID, userID: userID1, message: message, date:date}, function(err, result) {
+						if (err){
+							res.send('Erro');
+						} 
+						else{
+							res.send('Adicionado!')
+						}
+					})
+        		}
+
+        		//res.send(rows);	
+
+        	}	
+	    })
+
+
 		/*connection.query('INSERT INTO UserConvo SET ?', {grade: grade, description: gradeDescription}, function(err, result) {
   			if (err){
   				res.send('error');

@@ -10,14 +10,14 @@ materialAdmin
         //alert(message)
         var user = JSON.parse($sessionStorage.user)
         var userID = user.userID
-        console.log($scope.user2.userID)
-
+       // console.log($scope.user2.userID)
+       //var self = this
         $http({
                 method: 'POST',
                 url: 'http://localhost:3000/postMessage',
                 data: {
-                    'user1': $scope.user2.userID,
-                    'user2': userID,
+                    'user2': $scope.user2.userID,
+                    'user1': userID,
                     'message': message,
                     'date': Date()
                 }
@@ -26,16 +26,13 @@ materialAdmin
               console.log(response.data)
               var res = response.data
 
-              /*if(res.indexOf("Erro") > -1){
-                  console.log('Message not sent')
-              }
-              else{
-                 $scope.messages = response.data
-                 $("#chatbox").animate({ scrollTop: $('#chatbox').prop("scrollHeight")});
-
-              }  */           
-            //console.log($scope.classmates)
+              //self.getMessages($scope.user2)
            })
+
+          //refresh messages
+          $('#message').val( '' ) 
+          this.getMessages($scope.user2)
+
       }
 
       this.getMessages = function(userFrom){
