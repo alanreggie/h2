@@ -21,7 +21,7 @@ module.exports = function (app){
 var token = randomToken(16); // example output → '3ZGErMDCwxTOZYFp' 
 console.log(token)*/
 
-	app.post('/userlogin', function(req,res){
+	app.post('/userlogin1', function(req,res){
 		
 		var Email = req.body.Email;
 		var Password = req.body.Password;

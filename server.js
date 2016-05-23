@@ -6,10 +6,13 @@ var express = require('express'),
   logger      = require('morgan'),
   cookieParser  = require('cookie-parser'),
   bodyParser    = require('body-parser'),
-  mysql      = require('mysql')
+  mysql      = require('mysql'),
+  passport = require('passport'),
+  randomToken = require('random-token')
+  LocalStrategy = require('passport-local').Strategy,
   sha256 = require('js-sha256');
 
-  var randomToken = require('random-token');
+  //var ;
 
 
   /*passport = require('passport');*/
@@ -21,12 +24,31 @@ app.use(bodyParser.json()); // get information from html forms
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({extended: true}));
 
+
+var connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : '',
+  database : 'FacescSchema'
+});
+
+connection.connect();
+
+
+
 //PASSPORT ============================================
-/*var initPassport = require('./config/init');
+var initPassport = require('./config/init');
 initPassport(passport);
-*/
-/*app.use(expressSession({
+
+
+//added
+//app.use(bodyParser.urlencoded());
+//end added
+
+app.use(expressSession({
     secret: 'keyboard cat',
+    resave: true, //added
+    saveUninitialized: true, //added
     cookie: {
         httpOnly: true,
         secure: true
@@ -35,10 +57,12 @@ initPassport(passport);
         maxAge : 3600000
     }
 }));
-*/
-/*app.use(passport.initialize());
+
+app.use(passport.initialize());
 app.use(passport.session());
-*/
+
+
+
 //LISTEN ==============================================
 app.listen(port);
 console.log('The magic happens on port ' + port);
@@ -83,15 +107,11 @@ require('./routes/submitReview.js')(app);
 require('./routes/getReviewAverage.js')(app);
 require('./routes/getMessages.js')(app);
 require('./routes/postMessage.js')(app);
+require('./routes/testingPassport.js')(app, passport);
 
 
 
 // require('./routes/getStudentsAndProfessors.js')(app);
-
-
-
-
-
 
 
 

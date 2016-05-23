@@ -457,20 +457,18 @@ materialAdmin
                 }
             })
             .then(function (response){
-                console.log(response.data)
+                console.log(response.data.user.userType)
+                var userType = response.data.user.userType
+                var user = response.data;
 
-                if (response.data.Message.indexOf('O usuário não existe') >= 0){
+
+                if (userType == "Invalid"){
                     //alert('O usuário não existe')
-                    $('#responseMessage').text( 'O usuário não existe' )
+                    $('#responseMessage').text( 'Usuário ou senha incorretos' )
 
                 }
-                else if(response.data.Message.indexOf('Invalid Password') >= 0){
-                   //alert('Senha inválida');
-                   $('#responseMessage').text( 'Senha inválida' )
-                }
-                else if(response.data.Message.indexOf('Success') >= 0){
-                   var userType = response.data.userType;
-                   var user = response.data;
+                else{
+               
                    $sessionStorage.active = 1;
                    $sessionStorage.user = JSON.stringify(user)
 
@@ -489,9 +487,6 @@ materialAdmin
                    else if (userType == 'Nenhum'){
                       $('#responseMessage').text( 'Voce so pode login quando o administrador approva sua conta!' )
                    }
-                }
-                else{
-                    console.log('wtf')
                 }
             })
         }
