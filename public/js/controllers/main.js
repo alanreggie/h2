@@ -5,37 +5,10 @@ materialAdmin
     // =========================================================================
     
     .controller('sideNav', function($scope, $http){
-        //alert('hello')
-
-        $scope.courses = [
-            {
-                "course": 'Dental 101',
-                "link": "home.html"
-            },
-            {
-                "course": 'Dental 102',
-                "link": "home.html"
-            }]              
+                  
     })
 
-    /////test adding this,,,,
-/*    .controller('LoginController', ['$scope', '$window', '$location',
-      function($scope, $window, $location) {
-        $scope.goToEvents = function() {
-          //Do Something
-          $window.location.href = '/form';
-          //$location.path('/form')
-        };
-      }
-    ])*/
-
-
-       /* .controller('redirectCtrl', function($timeout, $state, $scope, growlService){
-            window.location.href = 'login.html';
-        })*/
-
-
-
+  
     // =========================================================================
     // Base controller for common functions
     // =========================================================================
@@ -291,32 +264,43 @@ materialAdmin
     // Profile
     //=================================================
 
-    .controller('profileCtrl', function(growlService, $sessionStorage, $http, $scope){
+    .controller('profileCtrl', function(growlService, $sessionStorage, $http, $scope, $location){
         
         //Get Profile Information from profileService Service
+        this.init = function(){
+        //console.log($sessionStorage)
+        //console.log($sessionStorage['user'] == undefined)
+              if($sessionStorage['user'] == undefined){
+                $location.path('/login')
+              }
+              else{
+                    //User
+                    var user = JSON.parse($sessionStorage.user);
+                    this.profileSummary = user.summary;
+                
+                    this.fullName = user.firstName + " " + user.lastName;
+                    this.firstName = user.firstName;
+                    this.lastName = user.lastName;
+
+                    this.birthDay = user.birthday;
+                    //this.martialStatus = "Single";
+                    this.mobileNumber = user.phone;
+                    this.emailAddress = user.email;
+                   // this.twitter = "@malinda";
+                   // this.twitterUrl = "twitter.com/malinda";
+                    this.skype = user.skype;
+                    // this.addressSuite = "44-46 Morningside Road";
+                    this.addressCity = user.city;
+                    this.facebook = user.facebook;
+                    // this.addressCountry = "Scotland";
+              }
+        }
+
+        /*
+        console.log(user)*/
+
+
         
-        var user = JSON.parse($sessionStorage.user);
-        console.log(user)
-
-
-        //User
-        this.profileSummary = user.summary;
-    
-        this.fullName = user.firstName + " " + user.lastName;
-        this.firstName = user.firstName;
-        this.lastName = user.lastName;
-
-        this.birthDay = user.birthday;
-        //this.martialStatus = "Single";
-        this.mobileNumber = user.phone;
-        this.emailAddress = user.email;
-       // this.twitter = "@malinda";
-       // this.twitterUrl = "twitter.com/malinda";
-        this.skype = user.skype;
-        // this.addressSuite = "44-46 Morningside Road";
-        this.addressCity = user.city;
-        this.facebook = user.facebook;
-        // this.addressCountry = "Scotland";
 
         //Edit
         this.editSummary = 0;
@@ -341,7 +325,7 @@ materialAdmin
         }
 
 
-        this.submitSummary = function(){
+       /* this.submitSummary = function(){
             $http({
                       method: 'POST',
                       url: 'http://localhost:3000/updateUserSummary',
@@ -351,7 +335,7 @@ materialAdmin
                          
                       }
                   })
-                .then(function(response){
+                .then(function(response){*/
                     //this.profileSummary = 
                     //$sessionStorage.user.summary = response.data
                     /*  var current = sessionStorage.getItem('history');
@@ -368,10 +352,10 @@ materialAdmin
 */
 
                     
-                    console.log(response.data)
+                   /* console.log(response.data)
                  })
 
-        }
+        }*/
 
 
         this.submitBasicInfo = function(){
@@ -403,9 +387,30 @@ materialAdmin
         this.register = 0;
         this.forgot = 0;
 
+        $scope.resetSession = function(){
+            $http({
+                      method: 'POST',
+                      url: 'http://localhost:3000/logout',
+                      data: {
+                          
+                      }
+                  })
+                .then(function(response){
+                    console.log(response.data)
+                    console.log($sessionStorage)
+                    delete $sessionStorage.user
+                    console.log($sessionStorage)
+                 })
+
+
+        }
+
         $scope.registerSubmit = function() {     
-           
-            if($('#registerFirstName').val() != '' && $('#registerEmail').val() != '' && $('#registerPassword').val() != '' && $('#registerLastName').val() != ''){
+            
+            if($('#registerPassword').val() != $('#registerPassword2').val()){
+                $('#responseMessageRegister').text( 'As senhas não são as mesmas' )
+            }
+            else if($('#registerFirstName').val() != '' && $('#registerEmail').val() != '' && $('#registerPassword').val() != '' && $('#registerLastName').val() != ''){
                   $http({
                       method: 'POST',
                       url: 'http://localhost:3000/register',

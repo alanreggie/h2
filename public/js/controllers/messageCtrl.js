@@ -72,29 +72,36 @@ materialAdmin
 
 
     	this.init = function(){
-              $("#chatbox").animate({ scrollTop: $('#chatbox').prop("scrollHeight")});
+
+              if($sessionStorage['user'] == undefined){
+                $location.path('/login')
+              }
+              else{
+                $("#chatbox").animate({ scrollTop: $('#chatbox').prop("scrollHeight")});
   
-          	var app = JSON.parse($sessionStorage.user)
-          	$scope.user = app
+                var app = JSON.parse($sessionStorage.user)
+                $scope.user = app
 
-          
-          	console.log(app)
-          	$http({
-                      method: 'POST',
-                      url: 'http://localhost:3000/getClassMates',
-                      data: {
-                          'userID': app.userID,
-                      }
-                  })
-                .then(function(response){
-                    console.log(response.data)
-                   // $('#responseMessageRegister').text( response.data )
-                 	  //if(response.data.length )
-                    $scope.classmates = response.data
+              
+                console.log(app)
+                $http({
+                          method: 'POST',
+                          url: 'http://localhost:3000/getClassMates',
+                          data: {
+                              'userID': app.userID,
+                          }
+                      })
+                    .then(function(response){
+                        console.log(response.data)
+                       // $('#responseMessageRegister').text( response.data )
+                        //if(response.data.length )
+                        $scope.classmates = response.data
 
-                 	
-                 	//console.log($scope.classmates)
-                 })
+                      
+                      //console.log($scope.classmates)
+                     })
+              }
+              
 
     	}
 

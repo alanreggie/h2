@@ -4,11 +4,19 @@ materialAdmin
     // Controller for adding new users and courses
     // =========================================================================
     
-    .controller('adminAddNewCtrl', function($scope, $http, $window, $sessionStorage, $state){
+    .controller('adminAddNewCtrl', function($scope, $http, $window, $sessionStorage, $state, $location){
     		
+      this.init = function(){
+
+          if($sessionStorage['user'] == undefined){
+            $location.path('/login')
+          }
+      }
+
       this.populateReview = function(course){
-          //console.log(course)
           
+          $scope.average = 0
+
           $http({
                 method: 'POST',
                 url: 'http://localhost:3000/getReviewAverage',
@@ -20,6 +28,8 @@ materialAdmin
               .then(function(response){
                    $scope.zero = (response.data[0].avg)
                    $scope.zero *= 10
+                   $scope.zero = $scope.zero.toFixed(0)
+                   $scope.average = parseInt($scope.average) + parseInt($scope.zero)
               })
 
 
@@ -35,6 +45,8 @@ materialAdmin
               .then(function(response){
                    $scope.one = (response.data[0].avg)
                    $scope.one *= 10
+                   $scope.one = $scope.one.toFixed(0)
+                   $scope.average = parseInt($scope.average) + parseInt($scope.one)
               })
 
 
@@ -49,6 +61,8 @@ materialAdmin
               .then(function(response){
                    $scope.two = (response.data[0].avg)
                    $scope.two *= 10
+                   $scope.two = $scope.two.toFixed(0)
+                   $scope.average = parseInt($scope.average) + parseInt($scope.two)
               })
 
 
@@ -63,6 +77,8 @@ materialAdmin
               .then(function(response){
                    $scope.three = (response.data[0].avg)
                    $scope.three *= 10
+                   $scope.three = $scope.three.toFixed(0)
+                   $scope.average = parseInt($scope.average) + parseInt($scope.three)
               })
 
 
@@ -78,6 +94,8 @@ materialAdmin
               .then(function(response){
                    $scope.four = (response.data[0].avg)
                    $scope.four *= 10
+                   $scope.four = $scope.four.toFixed(0)
+                   $scope.average = parseInt($scope.average) + parseInt($scope.four)
               })
       }
 
@@ -86,83 +104,90 @@ materialAdmin
 
       this.updatePassword = function(){
 
-          var user = JSON.parse($sessionStorage.user);
-          var userID = user.userID; 
+
+        if($sessionStorage['user'] != undefined){
+
+              var user = JSON.parse($sessionStorage.user);
+              var userID = user.user.userID; 
+              console.log(userID)
 
 
-          var pass1 = $('#pass1').val()
-          var pass2 = $('#pass2').val()
+              var pass1 = $('#pass1').val()
+              var pass2 = $('#pass2').val()
 
-          console.log(pass1)
-          console.log(pass2)
+              console.log(pass1)
+              console.log(pass2)
 
-          if (pass1 == pass2){
+              if (pass1 == pass2){
 
-              $http({
-                    method: 'POST',
-                    url: 'http://localhost:3000/updatePassword',
-                    data: {
-                        'userID': userID,
-                        'password': pass1
-                    }
-              })
-              .then(function(response){
+                  $http({
+                        method: 'POST',
+                        url: 'http://localhost:3000/updatePassword',
+                        data: {
+                            'userID': userID,
+                            'password': pass1
+                        }
+                  })
+                  .then(function(response){
 
-                   console.log(response.data)
-                  if(response.data.indexOf("Erro") > -1){
-                    $('#responseMessage').text( 'Erro. Reinicia o formulario.' ) 
+                      console.log(response.data)
+                      if(response.data.indexOf("Erro") > -1){
+                        $('#responseMessage').text( 'Erro. Reinicia o formulario.' ) 
 
-                  }
-                  else{
-                     $('#responseMessage').text( 'Succeso!' ) 
-                  }
-
-              
-              })
-          }
-          else{
-              $('#responseMessage').text( 'As senhas não são igual!' ) 
+                      }
+                      else{
+                         $('#responseMessage').text( 'Succeso!' ) 
+                      }                  
+                  })
+              }
+              else{
+                  $('#responseMessage').text( 'As senhas não são igual!' ) 
+              }
           }
       }
 
 
 
       this.submitAnnouncement = function(){
-        
-          var user = JSON.parse($sessionStorage.user);
-          var userID = user.userID; 
+          
+          if($sessionStorage['user'] != undefined){
 
-          var subject = $('#subject').val()
-          var announcement = $('#announcement').val()
 
-          //console.log($scope.course.courseID)
-          //console.log(subject)
-          //console.log(announcement)
+              var user = JSON.parse($sessionStorage.user);
+              var userID = user.user.userID; 
+              //console.log(userID)
+              var subject = $('#subject').val()
+              var announcement = $('#announcement').val()
 
-          $http({
-                  method: 'POST',
-                  url: 'http://localhost:3000/sendAnnouncement',
-                  data: {
-                      'courseID': $scope.course.courseID,
-                      'userID': userID,
-                      'date': Date(),
-                      'subject': subject,
-                      'announcement': announcement
-                  }
-            })
-            .then(function(response){
+              //console.log($scope.course.courseID)
+              //console.log(subject)
+              //console.log(announcement)
 
-                 console.log(response.data)
-                if(response.data.indexOf("error") > -1){
-                  $('#responseMessage').text( 'Erro. Reinicia o formulario.' ) 
+              $http({
+                      method: 'POST',
+                      url: 'http://localhost:3000/sendAnnouncement',
+                      data: {
+                          'courseID': $scope.course.courseID,
+                          'userID': userID,
+                          'date': Date(),
+                          'subject': subject,
+                          'announcement': announcement
+                      }
+                })
+                .then(function(response){
 
-                }
-                else{
-                   $('#responseMessage').text( 'Succeso!' ) 
-                }
+                     console.log(response.data)
+                    if(response.data.indexOf("error") > -1){
+                      $('#responseMessage').text( 'Erro. Reinicia o formulario.' ) 
 
-            
-            })
+                    }
+                    else{
+                       $('#responseMessage').text( 'Succeso!' ) 
+                    }
+
+                
+                })
+            }
 
       }
 
@@ -239,46 +264,52 @@ materialAdmin
     		
     	this.getCoursesOfStudent = function(){
           
-          var user = JSON.parse($sessionStorage.user);
-          var userID = user.userID; 
+          if($sessionStorage['user'] != undefined){
+              var user = JSON.parse($sessionStorage.user);
+              var userID = user.user.userID; 
 
-          //$scope.selectedUser = selected;
-              $http({
-                  method: 'POST',
-                  url: 'http://localhost:3000/getCoursesOfUser',
-                  data: {
-                      'userID': userID
-                  }
-            })
-            .then(function(response){
-                 console.log(response.data)
-                 $scope.courses = response.data;
+              //$scope.selectedUser = selected;
+                  $http({
+                      method: 'POST',
+                      url: 'http://localhost:3000/getCoursesOfUser',
+                      data: {
+                          'userID': userID
+                      }
+                })
+                .then(function(response){
+                     console.log(response.data)
+                     $scope.courses = response.data;
 
-            
-            })
+                
+                })
+              }
+          
       }
 
 
     	this.submitProblem = function(){
-    		
-			var problem = $('#problem').val()
-			var user = JSON.parse($sessionStorage.user);
-          	var userID = user.userID; 
+    		  
+          if($sessionStorage['user'] != undefined){
 
-    		$http({
-                  method: 'POST',
-                  url: 'http://localhost:3000/submitProblem',
-                  data: {
-                      'problem': problem,
-                      'userID': userID,
-                      'date': Date()
-                  }
-	             })
-	              .then(function(response){
-	                    console.log(response.data)
-	                    $state.go('student')
+      			var problem = $('#problem').val()
+      			var user = JSON.parse($sessionStorage.user);
+            var userID = user.user.userID; 
 
-	             })
+            		$http({
+                    method: 'POST',
+                    url: 'http://localhost:3000/submitProblem',
+                    data: {
+                        'problem': problem,
+                        'userID': userID,
+                        'date': Date()
+                    }
+                 })
+                  .then(function(response){
+                        console.log(response.data)
+                        $state.go('student')
+
+                 })
+            }
     		}
 
 

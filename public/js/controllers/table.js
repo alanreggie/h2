@@ -1,55 +1,67 @@
 materialAdmin
-    .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage) {
+    .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage, $location) {
         
+      this.init = function(){
+        //console.log($sessionStorage)
+        //console.log($sessionStorage['user'] == undefined)
+          if($sessionStorage['user'] == undefined){
+            $location.path('/login')
+          }
+      }
+
       this.submitReview = function(){
 
-          var user = JSON.parse($sessionStorage.user);
-          var userID = user.userID; 
 
-          // console.log(this.val0) 
-          // console.log(this.val1) 
-          // console.log(this.val2) 
-          // console.log(this.val3) 
-          // console.log(this.val4) 
-          // console.log(this.otherDetails)
-          if(this.h == undefined){
-              $('#responseMessage').text( 'Eschole o curso!' ) 
-          }
-          else{
-              var val0 = this.val0 
-              var val1 = this.val1 
-              var val2 = this.val2 
-              var val3 = this.val3 
-              var val4 = this.val4 
-              var otherDetails = this.otherDetails
-              var courseID = this.h.courseID 
+          if($sessionStorage['user'] != undefined){
 
-              $http({
-                        method: 'POST',
-                        url: 'http://localhost:3000/submitReview',
-                        data: {
-                            'courseID': courseID,
-                            'userID': userID,
-                            'val0': val0,
-                            'val1': val1,
-                            'val2': val2,
-                            'val3': val3,
-                            'val4': val4,
-                            'otherDetails': otherDetails,
+            var user = JSON.parse($sessionStorage.user);
+            var userID = user.userID; 
+
+            // console.log(this.val0) 
+            // console.log(this.val1) 
+            // console.log(this.val2) 
+            // console.log(this.val3) 
+            // console.log(this.val4) 
+            // console.log(this.otherDetails)
+            if(this.h == undefined){
+                $('#responseMessage').text( 'Eschole o curso!' ) 
+            }
+            else{
+                var val0 = this.val0 
+                var val1 = this.val1 
+                var val2 = this.val2 
+                var val3 = this.val3 
+                var val4 = this.val4 
+                var otherDetails = this.otherDetails
+                var courseID = this.h.courseID 
+
+                $http({
+                          method: 'POST',
+                          url: 'http://localhost:3000/submitReview',
+                          data: {
+                              'courseID': courseID,
+                              'userID': userID,
+                              'val0': val0,
+                              'val1': val1,
+                              'val2': val2,
+                              'val3': val3,
+                              'val4': val4,
+                              'otherDetails': otherDetails,
+                          }
+                    })
+                    .then(function(response){
+                        if(response.data.indexOf("Erro") > -1){
+                          $('#responseMessage').text( 'Erro. Reinicia o formulario.' ) 
+
                         }
-                  })
-                  .then(function(response){
-                      if(response.data.indexOf("Erro") > -1){
-                        $('#responseMessage').text( 'Erro. Reinicia o formulario.' ) 
+                        else{
+                           $('#responseMessage').text( 'Enviado!' ) 
+                        }
+                        
 
-                      }
-                      else{
-                         $('#responseMessage').text( 'Enviado!' ) 
-                      }
-                      
+                    })
 
-                  })
-
+              }
           }
           
  
@@ -331,31 +343,36 @@ materialAdmin
 
       this.getCoursesOfStudent = function(){
           
-          var user = JSON.parse($sessionStorage.user);
-          var userID = user.userID; 
+        if($sessionStorage['user'] != undefined){
 
-          //$scope.selectedUser = selected;
-              $http({
-                  method: 'POST',
-                  url: 'http://localhost:3000/getCoursesOfUser',
-                  data: {
-                      'userID': userID
-                  }
-            })
-            .then(function(response){
-                 console.log(response.data)
-                 $scope.courses = response.data;
+            var user = JSON.parse($sessionStorage.user);
+            var userID = user.user.userID; 
+            console.log(user.user)
+            //$scope.selectedUser = selected;
+                $http({
+                    method: 'POST',
+                    url: 'http://localhost:3000/getCoursesOfUser',
+                    data: {
+                        'userID': userID
+                    }
+              })
+              .then(function(response){
+                   console.log(response.data)
+                   $scope.courses = response.data;
 
-            
-            })
+              
+              })
+          }
       }
 
 
        this.getCourseGrades = function(course){
           
+          if($sessionStorage['user'] != undefined){
+
 
           var user = JSON.parse($sessionStorage.user);
-          var userID = user.userID; 
+          var userID = user.user.userID; 
           console.log(userID)
           console.log(course)
 
@@ -387,6 +404,8 @@ materialAdmin
                $scope.studentCourseGrade = studentCourseGrade;
 
             })
+
+          }
 
         }
 
@@ -703,138 +722,9 @@ materialAdmin
               })
 
                   
-
-            
-
-
-
-             
-             //var courseDescription = $('#courseDescription').val()
-
-             //console.log(courseName)
-            // console.log(courseDescription)
-             //console.log(course)
 }
 
-            /* if(course.courseName         ==    courseName               && 
-                course.courseDescription  ==    courseDescription        &&
-                sectionBool               ==    true                     &&
-                yearBool                  ==    true                      ){ //nothing has changed    
-                     
-                     alert('nothing has changed')
-                }
-                else if(course.courseName         ==    courseName               && 
-                        course.courseDescription  ==    courseDescription        &&
-                        course.courseYear         ==    courseYear               &&
-                        course.courseSection      ==    courseSection            ){//both year and section selected but not changed
-                    alert('both year and section selected but not changed')
-                }
-                else{//something has changed
-
-                  alert('something has changed')
-
-                }*/
-
-
-
-               /* else if(sectionBool && yearBool) {
-                    alert('something other than the dropdowns have changed')
-                }
-                else if(sectionBool && !yearBool){
-                    alert('year is changed')
-                }
-                else if(!sectionBool && yearBool){
-                    alert('section is changed')
-                }
-                else if(!sectionBool && !yearBool){
-                  alert('both dropdowns have changed')
-                }
-*/
-               
-
-
-
-                  
-
-             /* $http({
-                  method: 'POST',
-                  url: 'http://localhost:3000/getSpecificCourse',
-                  data: {
-                        'courseID': course.courseID,
-                  }
-              })
-              .then(function(response){
-                  $scope.currentCourse = response.data;
-                  console.log(response.data)
-                  //console.log($scope.currentCourse[0].courseYear)
-              })
-
-
-
-             $http({
-                  method: 'POST',
-                  url: 'http://localhost:3000/updateCourses',
-                  data: {
-                        'courseID': course.courseID,
-                        'courseName': course.courseName,
-                        'courseYear': courseYear,
-                        'courseSection': courseSection,
-                        'courseDescription': course.courseDescription
-                  }
-              })
-              .then(function(response){
-                  console.log(response.data)
-              })
-
-
-
-              //check if year and section show duplicates course, if so, revert
-              $http({
-                  method: 'POST',
-                  url: 'http://localhost:3000/checkCourseExists',
-                  data: {
-                        'courseID': course.courseID,
-                        'courseName': course.courseName,
-                        'courseYear': courseYear,
-                        'courseSection': courseSection,
-                        'courseDescription': course.courseDescription
-                  }
-              })
-              .then(function(response){
-                  if (response.data.indexOf('Este') > -1){
-                    //course already exists
-                     $http({
-                        method: 'POST',
-                        url: 'http://localhost:3000/updateCourses',
-                        data: {
-                              'courseID': course.courseID,
-                              'courseName': $scope.currentCourse[0].courseName,
-                              'courseYear': $scope.currentCourse[0].courseYear,
-                              'courseSection': $scope.currentCourse[0].courseSection,
-                              'courseDescription': $scope.currentCourse[0].courseDescription
-                        }
-                    })
-                    .then(function(response){
-                        console.log(response.data)
-                        course.courseName = $scope.currentCourse[0].courseName
-                        course.courseYear = $scope.currentCourse[0].courseYear
-                        course.courseSection = $scope.currentCourse[0].courseSection
-                        course.courseDescription = $scope.currentCourse[0].courseDescription
-
-                    })
-
-                    alert(response.data)
-                
-                  }
-
-                  console.log(response.data)
-              })
-*/
-
-
-       // }
-
-
+  
 
 
       

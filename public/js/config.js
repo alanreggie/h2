@@ -104,7 +104,7 @@ materialAdmin
             // HOME
             //------------------------------
 
-            .state ('home', {
+            /*.state ('home', {
                 url: '/home',
                 templateUrl: 'views/home.html',
                 resolve: {
@@ -129,7 +129,7 @@ materialAdmin
                         ])
                     }
                 }
-            })
+            })*/
 
 
             //------------------------------

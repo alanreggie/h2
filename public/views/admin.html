@@ -8,7 +8,7 @@
 
     <section id="content">
 
-        <div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.getAllCourses()">
+        <div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.init(); actrl.getAllCourses(); ">
             <div class="block-header">
                 <h2>Painel</h2>
             </div>
@@ -42,31 +42,31 @@
                                 <div class="clearfix"></div>
 
                                 <div class="text-center p-20 m-t-25">
-                                    <div class="easy-pie main-pie" data-percent="99" data-easypie-chart>
-                                        <div class="percent">{{ (zero + one + two  + three + four)/5 }}</div>
+                                    <div class="easy-pie main-pie" data-percent="100" data-easypie-chart>
+                                        <div class="percent">{{ ((average)/5).toFixed(0) }}</div>
                                         <div class="pie-title">Total</div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="p-t-20 p-b-20 text-center">
-                                <div class="easy-pie sub-pie-2" data-percent="99" data-easypie-chart>
+                                <div class="easy-pie sub-pie-2" data-percent="100" data-easypie-chart>
                                     <div class="percent">{{ zero }}</div>
                                     <div class="pie-title" style="font-size: 65%">Conteúdo da Aula</div>
                                 </div>
-                                <div class="easy-pie sub-pie-1" data-percent="99" data-easypie-chart>
+                                <div class="easy-pie sub-pie-1" data-percent="100" data-easypie-chart>
                                     <div class="percent">{{ one }}</div>
                                     <div class="pie-title" style="font-size: 65%">Didática do Professor</div>
                                 </div>
-                                 <div class="easy-pie sub-pie-1" data-percent="99" data-easypie-chart>
+                                 <div class="easy-pie sub-pie-1" data-percent="100" data-easypie-chart>
                                     <div class="percent">{{ two }}</div>
                                     <div class="pie-title" style="font-size: 65%">Material Audio-Visual</div>
                                 </div>
-                                <div class="easy-pie sub-pie-1" data-percent="99" data-easypie-chart>
+                                <div class="easy-pie sub-pie-1" data-percent="100" data-easypie-chart>
                                     <div class="percent">{{ three }}</div>
                                     <div class="pie-title" style="font-size: 65%">Limpeza da Sala de Aula</div>
                                 </div>
-                                <div class="easy-pie sub-pie-2" data-percent="99" data-easypie-chart>
+                                <div class="easy-pie sub-pie-2" data-percent="100" data-easypie-chart>
                                     <div class="percent">{{ four }}</div>
                                     <div class="pie-title" style="font-size: 65%">Coffee Break</div>
                                 </div>
