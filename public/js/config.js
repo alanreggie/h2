@@ -2,6 +2,7 @@ materialAdmin
     .config(function ($stateProvider, $urlRouterProvider){ /*, $routeProvider*/
         $urlRouterProvider.otherwise("/login");
 
+
         
         $stateProvider
 
@@ -53,7 +54,27 @@ materialAdmin
 
             .state ('manager', {
                 url: '/manager',
-                templateUrl: '/views/manager.html'
+                templateUrl: '/views/manager.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+
             })
 
             .state ('student', {
@@ -92,6 +113,10 @@ materialAdmin
                 }
             })
 
+            .state ('review', {
+                url: '/adminReview',
+                templateUrl: '/views/adminReview.html'
+            })
 
 
 
@@ -479,6 +504,10 @@ materialAdmin
             })
 
 
+             /*state ('admin.review', {
+                url: '/admin-review',
+                templateUrl: 'views/adminReview.html'
+            })*/
              
 
 
@@ -491,6 +520,8 @@ materialAdmin
                 templateUrl: 'views/common.html'
             })
 
+            
+
             .state ('teacherTables', {
                 url: '/tables',
                 templateUrl: 'views/teacherCommon.html'
@@ -501,11 +532,17 @@ materialAdmin
                 templateUrl: 'views/adminCommon.html'
             })
 
+            /*.state ('managerTables', {
+                url: '/tables',
+                templateUrl: 'views/adminCommon.html'
+            })*/
+
             .state ('adminTables.change-password', {
                 url: '/change-password',
                 templateUrl: 'views/changePassword.html'
             })
 
+            
 
             .state ('studentTables', {
                 url: '/tables',
@@ -1054,6 +1091,79 @@ materialAdmin
                 templateUrl: 'views/managerCommon.html'
             })  
 
+            .state ('managerTables.all-users', {
+                url: '/view-all',
+                templateUrl: 'views/managerViewStudents.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+            })
+
+            .state ('managerTables.all-courses', {
+                url: '/view-all',
+                templateUrl: 'views/managerViewCourses.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+            })
+
+
 
             
         
@@ -1332,7 +1442,8 @@ materialAdmin
                 url: '/generic-classes',
                 templateUrl: 'views/generic-classes.html'
             })
-        
+            
+            
             
             //------------------------------
             // PAGES
@@ -1342,7 +1453,51 @@ materialAdmin
                 url: '/pages',
                 templateUrl: 'views/common.html'
             })
+
+            .state ('pagesAdmin', {
+                url: '/pages',
+                templateUrl: 'views/adminCommon.html'
+            })
+
+            .state ('pagesStudent', {
+                url: '/pages',
+                templateUrl: 'views/studentCommon.html'
+            })
+
+            .state ('pagesProfessor', {
+                url: '/pages',
+                templateUrl: 'views/professorCommon.html'
+            })
+
+            .state ('pagesManager', {
+                url: '/pages',
+                templateUrl: 'views/managerCommon.html'
+            })
+
+
+/*
+
+            .state ('manager.home', {
+                url: '/manager-home',
+                templateUrl: 'views/profile-about.html'
+            })
+
+
+            .state ('homeAdmin', {
+                url: '/admin-home',
+                templateUrl: 'views/profile-about.html'
+            })
+
+            .state ('student.home', {
+                url: '/student-home',
+                templateUrl: 'views/profile-about.html'
+            })
             
+            .state ('professor.home', {
+                url: '/professor-home',
+                templateUrl: 'views/profile-about.html'
+            })
+            */
         
             //Profile
         
@@ -1350,7 +1505,65 @@ materialAdmin
                 url: '/profile',
                 templateUrl: 'views/profile.html'
             })
+
+
+            // 
+            .state ('pagesAdmin.profile', {
+                url: '/profile',
+                templateUrl: 'views/profile.html'
+            })
         
+            .state ('pagesAdmin.profile.profile-about', {
+                url: '/profile-about-admin',
+                templateUrl: 'views/profile-about.html'
+            })
+            // 
+
+
+            .state ('pagesStudent.profile', {
+                url: '/profile',
+                templateUrl: 'views/profile.html'
+            })
+        
+            .state ('pagesStudent.profile.profile-about', {
+                url: '/profile-about-student',
+                templateUrl: 'views/profile-about.html'
+            })
+
+
+
+            .state ('pagesProfessor.profile', {
+                url: '/profile',
+                templateUrl: 'views/profile.html'
+            })
+        
+            .state ('pagesProfessor.profile.profile-about', {
+                url: '/profile-about-professor',
+                templateUrl: 'views/profile-about.html'
+            })
+
+
+             .state ('pagesManager.profile', {
+                url: '/profile',
+                templateUrl: 'views/profile.html'
+            })
+        
+            .state ('pagesManager.profile.profile-about', {
+                url: '/profile-about-manager',
+                templateUrl: 'views/profile-about.html'
+            })
+
+
+
+
+
+
+
+
+
+
+
+
             .state ('pages.profile.profile-about', {
                 url: '/profile-about',
                 templateUrl: 'views/profile-about.html'

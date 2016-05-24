@@ -1,0 +1,69 @@
+<div class="container" data-ng-controller="tableCtrl as tctrl">
+
+    <div data-ng-init="tctrl.init(); tctrl.getAllUsers(); "></div>
+
+    <div class="block-header">
+
+      
+    </div>
+    
+ 
+    
+    <div class="card">
+        <div class="card-header">
+            <h2>Todos Usuários</h2>
+        </div>
+                
+        <div class="card-body">
+            <div class="table-responsive">
+                <table ng-table="tctrl.tableEdit " class="table table-striped table-vmiddle">
+                    <tr ng-repeat="w in users"  ng-class="{ 'active': w.$edit }">                         
+
+                        <td data-title="'ID'">
+                            <span ng-if="true">{{ w.userID }}</span>
+                        </td>
+                         <td data-title="'Email'">
+                            <span ng-if="true">{{ w.email }}</span>
+                        </td>
+
+                        <td data-title="'Typo de Usuário'">
+                            <span ng-if="!w.$edit">{{ w.userType }}</span>    
+                                    
+                        </td>
+                       
+                        <td data-title="'Primero Nome'">
+                            <span ng-if="!w.$edit">{{ w.firstName }}</span>
+                        </td>
+                        <td data-title="'Sobre Nome'">
+                            <span ng-if="!w.$edit">{{ w.lastName  }}</span>
+                        </td>
+                         <td data-title="'Data de Registracao'">
+                            <span ng-if="!w.$edit">{{ w.dateRegistered  }}</span>
+                        </td>
+
+                                             
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>   
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+

@@ -275,8 +275,9 @@ materialAdmin
               }
               else{
                     //User
-                    var user = JSON.parse($sessionStorage.user);
+                    var user = JSON.parse($sessionStorage.user).user;
                     this.profileSummary = user.summary;
+                    //console.log(user)
                 
                     this.fullName = user.firstName + " " + user.lastName;
                     this.firstName = user.firstName;
@@ -462,7 +463,7 @@ materialAdmin
                 }
             })
             .then(function (response){
-                console.log(response.data.user.userType)
+                //console.log(response.data.user.userType)
                 var userType = response.data.user.userType
                 var user = response.data;
 
