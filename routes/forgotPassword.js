@@ -4,11 +4,14 @@ var nodemailer = require('nodemailer');
 
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -38,7 +41,7 @@ module.exports = function (app){
         	res.send('Email Invalido');
         }
         else{
-        	 connection.query('SELECT * from user where user.email=?',[Email], function(err, rows, fields) {
+        	 connection.query('SELECT * from FacescSchema.user where FacescSchema.user.email=?',[Email], function(err, rows, fields) {
 	        	if(err){
 	        		res.send(err)	
 	        	}
@@ -57,12 +60,12 @@ module.exports = function (app){
 					newPassForStorage = sha256(newPass) + salt
 					var userID = rows[0].userID;
 
-					connection.query('DELETE FROM password WHERE userID = ' + userID, function (err, result) {
+					connection.query('DELETE FROM FacescSchema.password WHERE userID = ' + userID, function (err, result) {
 					 	if(err){
 	        				res.send(err)	
 	        			}	
 
-	        			connection.query('INSERT INTO password SET ?', {userID: userID, password: newPassForStorage, salt: salt}, function(err, result) {
+	        			connection.query('INSERT INTO FacescSchema.password SET ?', {userID: userID, password: newPassForStorage, salt: salt}, function(err, result) {
 	        				if(err){
 	        					res.send(err)	
 	        				}

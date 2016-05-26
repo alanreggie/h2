@@ -5,11 +5,14 @@ var nodemailer = require('nodemailer');
 
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -49,7 +52,7 @@ module.exports = function (app){
         }
         else{
 	        	//check to see whether email exists
-	        connection.query('SELECT * from user where user.email=?',[Email], function(err, rows, fields) {
+	        connection.query('SELECT * from FacescSchema.user where FacescSchema.user.email=?',[Email], function(err, rows, fields) {
 	        	if(err){
 	        		res.send(err)	
 	        	}
@@ -59,7 +62,7 @@ module.exports = function (app){
 	        	}
 	        	else{
 	        		//email doesn't exist yet
-	        		connection.query('INSERT INTO user SET ?', {userType: type, firstName: FirstName, lastName: LastName, email:Email, dateRegistered: Date()}, function(err, result) {
+	        		connection.query('INSERT INTO FacescSchema.user SET ?', {userType: type, firstName: FirstName, lastName: LastName, email:Email, dateRegistered: Date()}, function(err, result) {
 			  			if (err) throw err;
 			
 						var userID = result.insertId; 
@@ -72,7 +75,7 @@ module.exports = function (app){
 						hashPass += salt; 
 						console.log(hashPass);
 						
-						connection.query('INSERT INTO password SET ?', {userID: userID, password: hashPass, salt: salt}, function(err, result) {
+						connection.query('INSERT INTO FacescSchema.password SET ?', {userID: userID, password: hashPass, salt: salt}, function(err, result) {
 							if (err) throw err;
 
 

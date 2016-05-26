@@ -1,11 +1,14 @@
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -15,7 +18,7 @@ module.exports = function (app){
 		
 		var ID = req.body.CourseID;
         
-        connection.query('DELETE FROM course where courseID=?',[ID], function (err, result) {
+        connection.query('DELETE FROM FacescSchema.course where courseID=?',[ID], function (err, result) {
         	if(err){
         		res.send(err)	
         	}

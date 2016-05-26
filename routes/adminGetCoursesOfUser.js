@@ -1,11 +1,14 @@
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -19,7 +22,7 @@ module.exports = function (app){
 
 		
 		var courseID = req.body.courseID;
-		connection.query('SELECT * from (course INNER JOIN UserCourseGrade on UserCourseGrade.courseID = course.courseID) where UserCourseGrade.userID =? group by UserCourseGrade.courseID order by UserCourseGrade.courseID asc', [userID], function(err, rows, fields) {
+		connection.query('SELECT * from (FacescSchema.course INNER JOIN FacescSchema.UserCourseGrade on FacescSchema.UserCourseGrade.courseID = FacescSchema.course.courseID) where FacescSchema.UserCourseGrade.userID =? group by FacescSchema.UserCourseGrade.courseID order by FacescSchema.UserCourseGrade.courseID asc', [userID], function(err, rows, fields) {
         	if(err){
         		res.send(err)	
         	}

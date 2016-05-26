@@ -3,11 +3,14 @@ var validator = require("email-validator");
 //var nodemailer = require('nodemailer');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -35,7 +38,7 @@ module.exports = function (app){
 				  function forloop(){
 				    if(i<courseArray.length){
 				      			
-					connection.query('SELECT * from UserCourseGrade where courseID =? and userID =?',[courseArray[i], userID], function(err, rows, fields) {
+					connection.query('SELECT * from FacescSchema.UserCourseGrade where courseID =? and userID =?',[courseArray[i], userID], function(err, rows, fields) {
 							
 							if(err){
 				        		console.log(err)	
@@ -53,7 +56,7 @@ module.exports = function (app){
 				        		console.log(' O usuario: ' + userName + ' ja esta no curso: ' + courseArray[i] + ' e nao foi adicionado. ')
 				        	}
 				        	else{
-								connection.query('INSERT INTO UserCourseGrade SET ?', {courseID: courseArray[i], userID: userID}, function(err, result) {
+								connection.query('INSERT INTO FacescSchema.UserCourseGrade SET ?', {courseID: courseArray[i], userID: userID}, function(err, result) {
 									  if (err) console.log(err);
 
 									    //returnMessage += ' O usuario: ' + userName + ' foi adicionado ao curso: ' + courseArray[0];

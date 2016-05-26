@@ -1,11 +1,14 @@
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -18,10 +21,30 @@ module.exports = function (app){
 		
 		var courseName = req.body.courseName;
 		var courseSection = req.body.courseSection;
-        var courseYear = req.body.courseYear;
+    var courseYear = req.body.courseYear;
 
-        connection.query({
-		  sql: 'SELECT * FROM `course` WHERE `courseName` = ? and courseSection = ? and courseYear = ?',
+
+    connection.query('SELECT * from FacescSchema.course where courseName =? and courseSection =? courseYear =?', [courseName, courseSection, courseYear ],function(err, rows, fields) {
+        
+          if(err){
+            res.send(err) 
+          }
+          /////////////////////CHANGED TO >= FROM >
+          if(rows.length >= 1){
+            res.send('Este curso ja existe. Muda o ano ou a seção do curso! As modificacoes nao foram salvadas!')
+          }
+          else{
+            res.send(rows);
+          }
+
+      })
+    })
+
+
+
+
+    /*connection.query({
+		  sql: 'SELECT * FROM `FacescSchema.course` WHERE `courseName` = ? and courseSection = ? and courseYear = ?',
 		  timeout: 40000, // 40s 
 		  values: [courseName, courseSection, courseYear]
 		}, function (error, rows, fields) {
@@ -38,6 +61,6 @@ module.exports = function (app){
         	}
 
         	//console.log(rows)
-		});
-    })
+		});*/
+    //})
 }

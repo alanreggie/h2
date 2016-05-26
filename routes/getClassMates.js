@@ -1,11 +1,14 @@
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -18,7 +21,7 @@ module.exports = function (app){
 		
 
 		/*where user.userID=?',[userID]*/
-		connection.query('SELECT * from (user INNER JOIN UserCourseGrade on user.userID = UserCourseGrade.userID) where user.userID=? group by UserCourseGrade.courseID' , [userID] ,  function(err, rows, fields) { 
+		connection.query('SELECT * from (FacescSchema.user INNER JOIN FacescSchema.UserCourseGrade on FacescSchema.user.userID = FacescSchema.UserCourseGrade.userID) where FacescSchema.user.userID=? group by FacescSchema.UserCourseGrade.courseID' , [userID] ,  function(err, rows, fields) { 
 			if(err){
 		    	res.send(err)	
 		    }		
@@ -32,7 +35,7 @@ module.exports = function (app){
 		    		/*IDs.push(rows[1].courseID)*/
 		    		//console.log(IDs)
 		    	//rows[i].courseID
-		    		connection.query('SELECT * from (user INNER JOIN UserCourseGrade on user.userID = UserCourseGrade.userID) where UserCourseGrade.courseID  in (?) and UserCourseGrade.userID!=? and user.userType in (\'Estudante\',\'Professor\') group by UserCourseGrade.userID' ,[IDs, userID ] ,  function(err, rows, fields) { 
+		    		connection.query('SELECT * from (FacescSchema.user INNER JOIN FacescSchema.UserCourseGrade on user.userID = FacescSchema.UserCourseGrade.userID) where FacescSchema.UserCourseGrade.courseID  in (?) and FacescSchema.UserCourseGrade.userID!=? and FacescSchema.user.userType in (\'Estudante\',\'Professor\') group by FacescSchema.UserCourseGrade.userID' ,[IDs, userID ] ,  function(err, rows, fields) { 
 						if(err){
 					    	res.send(err)	
 					    }

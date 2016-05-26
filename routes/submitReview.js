@@ -5,11 +5,14 @@ var validator = require("email-validator");
 
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -33,7 +36,7 @@ module.exports = function (app){
 		console.log(val0, val1, val2, val3, val4, userID, courseID, otherDetails)
 		
 	
-		 connection.query('INSERT INTO rating SET ?', {rating0: val0, rating1: val1, rating2: val2, rating3:val3, rating4:val4, userID:userID, courseID:courseID, otherDetails:otherDetails}, function(err, result) {
+		 connection.query('INSERT INTO FacescSchema.rating SET ?', {rating0: val0, rating1: val1, rating2: val2, rating3:val3, rating4:val4, userID:userID, courseID:courseID, otherDetails:otherDetails}, function(err, result) {
 		 	  if (err){
 		 	  		res.send('Erro');
 		 	  }

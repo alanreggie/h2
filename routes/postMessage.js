@@ -1,10 +1,12 @@
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
 
 connection.connect();
@@ -22,14 +24,14 @@ module.exports = function (app){
       	
       	//check if convo already exists, if it doesn't, add a UserConvo and a convo, else just add a convo.
 
-      	connection.query('SELECT * from ((UserConvo INNER JOIN convo on convo.convoID = UserConvo.convoID) INNER JOIN user on convo.userID = user.userID) where (UserConvo.ID1 =? and UserConvo.ID2 =?) OR (UserConvo.ID1 =? and UserConvo.ID2 =?)', [userID1, userID2, userID2, userID1] ,function(err, rows, fields) {
+      	connection.query('SELECT * from ((FacescSchema.UserConvo INNER JOIN FacescSchema.convo on FacescSchema.convo.convoID = FacescSchema.UserConvo.convoID) INNER JOIN FacescSchema.user on FacescSchema.convo.userID = FacescSchema.user.userID) where (FacescSchema.UserConvo.ID1 =? and FacescSchema.UserConvo.ID2 =?) OR (FacescSchema.UserConvo.ID1 =? and FacescSchema.UserConvo.ID2 =?)', [userID1, userID2, userID2, userID1] ,function(err, rows, fields) {
         	if(err){
         		res.send('Erro')	
         	}
         	else{
         		if(rows.length == 0){ //create UserConvo and Convo
 
-					connection.query('INSERT INTO UserConvo SET ?', {ID1: userID1, ID2: userID2}, function(err, result) {
+					connection.query('INSERT INTO FacescSchema.UserConvo SET ?', {ID1: userID1, ID2: userID2}, function(err, result) {
 			  			if (err){
 			  				res.send('Erro');
 			  			} 
@@ -39,7 +41,7 @@ module.exports = function (app){
 							console.log(convoID)
 							
 
-							connection.query('INSERT INTO convo SET ?', {convoID: convoID, userID: userID1, message: message, date:date}, function(err, result) {
+							connection.query('INSERT INTO FacescSchema.convo SET ?', {convoID: convoID, userID: userID1, message: message, date:date}, function(err, result) {
 								if (err){
 									res.send('Erro');
 								} 

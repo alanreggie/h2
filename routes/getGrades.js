@@ -1,11 +1,14 @@
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -21,7 +24,7 @@ module.exports = function (app){
 
 
 		/*where user.userID=?',[userID]*/
-		connection.query('SELECT * from (((user INNER JOIN UserCourseGrade on user.userID = UserCourseGrade.userID) INNER JOIN course on UserCourseGrade.courseID = course.courseID) INNER JOIN grade on UserCourseGrade.gradeID = grade.gradeID) where user.userID=? and course.courseID =?' , [userID, courseID] ,  function(err, rows, fields) { 
+		connection.query('SELECT * from (((FacescSchema.user INNER JOIN FacescSchema.UserCourseGrade on FacescSchema.user.userID = FacescSchema.UserCourseGrade.userID) INNER JOIN FacescSchema.course on FacescSchema.UserCourseGrade.courseID = FacescSchema.course.courseID) INNER JOIN FacescSchema.grade on FacescSchema.UserCourseGrade.gradeID = FacescSchema.grade.gradeID) where FacescSchema.user.userID=? and FacescSchema.course.courseID =?' , [userID, courseID] ,  function(err, rows, fields) { 
 			if(err){
 		    	res.send(err)	
 		    }

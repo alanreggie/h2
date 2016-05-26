@@ -3,12 +3,13 @@ var bCrypt      = require('bcrypt-nodejs');
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'FacescSchema'
-});
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
 
+});
 connection.connect();
 
 
@@ -32,7 +33,7 @@ module.exports = function(passport){
         console.log(hashPass)
 
 
-        connection.query('SELECT * from (password INNER JOIN user on password.userID = user.userID) where user.email=?',[Email], function(err, rows, fields) {
+        connection.query('SELECT * from (FacescSchema.password INNER JOIN FacescSchema.user on FacescSchema.password.userID = FacescSchema.user.userID) where FacescSchema.user.email=?',[Email], function(err, rows, fields) {
             if (err) 
                 res.send(err);
 
@@ -48,9 +49,12 @@ module.exports = function(passport){
             else{//user exists
 
 
-                // User exists but wrong password
+                // User exists but wrong password///////////////////////////////UNCOOMMENT LINE 54 CHANGED THISSSSSSSS GOTTA CHANGE BCAK AFTA
                 var salt = rows[0].salt;
-                hashPass+= salt;
+                //hashPass+= salt;
+                //console.log(hashPass)
+                //console.log(rows[0].password)
+
 
                 if (rows[0].password != hashPass){
                     //console.log('Invalid Password');
@@ -63,7 +67,6 @@ module.exports = function(passport){
 
                     //res.send(user); 
                 }
-
 
                 //success
                 if (rows[0].email == Email && rows[0].password == hashPass){

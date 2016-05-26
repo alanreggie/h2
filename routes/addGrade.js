@@ -1,11 +1,14 @@
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -22,7 +25,7 @@ module.exports = function (app){
       	
       	console.log(gradeDescription)
 	
-		connection.query('INSERT INTO grade SET ?', {grade: grade, description: gradeDescription}, function(err, result) {
+		connection.query('INSERT INTO FacescSchema.grade SET ?', {grade: grade, description: gradeDescription}, function(err, result) {
   			if (err){
   				res.send('error');
   			} 
@@ -33,7 +36,7 @@ module.exports = function (app){
 				console.log(userID)
 				console.log(courseID)
 
-				connection.query('INSERT INTO UserCourseGrade SET ?', {courseID: courseID, userID: userID, gradeID: gradeID}, function(err, result) {
+				connection.query('INSERT INTO FacescSchema.UserCourseGrade SET ?', {courseID: courseID, userID: userID, gradeID: gradeID}, function(err, result) {
 					if (err){
 						res.send(err);
 					} 

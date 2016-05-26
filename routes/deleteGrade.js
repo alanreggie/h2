@@ -1,11 +1,14 @@
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -17,7 +20,7 @@ module.exports = function (app){
 		var userID = req.body.userID
 		var gradeID = req.body.gradeID
         
-        connection.query('DELETE FROM grade where gradeID =?',[gradeID], function (err, result) {
+        connection.query('DELETE FROM FacescSchema.grade where gradeID =?',[gradeID], function (err, result) {
         	if(err){
         		res.send('error')	
         	}

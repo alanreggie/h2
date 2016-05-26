@@ -1,11 +1,14 @@
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -20,7 +23,7 @@ console.log(token)*/
 
 	app.get('/getProblems', function(req,res){
 		
-        connection.query('SELECT * from (problem INNER JOIN user on problem.userID = user.userID) where problem.resolved = 0',function(err, rows, fields) {
+        connection.query('SELECT * from (FacescSchema.problem INNER JOIN FacescSchema.user on FacescSchema.problem.userID = FacescSchema.user.userID) where FacescSchema.problem.resolved = 0',function(err, rows, fields) {
         	if(err){
         		res.send(err)	
         	}

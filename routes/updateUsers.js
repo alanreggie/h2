@@ -1,11 +1,14 @@
 var mysql       = require('mysql');
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -29,7 +32,7 @@ console.log(token)*/
 
 
 
-        connection.query('UPDATE user SET ? WHERE userID = ?', [{ firstName: firstName, lastName: lastName, email:email, userType:userType, dateRegistered:date }, userID], function(err, rows, fields) {
+        connection.query('UPDATE FacescSchema.user SET ? WHERE userID = ?', [{ firstName: firstName, lastName: lastName, email:email, userType:userType, dateRegistered:date }, userID], function(err, rows, fields) {
         	if(err){
         		res.send(err)	
         	}

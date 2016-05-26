@@ -5,11 +5,14 @@ var nodemailer = require('nodemailer');
 
 
 var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'FacescSchema'
+  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
+
 
 connection.connect();
 
@@ -41,14 +44,14 @@ module.exports = function (app){
 		console.log(subject)
 		console.log(announcement)*/
                
-		connection.query('INSERT INTO announcement SET ?', {courseID: courseID, userID: userID, date: date, subject:subject, announcement: announcement}, function(err, result) {
+		connection.query('INSERT INTO FacescSchema.announcement SET ?', {courseID: courseID, userID: userID, date: date, subject:subject, announcement: announcement}, function(err, result) {
   			if (err){
   				res.send('error')
   			}
   			else{
   				
 
-				connection.query('SELECT user.email from (user INNER JOIN UserCourseGrade on UserCourseGrade.userID = user.userID) where UserCourseGrade.courseID =? and user.userType in (\'Estudante\', \'Professor\') group by user.userID order by user.userID desc', [courseID], function(err, rows, fields) {
+				connection.query('SELECT FacescSchema.user.email from (FacescSchema.user INNER JOIN FacescSchema.UserCourseGrade on FacescSchema.UserCourseGrade.userID = FacescSchema.user.userID) where FacescSchema.UserCourseGrade.courseID =? and FacescSchema.user.userType in (\'Estudante\', \'Professor\') group by FacescSchema.user.userID order by FacescSchema.user.userID desc', [courseID], function(err, rows, fields) {
 		        	if(err){
 		        		res.send('error')	
 		        	}
