@@ -108,7 +108,7 @@ materialAdmin
         if($sessionStorage['user'] != undefined){
 
               var user = JSON.parse($sessionStorage.user);
-              var userID = user.user.userID; 
+              var userID = user.userID; 
               console.log(userID)
 
 
@@ -154,7 +154,7 @@ materialAdmin
 
 
               var user = JSON.parse($sessionStorage.user);
-              var userID = user.user.userID; 
+              var userID = user.userID; 
               //console.log(userID)
               var subject = $('#subject').val()
               var announcement = $('#announcement').val()
@@ -266,7 +266,7 @@ materialAdmin
           
           if($sessionStorage['user'] != undefined){
               var user = JSON.parse($sessionStorage.user);
-              var userID = user.user.userID; 
+              var userID = user.userID; 
 
               //$scope.selectedUser = selected;
                   $http({
@@ -293,7 +293,7 @@ materialAdmin
 
       			var problem = $('#problem').val()
       			var user = JSON.parse($sessionStorage.user);
-            var userID = user.user.userID; 
+            var userID = user.userID; 
 
             		$http({
                     method: 'POST',

@@ -48,13 +48,7 @@ connection.connect();
         })*/
     
 
-            var hashPass = sha256('maracuja');
-            console.log(hashPass)
-            
-            var randomToken = require('random-token').create('abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
-            var salt = randomToken(16); 
-            console.log(salt)
-
+           
 
 //PASSPORT ============================================
 var initPassport = require('./config/init');
@@ -128,6 +122,7 @@ require('./routes/submitReview.js')(app);
 require('./routes/getReviewAverage.js')(app);
 require('./routes/getMessages.js')(app);
 require('./routes/postMessage.js')(app);
+require('./routes/getUserType.js')(app);
 
 
 

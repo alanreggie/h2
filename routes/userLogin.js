@@ -39,7 +39,9 @@ module.exports = function (app, passport){
     })
 
     app.get('/home', isAuthenticated, function(req,res){
-        console.log(req.user)
+        //console.log(req)
+        //console.log(req)
+
          res.send({
              status:200, 
              user: req.user

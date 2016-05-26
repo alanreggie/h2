@@ -24,11 +24,12 @@ module.exports = function (app){
     var courseYear = req.body.courseYear;
 
 
-    connection.query('SELECT * from FacescSchema.course where courseName =? and courseSection =? courseYear =?', [courseName, courseSection, courseYear ],function(err, rows, fields) {
+    connection.query('SELECT * from FacescSchema.course where FacescSchema.course.courseName =? and FacescSchema.course.courseSection =? and FacescSchema.course.courseYear =?', [courseName, courseSection, courseYear ],function(err, rows, fields) {
         
           if(err){
             res.send(err) 
           }
+          //console.log(rows)
           /////////////////////CHANGED TO >= FROM >
           if(rows.length >= 1){
             res.send('Este curso ja existe. Muda o ano ou a seção do curso! As modificacoes nao foram salvadas!')

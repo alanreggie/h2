@@ -51,7 +51,7 @@ module.exports = function(passport){
 
                 // User exists but wrong password///////////////////////////////UNCOOMMENT LINE 54 CHANGED THISSSSSSSS GOTTA CHANGE BCAK AFTA
                 var salt = rows[0].salt;
-                //hashPass+= salt;
+                hashPass+= salt;
                 //console.log(hashPass)
                 //console.log(rows[0].password)
 
@@ -86,6 +86,7 @@ module.exports = function(passport){
                         "userType": rows[0].userType,
                         "dateRegistered": rows[0]
                     };*/
+                    console.log(rows[0])
 
                     return done(null, rows[0]);
 

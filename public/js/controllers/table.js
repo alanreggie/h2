@@ -346,7 +346,7 @@ materialAdmin
         if($sessionStorage['user'] != undefined){
 
             var user = JSON.parse($sessionStorage.user);
-            var userID = user.user.userID; 
+            var userID = user.userID; 
             console.log(user.user)
             //$scope.selectedUser = selected;
                 $http({
@@ -372,7 +372,7 @@ materialAdmin
 
 
           var user = JSON.parse($sessionStorage.user);
-          var userID = user.user.userID; 
+          var userID = user.userID; 
           console.log(userID)
           console.log(course)
 

@@ -275,7 +275,7 @@ materialAdmin
               }
               else{
                     //User
-                    var user = JSON.parse($sessionStorage.user).user;
+                    var user = JSON.parse($sessionStorage.user);
                     this.profileSummary = user.summary;
                     //console.log(user)
                 
@@ -465,35 +465,55 @@ materialAdmin
             .then(function (response){
                 //console.log(response.data.user.userType)
                 var userType = response.data.user.userType
-                var user = response.data;
+                var user = response.data.user;
+                console.log(response.data)
+
+                $http({
+                    method: 'POST',
+                    url: 'http://localhost:3000/getUserType',
+                    data: {
+                            'ID': user
+                        }
+                })
+                .then(function (response){
+                        
+                        console.log(response.data)
+                        var type = response.data[0].userType
+                        var userr = response.data[0]
+
+                        if (type == "Invalid"){
+                            //alert('O usuário não existe')
+                            $('#responseMessage').text( 'Usuário ou senha incorretos' )
+
+                        }
+                        else{
+                            console.log('here')
+                       
+                           $sessionStorage.active = 1;
+                           $sessionStorage.user = JSON.stringify(userr)
+                           console.log($sessionStorage.user)
+                           
+
+                           if (type == 'Admin'){
+                                $location.path('/admin')
+                           }
+                           else if (type == 'Gerente'){
+                                $location.path('/manager')
+                           }
+                           else if (type == 'Professor'){
+                                $location.path('/teacher')
+                           }
+                           else if (type == 'Estudante'){
+                                $location.path('/student')
+                           }
+                           else if (type == 'Nenhum'){
+                              $('#responseMessage').text( 'Voce so pode login quando o administrador approva sua conta!' )
+                           }
+                        }
+                })
 
 
-                if (userType == "Invalid"){
-                    //alert('O usuário não existe')
-                    $('#responseMessage').text( 'Usuário ou senha incorretos' )
-
-                }
-                else{
                
-                   $sessionStorage.active = 1;
-                   $sessionStorage.user = JSON.stringify(user)
-
-                   if (userType == 'Admin'){
-                        $location.path('/admin')
-                   }
-                   else if (userType == 'Gerente'){
-                        $location.path('/manager')
-                   }
-                   else if (userType == 'Professor'){
-                        $location.path('/teacher')
-                   }
-                   else if (userType == 'Estudante'){
-                        $location.path('/student')
-                   }
-                   else if (userType == 'Nenhum'){
-                      $('#responseMessage').text( 'Voce so pode login quando o administrador approva sua conta!' )
-                   }
-                }
             })
         }
 
