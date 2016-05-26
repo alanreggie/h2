@@ -388,9 +388,87 @@ materialAdmin
              
             })
 
+
+             .state ('managerTables.manager-add-student-to-course', {
+                url: '/managerTables-manager-add-student-to-course',
+                templateUrl: 'views/managerAddStudentToCourse.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+                
+             
+            })
+
              .state ('adminTables.admin-add-professor-to-course', {
                 url: '/adminTables-admin-add-professor-to-course',
                 templateUrl: 'views/adminAddProfessorToCourse.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+                
+             
+            })
+
+
+             .state ('managerTables.manager-add-professor-to-course', {
+                url: '/managerTables-manager-add-professor-to-course',
+                templateUrl: 'views/managerAddProfessorToCourse.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -465,9 +543,86 @@ materialAdmin
              
             })
 
+             .state ('managerTables.manager-users-in-course', {
+                url: '/managerTables-manager-users-in-course',
+                templateUrl: 'views/managerUsersInCourse.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+                
+             
+            })
+
+
              .state ('adminTables.admin-courses-of-user', {
                 url: '/adminTables-admin-courses-of-user',
                 templateUrl: 'views/adminCoursesOfUser.html',
+                resolve: {
+                    loadPlugin: function($ocLazyLoad) {
+                        return $ocLazyLoad.load ([
+                            {
+                                name: 'css',
+                                insertBefore: '#app-level',
+                                files: [
+                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'vendors/farbtastic/farbtastic.css',
+                                    'vendors/bower_components/summernote/dist/summernote.css',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'vendors/bower_components/chosen/chosen.min.css'
+                                ]
+                            },
+                            {
+                                name: 'vendors',
+                                files: [
+                                    'vendors/input-mask/input-mask.min.js',
+                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'vendors/bower_components/moment/min/moment.min.js',
+                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'vendors/fileinput/fileinput.min.js',
+                                    'vendors/bower_components/chosen/chosen.jquery.js',
+                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                ]
+                            }
+                        ])
+                    }
+                }
+                
+             
+            })
+
+             .state ('managerTables.manager-courses-of-user', {
+                url: '/managerTables-manager-courses-of-user',
+                templateUrl: 'views/managerCoursesOfUser.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([

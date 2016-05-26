@@ -26,13 +26,27 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 
 var connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'FacescSchema'
+  host     : 'alanmichaanfa.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+  user     : 'alanmichaanfa',
+  password : 'msft210amz*224',
+  database : 'alanmichaanfacesc',
+  port     : '3306',
+
 });
 
 connection.connect();
+
+  
+        connection.query('SELECT * FROM FacescSchema.user' ,function(err, rows, fields) {
+          if(err){
+            console.log(err) 
+          }
+
+          console.log(rows)
+
+         // res.send(rows);
+        })
+    
 
 
 
@@ -69,7 +83,7 @@ console.log('The magic happens on port ' + port);
 
 //require('./routes/s3.js')(app); 
 //require('./routes/authentication.js')(app); 
-require('./routes/login.js')(app);
+/*require('./routes/login.js')(app);
 require('./routes/register.js')(app);
 require('./routes/forgotPassword.js')(app);
 require('./routes/unAuthenticatedUsers.js')(app);
@@ -108,7 +122,7 @@ require('./routes/getReviewAverage.js')(app);
 require('./routes/getMessages.js')(app);
 require('./routes/postMessage.js')(app);
 require('./routes/testingPassport.js')(app, passport);
-
+*/
 
 
 // require('./routes/getStudentsAndProfessors.js')(app);

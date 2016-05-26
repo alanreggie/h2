@@ -1,0 +1,49 @@
+
+<div class="container" data-ng-controller="adminAddNewCtrl as actrl" data-ng-init="actrl.init(); actrl.getAllCourses(); actrl.getAllStudents(); "> <!-- actrl.getAllStudents() -->
+    <div class="block-header">
+            <h1 style="text-align:center">Adicionar Estudantes a Cursos</h1>
+
+
+        <div class="col-sm-12"  data-ng-controller="TabsDemoCtrl">
+            <div class="card" style=" width:800px; max-width:800px; margin: 0 auto">
+                <div class="card-header">
+                    <h2>Formulário</h2>
+                </div>
+
+
+                <div class="card" >
+                    <div class="card-body card-padding">
+
+
+                    <div class="form-group fg-float m-b-30" style="max-width: 100%">
+                            <div class="fg-line">
+                                 <select id="adminChosenStudent" chosen data-placeholder="Adicionar Estudantes ao Curso"  class="w-100" ng-model="blubb" ng-options="(n.userID + ' -- ' + n.firstName + ' ' + n.lastName) for n in students">
+                                      <option></option>
+                                 </select>
+
+
+                            </div>
+                        </div> 
+
+                       <div class="form-group fg-float m-b-30" style="max-width: 100%">
+                            <div class="fg-line">
+                                 <select id="adminChosenCourses" chosen multiple data-placeholder="Cursos"  class="w-100" ng-model="blubb2" ng-options="h.courseID + ' -- ' + h.courseSection + ' -- ' + h.courseYear + ' -- ' + h.courseName for h in courses"></select>
+                            </div>
+                        </div> 
+
+                        
+                        <button class="btn btn-info" ng-click="actrl.submitStudentToCourses()">Enviar</button>
+                        <button class="btn btn-link" ng-click="actrl.reload()" >Reiniciar</button>
+
+                        <h5 id="studentToCourseResponseMessage"></h5>
+
+
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

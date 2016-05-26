@@ -1,0 +1,71 @@
+<div class="container" data-ng-controller="tableCtrl as tctrl">
+
+    <div data-ng-init="tctrl.init(); tctrl.getAllCourses(); "></div>
+
+    <div class="block-header">
+
+    </div>
+      
+    <div class="card">
+        <div class="card-header">
+            <h2 >Ver Todos Usuários em um Curso</h2>
+        </div>
+
+        <br>
+
+        <!-- eventually make this multiple course..which profs  -->
+        <div class="form-group fg-float m-b-30" style="max-width: 70%; margin: 0 auto">
+            <div class="fg-line">
+                 <select id="adminChosenCourse" chosen data-placeholder="Escolhe o curso"  class="w-100" ng-model="blubb2" ng-options="(h.courseID + ' -- ' + h.courseSection + ' -- ' + h.courseYear + ' -- ' + h.courseName) for h in courses"  ng-change="tctrl.getCourseUsers(blubb2)" >
+                     <option></option>
+                 </select>
+            </div>
+        </div> 
+                
+        <div class="card-body">
+
+
+
+
+
+            <div class="table-responsive">
+                <table ng-table="tctrl.tableEdit " class="table table-striped table-vmiddle">
+                    <tr ng-repeat="w in pcourses"  ng-class="{ 'active': w.$edit }">                         
+
+                        <td data-title="'ID'">
+                            <span >{{ w.userID }}</span>
+                        </td>
+
+                        <td data-title="'Typo de Usuário'">
+                            <span >{{ w.userType }}</span>           
+                        </td>
+
+                        <td data-title="'Email'">
+                            <span >{{ w.email }}</span> 
+                        </td>
+                      
+                        <td data-title="'Primero Nome'">
+                            <span >{{ w.firstName }}</span>
+                        </td>
+                        <td data-title="'Sobre Nome'">
+                            <span >{{ w.lastName  }}</span>
+                        </td>
+        
+
+
+                        <td data-title="'Remover do Curso'">
+                            <button type="button" class="btn btn-default" ng-if="!w.apple" ng-click="w.apple = true; tctrl.deleteUserFromCourseCourseSelect(w)"><i class="zmdi zmdi-delete zmdi-hc-fw"></i></button>
+                            <div ng-if"w.apple"></div>   
+                        </td>                         
+
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>   
+
+</div>
+
+
+
+
