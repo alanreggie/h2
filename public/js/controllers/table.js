@@ -1,6 +1,26 @@
 materialAdmin
-    .controller('tableCtrl', function($filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage, $location) {
+    
+   .controller('tableCtrl', function($window, $filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage, $location) {
         
+      this.saveContent = function($fileContent){
+          alert()
+         $scope.content = $fileContent;
+         console.log(content)
+      }
+
+
+      this.submitFile = function(){
+
+          var course = $scope.course
+          if(course == undefined){
+              $('#responseMessage').text( 'Prenche todos os campos!' ) 
+          }
+          else{
+
+            console.log('apples')
+          }
+      }
+
       this.init = function(){
         //console.log($sessionStorage)
         //console.log($sessionStorage['user'] == undefined)

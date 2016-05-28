@@ -70,10 +70,10 @@ module.exports = function (app){
 						
 						var randomToken = require('random-token').create('abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
 						var salt = randomToken(16); 
-						console.log(salt);
+						//console.log(salt);
 
 						hashPass += salt; 
-						console.log(hashPass);
+						//console.log(hashPass);
 						
 						connection.query('INSERT INTO FacescSchema.password SET ?', {userID: userID, password: hashPass, salt: salt}, function(err, result) {
 							if (err) throw err;
@@ -95,7 +95,7 @@ module.exports = function (app){
 		                        }
 		                    });
 							
-							res.send('O ' + FirstName +' ' + LastName+ ' foi adicionado ao banco de dados! Um email foi mandado para ' + Email +' com o nome de usuario e senha.')
+							res.send(FirstName +' ' + LastName+ ' foi adicionado ao banco de dados! Um email foi mandado para ' + Email +' com o nome de usuario e senha.')
 						})
 					});	
 

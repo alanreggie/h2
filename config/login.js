@@ -30,8 +30,8 @@ module.exports = function(passport){
 
 
         var hashPass = sha256(Password); 
-        console.log(hashPass)
-
+        //console.log(hashPass)
+        //console.log(Email)
 
         connection.query('SELECT * from (FacescSchema.password INNER JOIN FacescSchema.user on FacescSchema.password.userID = FacescSchema.user.userID) where FacescSchema.user.email=?',[Email], function(err, rows, fields) {
             if (err) 
@@ -44,26 +44,28 @@ module.exports = function(passport){
                 };*/
 
                 //res.send(user);    
-                return done('O usuário não existe');
+                return done('User doesnt exist');//changed this from a string
             }
             else{//user exists
-
+                //console.log(rows[0])
 
                 // User exists but wrong password///////////////////////////////UNCOOMMENT LINE 54 CHANGED THISSSSSSSS GOTTA CHANGE BCAK AFTA
                 var salt = rows[0].salt;
-                hashPass+= salt;
-                //console.log(hashPass)
-                //console.log(rows[0].password)
+                hashPass += salt;
+
+                console.log(hashPass)
+                console.log(rows[0].password)
+
 
 
                 if (rows[0].password != hashPass){
-                    //console.log('Invalid Password');
+                    console.log('Invalid Password');
 
                     var user = {
                         "Message": 'Invalid Password',
                     };
 
-                    return done(null);
+                    return done('invalid pass');
 
                     //res.send(user); 
                 }
@@ -86,7 +88,7 @@ module.exports = function(passport){
                         "userType": rows[0].userType,
                         "dateRegistered": rows[0]
                     };*/
-                    console.log(rows[0])
+                    //console.log(rows)
 
                     return done(null, rows[0]);
 

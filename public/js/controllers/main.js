@@ -466,7 +466,7 @@ materialAdmin
                 //console.log(response.data.user.userType)
                 var userType = response.data.user.userType
                 var user = response.data.user;
-                console.log(response.data)
+                console.log(user)
 
                 $http({
                     method: 'POST',
@@ -479,6 +479,7 @@ materialAdmin
                         
                         console.log(response.data)
                         var type = response.data[0].userType
+                        console.log(type)
                         var userr = response.data[0]
 
                         if (type == "Invalid"){
