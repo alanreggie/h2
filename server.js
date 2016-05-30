@@ -126,12 +126,78 @@ app.use('/', secure)*///;
 var multipart = require('connect-multiparty');
 var multipartMiddleware = multipart();
 
+var AWS = require('aws-sdk'); 
+AWS.config.update({
+  accessKeyId: 'AKIAIFYS7RHA4C4ABOXA', 
+  secretAccessKey: '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',
+  maxRetries: 2
+});
+
 app.post('/upload', multipartMiddleware, function(req, res) {
   console.log(req.body, req.files);
    res.send('hi')
   // don't forget to delete all req.files when done 
+
+
+
+  var s3 = new AWS.S3(); 
+var files = JSON.stringify(req.files)
+//Key: '/condo/full'
+  var params = {
+    Bucket: 'facesc-courses', 
+    Key: '/', 
+    Body: files,
+    ACL:'public-read'
+  }
+  s3.putObject(params, function(err, data) {
+    if (err){
+      console.log('Error 2')
+      throw err;
+    }
+    else{
+      console.log('S3 uploaded')
+      //callback(null, item)
+    }
+  })
+
 });
 
+
+
+
+
+/*s3.listBuckets(function(err, data) {
+  if (err) { console.log("Error:", err); }
+  else {
+    for (var index in data.Buckets) {
+      var bucket = data.Buckets[index];
+      console.log("Bucket: ", bucket.Name, ' : ', bucket.CreationDate);
+    }
+  }
+})*/
+
+
+//var s3 = new AWS.S3(); 
+/*AWS.config.update({region: 'sa-east-1'});
+
+ s3.createBucket({Bucket: 'elasticbeanstalk-sa-east-1-166333329225/facesc-courses1'}, function() {
+
+  var params = {Bucket: 'elasticbeanstalk-sa-east-1-166333329225/facesc-courses1', Key: 'myKey', Body: 'Hello!'};
+
+  s3.putObject(params, function(err, data) {
+
+      if (err)       
+
+          console.log(err)     
+
+      else       console.log("Successfully uploaded data to myBucket/myKey");   
+
+   });
+
+});*/
+ 
+
+ 
 
 
 
