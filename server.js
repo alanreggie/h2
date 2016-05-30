@@ -12,6 +12,8 @@ var express = require('express'),
   LocalStrategy = require('passport-local').Strategy,
   sha256 = require('js-sha256');
 
+
+
 // var multer  = require('multer')
 //var upload = multer()
 
@@ -99,72 +101,36 @@ require('./routes/getReviewAverage.js')(app);
 require('./routes/getMessages.js')(app);
 require('./routes/postMessage.js')(app);
 require('./routes/getUserType.js')(app);
-
-/*var secure = express.Router();
-require('./routes/postFile.js')(secure);
-app.use('/', secure)*///;
-
-// require('./routes/postFile.js')(app);
-
-
-/*app.post('/upload', upload.single('avatar'), function (req, res, next) {
-  // req.file is the `avatar` file
-  console.log(req.file)
-})*/
-
-
-//var upload = multer().single('avatar')
-
-/*app.post('/upload', function (req, res) {
-  
-    console.log(req.body)
-   
-
-    // Everything went fine
-})*/
-
-var multipart = require('connect-multiparty');
-var multipartMiddleware = multipart();
-
-var AWS = require('aws-sdk'); 
-AWS.config.update({
-  accessKeyId: 'AKIAIFYS7RHA4C4ABOXA', 
-  secretAccessKey: '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',
-  maxRetries: 2
-});
-
-app.post('/upload', multipartMiddleware, function(req, res) {
-  console.log(req.body, req.files);
-   res.send('hi')
-  // don't forget to delete all req.files when done 
+require('./routes/postFile.js')(app);
 
 
 
-  var s3 = new AWS.S3(); 
-var files = JSON.stringify(req.files)
-//Key: '/condo/full'
-  var params = {
-    Bucket: 'facesc-courses', 
-    Key: '/', 
-    Body: files,
+
+
+
+/*fs.readFile(filName, function(err, rawdata){ var params = {
+    Bucket: 'corbokelos', 
+    Key: 'condo/full/' + getImageFullName(item.LocalPath), 
+    Body: rawData,
     ACL:'public-read'
-  }
-  s3.putObject(params, function(err, data) {
-    if (err){
-      console.log('Error 2')
-      throw err;
-    }
-    else{
-      console.log('S3 uploaded')
-      //callback(null, item)
-    }
-  })
+  }})*/
 
+
+
+
+/*
+var router = express.Router();
+
+router.post('/', multipartyMiddleware, function(req, res) {
+  console.log(req.body, req.files);
+  var file = req.files.file;
+  console.log(file.name);
+  console.log(file.type);
+  res.status(200).send('OK');
 });
 
-
-
-
+module.exports = router;
+*/
 
 /*s3.listBuckets(function(err, data) {
   if (err) { console.log("Error:", err); }
