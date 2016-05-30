@@ -48,7 +48,9 @@ materialAdmin
           }
      }
 
-
+     this.reload = function(){
+		$window.location.reload();
+	}
 
 }]);
 

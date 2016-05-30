@@ -7,49 +7,39 @@ materialAdmin
 .service('multipartForm', ['$http', function($http){
     this.post = function(uploadUrl, data){
         var fd = new FormData();
-        for(var key in data)
-            fd.append(key, data[key]);
+       /* for(var key in data)
+            fd.append(key, data[key]);*/
         //var str = JSON.stringify(data)
         //console.log(data.file)
 
         /*var fd = new FormData();
         
 
-        fd.append('file', data);*/
+        */
        // console.log(fd)
-       console.log(fd)
+
+       fd.append('file', data.file);
+       fd.append('course', data.course.courseID)
+       console.log(data)
 
        var request = {
-                    method: 'POST',
-                    url: '/upload',
-                    data: fd,
-                    headers: {
-                        'Content-Type': undefined
-                    }
-                };
+            method: 'POST',
+            url: '/upload',
+            data: fd,
+            headers: {
+                'Content-Type': undefined
+            }
+        };
 
-                // SEND THE FILES.
-                $http(request)
-                    .success(function (d) {
-                        
-                    })
-                    .error(function () {
-                    });
-            
-
-           /*$http.post(uploadUrl, fd, {
-                withCredentials: true,
-                headers: {'Content-Type': undefined },
-                transformRequest: angular.identity
-            }).success( '...all right!...' ).error( '..damn!...' );
-*/
-
-       /* $http.post(uploadUrl, fd, {
-            transformRequest: angular.indentity,
-            headers: { 'Content-Type': undefined }
-        });*/
-    }
-}])
+        // SEND THE FILES.
+        $http(request)
+            .success(function (d) {
+                $('#responseMessage').text( d ) 
+            })
+            .error(function () {
+            });
+        }
+    }])
 
 
     .service('messageService', ['$resource', function($resource){

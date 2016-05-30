@@ -1,13 +1,3 @@
-/*module.exports = function (app){
-
-	app.post('/upload', function(req,res){
-		//console.log(req.body)
-		console.log(req.files)
-
-		res.send("hello")
-	})
-}*/
-
 
 module.exports = function(app){
 
@@ -19,8 +9,8 @@ module.exports = function(app){
 
 	  var AWS = require('aws-sdk'); 
 	  AWS.config.update({
-	    accessKeyId: 'AKIAIFYS7RHA4C4ABOXA', 
-	    secretAccessKey: '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',
+	    accessKeyId: 'AKIAIGC2NEG6WP5YAZTQ', 
+	    secretAccessKey: '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',
 	    maxRetries: 2
 	  });
 
@@ -30,7 +20,8 @@ module.exports = function(app){
 
 		    var file = req.files.file;
 		    var body = req.body
-		    console.log(body)
+		    var courseFolder = req.body.course
+		    //console.log(body.course)
 		    //console.log(file)
 
 		     fs.readFile(file.path, function(err, rawdata){
@@ -40,19 +31,19 @@ module.exports = function(app){
 		          //Key: '/condo/full'
 		          var params = {
 		            Bucket: 'facesc-courses', 
-		            Key: 'hello/' + file.name, 
+		            Key: courseFolder + '/' + file.name, 
 		            Body: rawdata,
 		            ACL:'public-read'
 		          }
 		          s3.putObject(params, function(err, data) {
 		            if (err){
 		              //console.log('Error 2')
-		               res.send('Erro')
+		               res.send('Erro!')
 		              throw err;
 		            }
 		            else{
 		              //console.log('S3 uploaded')
-		              res.send('Sucesso')
+		              res.send('Sucesso!')
 		              //callback(null, item)
 		            }
 		          })

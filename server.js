@@ -144,23 +144,7 @@ module.exports = router;
 
 
 //var s3 = new AWS.S3(); 
-/*AWS.config.update({region: 'sa-east-1'});
 
- s3.createBucket({Bucket: 'elasticbeanstalk-sa-east-1-166333329225/facesc-courses1'}, function() {
-
-  var params = {Bucket: 'elasticbeanstalk-sa-east-1-166333329225/facesc-courses1', Key: 'myKey', Body: 'Hello!'};
-
-  s3.putObject(params, function(err, data) {
-
-      if (err)       
-
-          console.log(err)     
-
-      else       console.log("Successfully uploaded data to myBucket/myKey");   
-
-   });
-
-});*/
  
 
  
