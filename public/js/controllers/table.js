@@ -1,15 +1,38 @@
 materialAdmin
     
-   .controller('tableCtrl', function($window, $filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage, $location) {
+   .controller('tableCtrl',function($window, $filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage, $location) {
         
-      this.saveContent = function($fileContent){
+/*
+    this.uploadFile = function(){
+      alert()
+
+     this.fileSelected = function(files) {
+         if (files && files.length) {
+            $scope.file = files[0];
+         }
+        console.log($scope.file)
+
+         $upload.upload({
+           url: '/api/upload',
+           file: $scope.file
+         })
+         .success(function(data) {
+           console.log(data, 'uploaded');
+          });
+
+        };
+    };
+*/
+
+
+      /*this.saveContent = function($fileContent){
           alert()
          $scope.content = $fileContent;
          console.log(content)
-      }
+      }*/
 
 
-      this.submitFile = function(){
+      /*this.submitFile = function(){
 
           var course = $scope.course
           if(course == undefined){
@@ -19,7 +42,7 @@ materialAdmin
 
             console.log('apples')
           }
-      }
+      }*/
 
       this.init = function(){
         //console.log($sessionStorage)

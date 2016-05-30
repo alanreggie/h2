@@ -1,28 +1,22 @@
 var mysql       = require('mysql');
 
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-
-connection.connect();
-
 module.exports = function (app){
 
-/*connection.query('SELECT * from (password INNER JOIN user on password.userID = user.userID) where user.email=?',['alan'] , function(err, rows, fields) { //WHERE user.email=?',['alan']
-	console.log(rows[0])
-})*/
-/*var randomToken = require('random-token').create('abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
-var token = randomToken(16); // example output → '3ZGErMDCwxTOZYFp' 
-console.log(token)*/
 
 	app.post('/getUserType', function(req,res){
-		  var ID = req.body.ID
+      		    
+      var connection = mysql.createConnection({
+        host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+        user     : 'alanmichaanfa',
+        password : 'msft210amz*224',
+        database : 'alanmichaanfacesc',
+        port     : '3306',
+
+      });
+
+      connection.connect();
+
+      var ID = req.body.ID
 
         connection.query('SELECT * from FacescSchema.user where FacescSchema.user.userID=?',[ID]  ,function(err, rows, fields) {
         	if(err){
@@ -33,5 +27,6 @@ console.log(token)*/
 
         	res.send(rows);
 	    })
+        connection.end()
     })
 }

@@ -2,29 +2,28 @@ var mysql       = require('mysql');
 var validator = require("email-validator");
 //var nodemailer = require('nodemailer');
 
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-
-connection.connect();
-
-
 module.exports = function (app){
 
 
 	app.post('/addUserToCourse', function(req,res){
+
+		var connection = mysql.createConnection({
+		  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+		  user     : 'alanmichaanfa',
+		  password : 'msft210amz*224',
+		  database : 'alanmichaanfacesc',
+		  port     : '3306',
+
+		});
+
+		connection.connect();
+
 		
 		var courseArray = req.body.courseArray;
 		var userID = req.body.userID;
 		var userName = req.body.userName;
 
-		console.log(courseArray.length)
+		//console.log(courseArray.length)
 		var returnMessage = ''
 
 		this.courseArray = courseArray;
@@ -37,25 +36,27 @@ module.exports = function (app){
 				  var i = 0;
 				  function forloop(){
 				    if(i<courseArray.length){
-				      			
+				      			console.log(courseArray[i])
 					connection.query('SELECT * from FacescSchema.UserCourseGrade where courseID =? and userID =?',[courseArray[i], userID], function(err, rows, fields) {
 							
 							if(err){
 				        		console.log(err)	
 				        	}
-				        	console.log(i)
+				        	//console.log(i)
 				        	//console.log('in')
 				        	//console.log(courseArray[i])
 				        	//console.log(userID)
-				        	console.log(rows)
+				        	console.log(rows.length)
 							//console.log(fields[0].name)
 							//res.send(rows);
 
-							if(rows.length >= 1){
+
+							if(rows.length >= 1 ){ //
 				        		//res.send(rows)
 				        		console.log(' O usuario: ' + userName + ' ja esta no curso: ' + courseArray[i] + ' e nao foi adicionado. ')
 				        	}
 				        	else{
+				        		console.log(courseArray[i], userID)
 								connection.query('INSERT INTO FacescSchema.UserCourseGrade SET ?', {courseID: courseArray[i], userID: userID}, function(err, result) {
 									  if (err) console.log(err);
 
@@ -79,8 +80,15 @@ module.exports = function (app){
 
 				  forloop();
 				})();
-
 				res.send('Adicionado!')
+
+				apple();
+				setTimeout(apple, 100);
+				connection.end()
+
+				
          
     })
+
+
 }

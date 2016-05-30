@@ -1,29 +1,21 @@
 var mysql       = require('mysql');
 
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-connection.connect();
-
 module.exports = function (app){
 
-/*connection.query('SELECT * from (password INNER JOIN user on password.userID = user.userID) where user.email=?',['alan'] , function(err, rows, fields) { //WHERE user.email=?',['alan']
-	console.log(rows[0])
-})*/
-/*var randomToken = require('random-token').create('abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
-var token = randomToken(16); // example output → '3ZGErMDCwxTOZYFp' 
-console.log(token)*/
 
 	app.get('/getAllStudentsAndProfessors', function(req,res){
 		
 	
+    var connection = mysql.createConnection({
+      host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+      user     : 'alanmichaanfa',
+      password : 'msft210amz*224',
+      database : 'alanmichaanfacesc',
+      port     : '3306',
 
+    });
+
+    connection.connect();
 
 		connection.query('SELECT * from FacescSchema.user where FacescSchema.user.userType in (\'Professor\',\'Estudante\') group by user.userID order by user.userType =\'Professor\' desc', function(err, rows, fields) {
         
@@ -35,5 +27,7 @@ console.log(token)*/
 
         	res.send(rows);
 	    })
+
+      connection.end()
     })
 }

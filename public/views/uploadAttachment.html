@@ -1,62 +1,30 @@
-<div class="container" data-ng-controller="tableCtrl as tctrl">
+    <div class="container" data-ng-controller="fileUploadCtrl as fctrl">
 
-    <div data-ng-init="tctrl.init(); tctrl.getCoursesOfStudent(); "></div>
+        <div data-ng-init="fctrl.init(); fctrl.getCoursesOfStudent(); "></div>
 
-    <div class="block-header">
+
+            <form>
+              <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="customer.name">
+              </div>
+              <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter email" ng-model="customer.email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Avatar</label>
+                <input type="file" id="exampleInputFile" file-model="customer.file">
+              </div>
+              <button type="submit" class="btn btn-default" ng-click="fctrl.Submit()">Submit</button>
+            </form>
+
+            {{customer}}
 
     </div>
-      
-    <div class="card">
-        <div class="card-header">
-            <h2 >Adicionar Archivos</h2>
-        </div>
 
-        <br>
+            
 
-        <!-- eventually make this multiple course..which profs  -->
-        <div class="form-group fg-float m-b-30" style="max-width: 70%; margin: 0 auto">
-            <div class="fg-line">
-                 <select id="chosenCourse" chosen data-placeholder="Escolhe o curso"  class="w-100" ng-model="course" ng-options="(h.courseID + ' -- ' + h.courseSection + ' -- ' + h.courseYear + ' -- ' + h.courseName) for h in courses">
-                     <option></option>
-                 </select>
-            </div>
-            <br>
-            <br>
-            <br>
-
-            <div>
-            <div class="fileinput fileinput-new" data-provides="fileinput">
-                <span class="btn btn-primary btn-file m-r-10">
-                    <span class="fileinput-new">Seleciona Archivo</span>
-                    <span class="fileinput-exists"></span>
-                    <input type="file" name="..." on-read-file="tctrl.saveContent($fileContent)" >
-                </span>
-                <span class="fileinput-filename"></span>
-                <a href="#" class="close fileinput-exists" data-dismiss="fileinput">&times;</a>
-            </div>
-            <br>
-            <br>
-            <br>
-
-
-             <div>    
-                <button style="margin: -20px -50px; position:relative;top:50%;left:50%;" class="btn btn-info" ng-click="tctrl.submitFile()">Enviar</button>
-                <br>
-                <br>
-                <button style="margin: 0px -60px; position:relative;top:50%;left:50%;" class="btn btn-link" ng-click="tctrl.reload()" >Reiniciar</button>
-            </div>
-            <br>
-
-            <h5 style="margin: 0px -350px; position:relative;top:50%;left:50%;" id="responseMessage"></h5>
-            <br>
-            <div>
-
-        </div> 
-                
-        
-    </div>   
-
-</div>
 
 
 

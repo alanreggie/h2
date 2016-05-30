@@ -2,21 +2,10 @@ var LocalStrategy   = require('passport-local').Strategy;
 var bCrypt      = require('bcrypt-nodejs');
 var mysql       = require('mysql');
 
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-connection.connect();
-
 
 module.exports = function(passport){
-
-
-    
+        
+          
 	passport.use('login', new LocalStrategy({
             usernameField : 'Email',
             passwordField : 'Password',
@@ -25,8 +14,15 @@ module.exports = function(passport){
         function(req, Email, Password, done) { 
 
                 // console.log(Email)
+        var connection = mysql.createConnection({
+          host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+          user     : 'alanmichaanfa',
+          password : 'msft210amz*224',
+          database : 'alanmichaanfacesc',
+          port     : '3306',
 
-
+        });
+        connection.connect();
 
 
         var hashPass = sha256(Password); 
@@ -101,26 +97,7 @@ module.exports = function(passport){
 
 
 
-
-
-
-
-        /*console.log(req.body)
-
-     
-        var user = {
-            "userID": '32332332',
-            "firstName": 'reg',
-            "lastName": 'michaan',
-            "email": 'emiaaal',
-            "userType": 'estudante'
-        };*/
-
-        //return done(null, user);
-
-
-
-    
+        connection.end();
 
         })
     );

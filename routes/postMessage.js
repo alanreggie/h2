@@ -1,21 +1,20 @@
 var mysql       = require('mysql');
 
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-connection.connect();
-
-
 module.exports = function (app){
 
 
 	app.post('/postMessage', function(req,res){
+
+		var connection = mysql.createConnection({
+		  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+		  user     : 'alanmichaanfa',
+		  password : 'msft210amz*224',
+		  database : 'alanmichaanfacesc',
+		  port     : '3306',
+
+		});
+
+		connection.connect();
 		
 		var userID1 			= req.body.user1;
 		var userID2				= req.body.user2;
@@ -38,7 +37,7 @@ module.exports = function (app){
 			  			else{
 
 							var convoID = result.insertId; 
-							console.log(convoID)
+							//console.log(convoID)
 							
 
 							connection.query('INSERT INTO FacescSchema.convo SET ?', {convoID: convoID, userID: userID1, message: message, date:date}, function(err, result) {
@@ -103,6 +102,6 @@ module.exports = function (app){
 
 	        	
 	        
-               
+         connection.end()      
     })
 }

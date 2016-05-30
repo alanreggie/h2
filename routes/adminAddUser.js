@@ -3,21 +3,6 @@ var validator = require("email-validator");
 var nodemailer = require('nodemailer');
 
 
-
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-
-connection.connect();
-
-
-
 //SMTP EMAIL ============================================
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -32,7 +17,21 @@ module.exports = function (app){
 
 
 	app.post('/adminAddUser', function(req,res){
-		console.log(Email)
+
+
+		var connection = mysql.createConnection({
+		  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+		  user     : 'alanmichaanfa',
+		  password : 'msft210amz*224',
+		  database : 'alanmichaanfacesc',
+		  port     : '3306',
+
+		});
+
+
+		connection.connect();
+
+		//console.log(Email)
 		var Email = req.body.Email;
 		var FirstName = req.body.FirstName;
 		var LastName = req.body.LastName;
@@ -105,6 +104,8 @@ module.exports = function (app){
 
 	        	}
 	        })
-        }        
+	        connection.end()
+        }   
+        
     })
 }

@@ -1,21 +1,20 @@
 var mysql       = require('mysql');
 
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-
-connection.connect();
-
 module.exports = function (app){
 
 
 	app.post('/updateCourses', function(req,res){
+
+    var connection = mysql.createConnection({
+      host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+      user     : 'alanmichaanfa',
+      password : 'msft210amz*224',
+      database : 'alanmichaanfacesc',
+      port     : '3306',
+
+    });
+
+    connection.connect();
 		
 		var name = req.body.courseName;
 		var year = req.body.courseYear;
@@ -34,5 +33,6 @@ module.exports = function (app){
 
         	res.send(rows);
         })
+        connection.end()
     })
 }

@@ -1,26 +1,21 @@
 var mysql       = require('mysql');
 var validator = require("email-validator");
-//var nodemailer = require('nodemailer');
-
-
-
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-
-connection.connect();
-
 
 module.exports = function (app){
 
 
 	app.post('/adminAddNewCourse', function(req,res){
+
+		var connection = mysql.createConnection({
+		  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+		  user     : 'alanmichaanfa',
+		  password : 'msft210amz*224',
+		  database : 'alanmichaanfacesc',
+		  port     : '3306',
+
+		});
+
+		connection.connect();
 		
 		var courseName = req.body.CourseName;
 		var courseDescription = req.body.CourseDescription;
@@ -49,6 +44,8 @@ module.exports = function (app){
         	res.send(result);
 
         })
+
+        connection.end()
          
     })
 }

@@ -3,20 +3,6 @@ var validator = require("email-validator");
 var nodemailer = require('nodemailer');
 
 
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-
-connection.connect();
-
-
-
 //SMTP EMAIL ============================================
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -26,11 +12,20 @@ var transporter = nodemailer.createTransport({
     }
 });
 
-
 module.exports = function (app){
 
 
 	app.post('/register', function(req,res){
+
+		var connection = mysql.createConnection({
+		  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+		  user     : 'alanmichaanfa',
+		  password : 'msft210amz*224',
+		  database : 'alanmichaanfacesc',
+		  port     : '3306'
+		});
+
+		connection.connect();
 		
 		var Email = req.body.Email;
 		var Password = req.body.Password;
@@ -39,7 +34,11 @@ module.exports = function (app){
 
         
         var emailValid = validator.validate(Email);
-        
+
+        console.log(Password)
+        console.log(FirstName)
+        console.log(LastName)
+        console.log(Email)
         //if email is not email then return invalid
         if (!emailValid){
         	res.send('Email Invalido');
@@ -64,10 +63,10 @@ module.exports = function (app){
 						
 						var randomToken = require('random-token').create('abcdefghijklmnopqrstuvwxzyABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789');
 						var salt = randomToken(16); 
-						console.log(salt);
+						//console.log(salt);
 
 						hashPass += salt; 
-						console.log(hashPass);
+						//console.log(hashPass);
 						
 						connection.query('INSERT INTO FacescSchema.password SET ?', {userID: userID, password: hashPass, salt: salt}, function(err, result) {
 							if (err) throw err;
@@ -91,14 +90,11 @@ module.exports = function (app){
 							
 							res.send('Bem vindo, ' + FirstName +' ' + LastName+ '. O administrador esta verificando sua conta!')
 						})
-					});	
-
-
-	        	
-
-
+						connection.end() 
+					});
 	        	}
 	        })
-        }        
+        }  
+        //     
     })
 }

@@ -8,14 +8,14 @@ var express = require('express'),
   bodyParser    = require('body-parser'),
   mysql      = require('mysql'),
   passport = require('passport'),
-  randomToken = require('random-token')
+  randomToken = require('random-token'),
   LocalStrategy = require('passport-local').Strategy,
   sha256 = require('js-sha256');
 
-  //var ;
+// var multer  = require('multer')
+//var upload = multer()
 
 
-  /*passport = require('passport');*/
 
 // EXPRESS CONFIGS ===================================
 app.use(logger('dev'))
@@ -23,30 +23,6 @@ app.use(cookieParser());
 app.use(bodyParser.json()); // get information from html forms
 app.use(express.static(__dirname + '/public'))
 app.use(bodyParser.urlencoded({extended: true}));
-
-
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-connection.connect();
-
-  
-        /*connection.query('SELECT * FROM FacescSchema.user' ,function(err, rows, fields) {
-          if(err){
-            console.log(err) 
-          }
-
-          console.log(rows)
-
-         // res.send(rows);
-        })*/
-    
 
            
 
@@ -84,7 +60,7 @@ console.log('The magic happens on port ' + port);
 //require('./routes/s3.js')(app); 
 //require('./routes/authentication.js')(app); 
 //require('./routes/login.js')(app);
-require('./routes/userLogin.js')(app, passport, connection);
+require('./routes/userLogin.js')(app, passport);
 require('./routes/register.js')(app);
 require('./routes/forgotPassword.js')(app);
 require('./routes/unAuthenticatedUsers.js')(app);
@@ -94,7 +70,6 @@ require('./routes/allUsers.js')(app);
 require('./routes/adminDeleteUser.js')(app);
 require('./routes/adminAddNewCourse.js')(app);
 require('./routes/getAllProfessors.js')(app);
-/*require('./routes/getAllCourses.js')(app);
 require('./routes/updateCourses.js')(app);
 require('./routes/checkCourseExists.js')(app);
 require('./routes/getSpecificCourse.js')(app);
@@ -104,14 +79,15 @@ require('./routes/adminDeleteCourse.js')(app);
 require('./routes/adminGetProfessorsInCourse.js')(app);
 require('./routes/adminAddUserToCourse.js')(app);
 require('./routes/adminGetAllStudentsAndProfessors.js')(app);
-require('./routes/adminGetCoursesOfUser.js')(app);
 require('./routes/adminDeleteStudentFromCourse.js')(app);
 require('./routes/updateUserSummary.js')(app);
 require('./routes/submitProblem.js')(app);
 require('./routes/getProblems.js')(app);
 require('./routes/deleteProblem.js')(app);
 require('./routes/getClassMates.js')(app);
-require('./routes/getStudentsInCourse.js')(app);*/
+require('./routes/getStudentsInCourse.js')(app);
+require('./routes/getAllCourses.js')(app);
+require('./routes/adminGetCoursesOfUser.js')(app);
 require('./routes/addGrade.js')(app);
 require('./routes/updateGrade.js')(app);
 require('./routes/deleteGrade.js')(app);
@@ -124,6 +100,37 @@ require('./routes/getMessages.js')(app);
 require('./routes/postMessage.js')(app);
 require('./routes/getUserType.js')(app);
 
+/*var secure = express.Router();
+require('./routes/postFile.js')(secure);
+app.use('/', secure)*///;
+
+// require('./routes/postFile.js')(app);
+
+
+/*app.post('/upload', upload.single('avatar'), function (req, res, next) {
+  // req.file is the `avatar` file
+  console.log(req.file)
+})*/
+
+
+//var upload = multer().single('avatar')
+
+/*app.post('/upload', function (req, res) {
+  
+    console.log(req.body)
+   
+
+    // Everything went fine
+})*/
+
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
+
+app.post('/upload', multipartMiddleware, function(req, res) {
+  console.log(req.body, req.files);
+   res.send('hi')
+  // don't forget to delete all req.files when done 
+});
 
 
 

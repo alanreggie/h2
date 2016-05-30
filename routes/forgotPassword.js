@@ -2,20 +2,6 @@ var mysql       = require('mysql');
 var validator = require("email-validator");
 var nodemailer = require('nodemailer');
 
-
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-
-connection.connect();
-
-
 //SMTP EMAIL ============================================
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -31,8 +17,19 @@ module.exports = function (app){
 
 	app.post('/forgotPassword', function(req,res){
 
+		var connection = mysql.createConnection({
+		  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+		  user     : 'alanmichaanfa',
+		  password : 'msft210amz*224',
+		  database : 'alanmichaanfacesc',
+		  port     : '3306',
+
+		});
+
+		connection.connect();
+
 		var Email = req.body.Email;
-		console.log(Email)
+		//console.log(Email)
 		        
         var emailValid = validator.validate(Email);
         
@@ -94,12 +91,9 @@ module.exports = function (app){
 	        				}
 	        			})
 					})
-
-					
-
-
 	        	}
        	    })
         }
+        connection.end()
 	})
 }

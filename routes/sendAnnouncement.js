@@ -2,22 +2,6 @@ var mysql       = require('mysql');
 var validator = require("email-validator");
 var nodemailer = require('nodemailer');
 
-
-
-var connection = mysql.createConnection({
-  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
-  user     : 'alanmichaanfa',
-  password : 'msft210amz*224',
-  database : 'alanmichaanfacesc',
-  port     : '3306',
-
-});
-
-
-connection.connect();
-
-
-
 //SMTP EMAIL ============================================
 var transporter = nodemailer.createTransport({
     service: 'Gmail',
@@ -32,6 +16,17 @@ module.exports = function (app){
 
 
 	app.post('/sendAnnouncement', function(req,res){
+
+		var connection = mysql.createConnection({
+		  host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
+		  user     : 'alanmichaanfa',
+		  password : 'msft210amz*224',
+		  database : 'alanmichaanfacesc',
+		  port     : '3306',
+
+		});
+
+		connection.connect();
 		
 		var courseID = req.body.courseID;
 		var userID = req.body.userID;
@@ -86,20 +81,9 @@ module.exports = function (app){
 
   				
   			}
-
-			
-			
-
-				
-			
 		});	
-
-
-	        	
-		//res.send('jflkds')
-
-	        
-	        
+			        
+	    connection.end()
             
     })
 }
