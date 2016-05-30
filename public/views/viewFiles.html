@@ -3,12 +3,12 @@
     <div data-ng-init="tctrl.init(); tctrl.getCoursesOfStudent(); "></div>
 
     <div class="block-header">
-
+            <h1 style="text-align:center" >Archivos</h1> 
     </div>
       
     <div class="card">
         <div class="card-header">
-            <h2 >Archivos</h2>
+            <!-- <h2 >Archivos</h2> -->
         </div>
 
         <br>
@@ -33,7 +33,7 @@
                     <tr ng-repeat="w in links"  ng-class="{ 'active': w.$edit }">                         
 
                         <td data-title="'Archivo'">
-                            <a href="{{w.url}}">{{ w.name }}</a>
+                            <a href="{{w.url}}" target="_blank">{{ w.name }}</a>
                         </td>
 
                        <!--  <td data-title="'Nome'">
@@ -41,7 +41,7 @@
                         </td> -->
 
                          <td data-title="'Tamanho'">
-                            <span >{{ w.size }} Kb</span>           
+                            <span >{{ w.size/1000 }} Kb</span>           
                         </td>
 
                       <!--   <td data-title="'Email'">

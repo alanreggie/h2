@@ -34,7 +34,8 @@ materialAdmin
         // SEND THE FILES.
         $http(request)
             .success(function (d) {
-                $('#responseMessage').text( d ) 
+                alert(d)
+                //$('#responseMessage').text( d ) 
             })
             .error(function () {
             });

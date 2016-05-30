@@ -21,10 +21,15 @@ module.exports = function(app){
 		    var file = req.files.file;
 		    var body = req.body
 		    var courseFolder = req.body.course
+		    var size = file.size;
 		    //console.log(body.course)
-		    //console.log(file)
+		    //console.log(file.size)
 
-		     fs.readFile(file.path, function(err, rawdata){
+		    if(size > 1000000){
+		    	 res.send('O Archivo tem que ser menos de 1Mb ou 1000000 bytes!')
+		    }
+		    else{
+		    	fs.readFile(file.path, function(err, rawdata){
 		          var s3 = new AWS.S3(); 
 		          var files = JSON.stringify(req.files)
 		          //console.log(rawdata)
@@ -47,7 +52,10 @@ module.exports = function(app){
 		              //callback(null, item)
 		            }
 		          })
-		     })
+		     	})
+		    }
+
+		     
 
 	});
 }
