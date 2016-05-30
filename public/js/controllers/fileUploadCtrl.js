@@ -1,6 +1,7 @@
 materialAdmin
 
 .controller('fileUploadCtrl', ['$scope', 'multipartForm', '$sessionStorage', '$http', '$location',function($scope, multipartForm, $sessionStorage, $http, $location){
+	
 	$scope.customer = {};
 	this.Submit = function(){
 		//alert()
@@ -32,7 +33,7 @@ materialAdmin
             var userID = user.userID; 
             console.log(user.user)
             //$scope.selectedUser = selected;
-                $http({
+               $http({
                     method: 'POST',
                     url: 'http://localhost:3000/getCoursesOfUser',
                     data: {

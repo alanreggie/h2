@@ -2,47 +2,25 @@ materialAdmin
     
    .controller('tableCtrl',function($window, $filter, $sce, ngTableParams, tableService, $scope, $http, $sessionStorage, $location) {
         
-/*
-    this.uploadFile = function(){
-      alert()
+      this.viewFiles = function(course){
+          console.log(course.courseID)
 
-     this.fileSelected = function(files) {
-         if (files && files.length) {
-            $scope.file = files[0];
-         }
-        console.log($scope.file)
+          var courseID = course.courseID
 
-         $upload.upload({
-           url: '/api/upload',
-           file: $scope.file
-         })
-         .success(function(data) {
-           console.log(data, 'uploaded');
-          });
+         $http({
+                method: 'POST',
+                url: 'http://localhost:3000/getFiles',
+                data: {
+                    'courseID': courseID
+                }
+          })
+          .then(function(response){
+               console.log(response.data[0])
+               $scope.links = response.data;
 
-        };
-    };
-*/
-
-
-      /*this.saveContent = function($fileContent){
-          alert()
-         $scope.content = $fileContent;
-         console.log(content)
-      }*/
-
-
-      /*this.submitFile = function(){
-
-          var course = $scope.course
-          if(course == undefined){
-              $('#responseMessage').text( 'Prenche todos os campos!' ) 
-          }
-          else{
-
-            console.log('apples')
-          }
-      }*/
+          
+          })
+      }
 
       this.init = function(){
         //console.log($sessionStorage)
