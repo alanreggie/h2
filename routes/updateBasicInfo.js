@@ -2,7 +2,7 @@ var mysql       = require('mysql');
 
 module.exports = function (app){
 
-	app.post('/updateUserSummary', function(req,res){
+	app.post('/updateBasicInfo', function(req,res){
 
       var connection = mysql.createConnection({
         host     : 'alanmichaanfacesc.cxav9nj4ox1k.sa-east-1.rds.amazonaws.com',
@@ -15,12 +15,14 @@ module.exports = function (app){
 
       connection.connect();
   		
-  		var summary = req.body.summary;
-      var userID = req.body.userID;
-      //console.log(summary, userID)
+  		var userID = req.body.userID;
+      var birthday = req.body.birthday;
+      var firstName = req.body.firstName;
+      var lastName = req.body.lastName;
+      console.log(userID, birthday, firstName, lastName)
 
 
-      connection.query('UPDATE FacescSchema.user SET ? WHERE userID =?', [{ summary: summary}, userID], function(err, rows, fields) {
+      connection.query('UPDATE FacescSchema.user SET ? WHERE userID =?', [{ birthday: birthday, firstName: firstName, lastName: lastName}, userID], function(err, rows, fields) {
       	if(err){
       		res.send(err)	
       	}

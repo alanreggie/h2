@@ -1,6 +1,7 @@
 var LocalStrategy   = require('passport-local').Strategy;
 var bCrypt      = require('bcrypt-nodejs');
 var mysql       = require('mysql');
+var sha256 = require('js-sha256');
 
 
 module.exports = function(passport){

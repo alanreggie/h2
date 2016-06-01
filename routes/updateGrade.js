@@ -18,6 +18,9 @@ module.exports = function (app){
 		var grade = req.body.grade;
         var gradeDescription = req.body.gradeDescription;     
         
+
+        
+        
         connection.query('UPDATE FacescSchema.grade SET ? WHERE gradeID = ?', [{ grade: grade, description: gradeDescription}, gradeID], function(err, rows, fields) {
         	if(err){
         		res.send(err)	

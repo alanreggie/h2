@@ -6,6 +6,12 @@ materialAdmin
     
     .controller('adminAddNewCtrl', function($scope, $http, $window, $sessionStorage, $state, $location){
     		
+      this.redirectProfile = function(){
+        console.log('hello')
+         $state.go('pagesAdmin.profile.profile-about');
+        // $location.path('/a-admin')
+      }
+
       this.init = function(){
 
           if($sessionStorage['user'] == undefined){

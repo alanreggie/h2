@@ -103,7 +103,7 @@ require('./routes/postMessage.js')(app);
 require('./routes/getUserType.js')(app);
 require('./routes/postFile.js')(app);
 require('./routes/viewFiles.js')(app);
-
+require('./routes/updateBasicInfo.js')(app);
 
 
 

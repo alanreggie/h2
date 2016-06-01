@@ -276,8 +276,10 @@ materialAdmin
               else{
                     //User
                     var user = JSON.parse($sessionStorage.user);
+                                        console.log(user.summary)
+
                     this.profileSummary = user.summary;
-                    //console.log(user)
+                    console.log(user)
                 
                     this.fullName = user.firstName + " " + user.lastName;
                     this.firstName = user.firstName;
@@ -293,6 +295,9 @@ materialAdmin
                     // this.addressSuite = "44-46 Morningside Road";
                     this.addressCity = user.city;
                     this.facebook = user.facebook;
+
+                   // this.profileSummary = user.summary
+
                     // this.addressCountry = "Scotland";
               }
         }
@@ -326,41 +331,50 @@ materialAdmin
         }
 
 
-       /* this.submitSummary = function(){
+        this.submitSummary = function(){
+            
+            var user = JSON.parse($sessionStorage.user);
+            var userID = user.userID; 
+
+            console.log($scope.pctrl.profileSummary, userID)
             $http({
-                      method: 'POST',
-                      url: 'http://localhost:3000/updateUserSummary',
-                      data: {
-                          'summary': this.profileSummary,
-                          'userID': user.userID
-                         
-                      }
-                  })
-                .then(function(response){*/
-                    //this.profileSummary = 
-                    //$sessionStorage.user.summary = response.data
-                    /*  var current = sessionStorage.getItem('history');
-  if (!current) { // check if an item is already registered
-    current = []; // if not, we initiate an empty array
-  } else {
-    current = JSON.parse(current); // else parse whatever is in
-  }
-  current.push({
-    title: document.title,
-    url: window.location.href
-  }); // add the item
-  sessionStorage.setItem('history', JSON.stringify(current)); // replace
-*/
+                  method: 'POST',
+                  url: 'http://localhost:3000/updateUserSummary',
+                  data: {
+                      'summary': $scope.pctrl.profileSummary,
+                      'userID': userID
+                     
+                  }
+              })
+            .then(function(response){
+                $sessionStorage.user = JSON.stringify(response.data[0])
+                console.log($sessionStorage.user)
+            })
 
-                    
-                   /* console.log(response.data)
-                 })
 
-        }*/
+        }
 
 
         this.submitBasicInfo = function(){
-           
+            var user = JSON.parse($sessionStorage.user);
+            var userID = user.userID; 
+
+            $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/updateBasicInfo',
+                  data: {
+                      'userID': userID,
+                      'birthday': $scope.pctrl.birthday,
+                      'firstName': $scope.pctrl.firstName,
+                      'lastName': $scope.pctrl.lastName
+                  }
+              })
+            .then(function(response){
+                $sessionStorage.user = JSON.stringify(response.data[0])
+                console.log($sessionStorage.user)
+                this.birthday = user.birthday
+            })
+
         }
 
         this.submitSocialMedia = function(){
@@ -382,7 +396,7 @@ materialAdmin
     // LOGIN
     //=================================================
 
-    .controller('loginCtrl', function($scope, $http, $sessionStorage, $location){
+    .controller('loginCtrl', function($scope, $http, $sessionStorage, $location, $state){
         //Status
         this.login = 1;
         this.register = 0;
@@ -496,16 +510,20 @@ materialAdmin
                            
 
                            if (type == 'Admin'){
-                                $location.path('/admin')
+                             $state.go('pagesAdmin.profile.profile-about');
+                               // $location.path('/admin')
                            }
                            else if (type == 'Gerente'){
-                                $location.path('/manager')
+                                $state.go('pagesManager.profile.profile-about');
+                                //$location.path('/manager')
                            }
                            else if (type == 'Professor'){
-                                $location.path('/teacher')
+                                $state.go('pagesProfessor.profile.profile-about');
+                                //$location.path('/teacher')
                            }
                            else if (type == 'Estudante'){
-                                $location.path('/student')
+                                $state.go('pagesStudent.profile.profile-about');
+                                //$location.path('/student')
                            }
                            else if (type == 'Nenhum'){
                               $('#responseMessage').text( 'Voce so pode login quando o administrador approva sua conta!' )

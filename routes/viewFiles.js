@@ -4,8 +4,8 @@ module.exports = function(app){
  var AWS = require('aws-sdk'); 
 	  
 	  AWS.config.update({
-	    accessKeyId: 'AKIAIGC2NEG6WP5YAZTQ', 
-	    secretAccessKey: '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',
+	    accessKeyId: 'AKIAICXB5UYPJ5IYMEAQ', 
+	    secretAccessKey: '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',
 	    maxRetries: 2
 	  });
 
