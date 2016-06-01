@@ -264,7 +264,7 @@ materialAdmin
     // Profile
     //=================================================
 
-    .controller('profileCtrl', function(growlService, $sessionStorage, $http, $scope, $location){
+    .controller('profileCtrl', function(growlService, $sessionStorage, $http, $scope, $location, $window){
         
         //Get Profile Information from profileService Service
         this.init = function(){
@@ -379,7 +379,39 @@ materialAdmin
 
         this.submitSocialMedia = function(){
             //gotta check whether this email exists
-            console.log(this.emailAddress)
+            //console.log(this.emailAddress)
+            var user = JSON.parse($sessionStorage.user);
+            var userID = user.userID; 
+
+            $http({
+                  method: 'POST',
+                  url: 'http://localhost:3000/updateSocialMedia',
+                  data: {
+                      'userID': userID,
+                      'telephone': $scope.pctrl.mobileNumber,
+                      'email': $scope.pctrl.emailAddress,
+                      'facebook': $scope.pctrl.facebook,
+                      'skype': $scope.pctrl.skype,
+                      'city': $scope.pctrl.addressCity,
+                  }
+              })
+            .then(function(response){
+                //console.log(response.data)
+                //console.log(typeof response.data)
+                if (typeof response.data == 'string'){
+                   
+                   if (response.data == 'Error'){
+                        alert('error')
+                    }
+                    else if (response.data == 'Email already exits'){
+                         alert('Email ja existe!')
+                         $window.location.reload();
+                    }
+                }
+                else{
+                    $sessionStorage.user = JSON.stringify(response.data[0])
+                }
+            })
 
 
         }

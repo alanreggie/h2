@@ -104,6 +104,7 @@ require('./routes/getUserType.js')(app);
 require('./routes/postFile.js')(app);
 require('./routes/viewFiles.js')(app);
 require('./routes/updateBasicInfo.js')(app);
+require('./routes/updateSocialMedia.js')(app);
 
 
 

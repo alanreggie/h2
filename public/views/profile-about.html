@@ -130,13 +130,17 @@
                 <dt>Email</dt>
                 <dd>{{ pctrl.emailAddress }}</dd>
             </dl>
-           <!--  <dl class="dl-horizontal">
-                <dt>Twitter</dt>
-                <dd>{{ pctrl.twitter }}</dd>
-            </dl> -->
+             <dl class="dl-horizontal">
+                <dt>Facebook</dt>
+                <dd>{{ pctrl.facebook }}</dd>
+            </dl>
             <dl class="dl-horizontal">
                 <dt>Skype</dt>
                 <dd>{{ pctrl.skype }}</dd>
+            </dl>
+             <dl class="dl-horizontal">
+                <dt>Cidade</dt>
+                <dd>{{ pctrl.addressCity }}</dd>
             </dl>
         </div>
 
@@ -145,7 +149,7 @@
                 <dt class="p-t-10">Telefone</dt>
                 <dd>
                     <div class="fg-line">
-                        <input data-ng-model="pctrl.mobileNumber" type="text" class="form-control" placeholder="eg. 00971 12345678 9">
+                        <input data-ng-model="pctrl.mobileNumber" type="text" class="form-control" placeholder="eg. 4452 1890">
                     </div>
                 </dd>
             </dl>
@@ -157,12 +161,30 @@
                     </div>
                 </dd>
             </dl>
+
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Facebook</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.facebook" type="text" class="form-control" placeholder="eg. malinda.hollaway">
+                    </div>
+                </dd>
+            </dl>
             
             <dl class="dl-horizontal">
                 <dt class="p-t-10">Skype</dt>
                 <dd>
                     <div class="fg-line">
                         <input data-ng-model="pctrl.skype" type="text" class="form-control" placeholder="eg. malinda.hollaway">
+                    </div>
+                </dd>
+            </dl>
+
+            <dl class="dl-horizontal">
+                <dt class="p-t-10">Cidade</dt>
+                <dd>
+                    <div class="fg-line">
+                        <input data-ng-model="pctrl.addressCity" type="text" class="form-control" placeholder="eg. Chapecó">
                     </div>
                 </dd>
             </dl>
